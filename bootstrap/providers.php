@@ -5,6 +5,7 @@ use App\Packages\ClassManagement\Providers\ClassManagementServiceProvider;
 use App\Packages\CommunicationManagement\Providers\CommunicationManagementServiceProvider;
 use App\Packages\ContactBundle\Providers\ContactBundleServiceProvider;
 use App\Packages\CorePackage\Providers\CorePackageServiceProvider;
+use App\Packages\CourseManagement\Providers\CourseManagementServiceProvider;
 use App\Packages\ExamManagement\Providers\ExamManagementServiceProvider;
 use App\Packages\FeeManagement\Providers\FeeManagementServiceProvider;
 use App\Packages\HostelTransportManagement\Providers\HostelTransportManagementServiceProvider;
@@ -48,4 +49,5 @@ return [
     RbacManagementServiceProvider::class,
     HostelTransportManagementServiceProvider::class,
     WebhookServiceProvider::class,
+    CourseManagementServiceProvider::class,
 ];
