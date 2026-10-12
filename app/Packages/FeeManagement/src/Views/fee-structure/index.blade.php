@@ -21,7 +21,7 @@
 
 <x-core-package::card style="margin-bottom:1.25rem;">
     <form method="GET" action="{{ route('feeStructure.index') }}"
-          style="display:grid;grid-template-columns:1fr 1fr 1fr auto auto;gap:.75rem;align-items:end;">
+          style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto auto;gap:.75rem;align-items:end;">
         <x-core-package::form.select name="academic_year_id" label="Academic Year">
             <option value="">All Years</option>
             @foreach($academicYears as $year)
@@ -40,6 +40,11 @@
             <option value="{{ $cat->fee_category_id }}" @selected(request('fee_category_id') == $cat->fee_category_id)>{{ $cat->category_name }}</option>
             @endforeach
         </x-core-package::form.select>
+        <x-core-package::form.select name="frequency" label="Frequency">
+            <option value="">All</option>
+            <option value="once" @selected(request('frequency') === 'once')>One-time</option>
+            <option value="monthly" @selected(request('frequency') === 'monthly')>Monthly</option>
+        </x-core-package::form.select>
         <div style="padding-top:1.375rem;"><x-core-package::btn type="submit" color="primary">Filter</x-core-package::btn></div>
         <div style="padding-top:1.375rem;"><x-core-package::btn :href="route('feeStructure.index')" color="secondary">Reset</x-core-package::btn></div>
     </form>
@@ -50,8 +55,9 @@
         <table style="width:100%;border-collapse:collapse;font-size:.8125rem;">
             <thead>
                 <tr style="background:#f8fafc;">
-                    <th style="padding:.625rem 1.25rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Class</th>
+                    <th style="padding:.625rem 1.25rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Target</th>
                     <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Category</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Frequency</th>
                     <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Academic Year</th>
                     <th style="padding:.625rem 1rem;text-align:right;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Amount</th>
                     <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Due Date</th>
@@ -61,8 +67,9 @@
             <tbody>
             @forelse($items as $item)
             <tr style="border-bottom:1px solid #f1f5f9;">
-                <td style="padding:.75rem 1.25rem;font-weight:600;color:#1e293b;">{{ $item->schoolClass?->class_name ?? '—' }}</td>
+                <td style="padding:.75rem 1.25rem;font-weight:600;color:#1e293b;">{{ $item->targetLabel() }}</td>
                 <td style="padding:.75rem 1rem;color:#64748b;">{{ $item->feeCategory?->category_name ?? '—' }}</td>
+                <td style="padding:.75rem 1rem;color:#64748b;">{{ $item->frequency === 'monthly' ? 'Monthly'.($item->billing_month ? ' · '.$item->billing_month : '') : 'One-time' }}</td>
                 <td style="padding:.75rem 1rem;color:#64748b;">{{ $item->academicYear?->year_range ?? '—' }}</td>
                 <td style="padding:.75rem 1rem;text-align:right;font-weight:600;color:#0f766e;">₹{{ number_format($item->amount, 2) }}</td>
                 <td style="padding:.75rem 1rem;color:#64748b;">{{ $item->due_date?->format('d M Y') ?? '—' }}</td>
@@ -79,7 +86,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="6" style="padding:2.5rem;text-align:center;color:#94a3b8;font-size:.875rem;">No fee structures found.</td>
+                    <td colspan="7" style="padding:2.5rem;text-align:center;color:#94a3b8;font-size:.875rem;">No fee structures found.</td>
             </tr>
             @endforelse
             </tbody>

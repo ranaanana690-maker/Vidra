@@ -8,6 +8,7 @@ Route::middleware('permission:view-fees')->group(function () {
     Route::get('feeStructure', 'FeeStructureController@index')->name('feeStructure.index');
     Route::get('feeStructure/{feeStructure}', 'FeeStructureController@show')->name('feeStructure.show')->whereNumber('feeStructure');
     Route::get('studentFee', 'StudentFeeController@index')->name('studentFee.index');
+    Route::get('studentFee/arrears', 'StudentFeeController@arrears')->name('studentFee.arrears');
     Route::get('studentFee/{studentFee}', 'StudentFeeController@show')->name('studentFee.show')->whereNumber('studentFee');
     Route::get('feePayment', 'FeePaymentController@index')->name('feePayment.index');
     Route::get('feePayment/{feePayment}', 'FeePaymentController@show')->name('feePayment.show')->whereNumber('feePayment');

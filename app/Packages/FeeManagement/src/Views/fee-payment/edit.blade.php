@@ -35,7 +35,7 @@
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
                 <x-core-package::form.select name="payment_mode" label="Payment Mode" required>
                     <option value="">Select mode...</option>
-                    @foreach(['Cash','Card','UPI','Bank Transfer'] as $mode)
+                    @foreach(['Cash','CCP','BaridiMob','Bank Transfer'] as $mode)
                     <option value="{{ $mode }}" @selected(old('payment_mode', $feePayment->payment_mode) === $mode)>{{ $mode }}</option>
                     @endforeach
                 </x-core-package::form.select>

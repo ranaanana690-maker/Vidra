@@ -31,7 +31,7 @@
                     <option value="">Select fee structure...</option>
                     @foreach($feeStructures as $fs)
                     <option value="{{ $fs->fee_structure_id }}" @selected(old('fee_structure_id') == $fs->fee_structure_id)>
-                        {{ $fs->feeCategory?->category_name }} — {{ $fs->schoolClass?->class_name }} ({{ $fs->academicYear?->year_range }}) · ₹{{ number_format($fs->amount, 2) }}
+                        {{ $fs->feeCategory?->category_name }} — {{ $fs->targetLabel() }} ({{ $fs->academicYear?->year_range }}) · ₹{{ number_format($fs->amount, 2) }}
                     </option>
                     @endforeach
                 </x-core-package::form.select>
@@ -42,6 +42,7 @@
                 <x-core-package::form.input name="penalty_amount" label="Penalty (₹)" type="number" hint="0 if none" value="{{ old('penalty_amount', 0) }}" />
             </div>
             <x-core-package::form.input name="due_date" label="Due Date" type="date" required value="{{ old('due_date') }}" />
+            <x-core-package::form.input name="billing_period" label="Billing Period (YYYY-MM, for monthly)" placeholder="e.g. 2026-10" value="{{ old('billing_period') }}" />
             @if($errors->any())
             <x-core-package::alert type="error">{{ $errors->first() }}</x-core-package::alert>
             @endif

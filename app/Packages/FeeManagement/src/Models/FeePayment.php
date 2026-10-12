@@ -24,6 +24,9 @@ class FeePayment extends Model
         'amount_paid'  => 'decimal:2',
     ];
 
+    /** DZ payment methods. */
+    public const PAYMENT_MODES = ['Cash', 'CCP', 'BaridiMob', 'Bank Transfer'];
+
     public function studentFee()
     {
         return $this->belongsTo(StudentFee::class, 'student_fee_id', 'student_fee_id');

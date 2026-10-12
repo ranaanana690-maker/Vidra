@@ -13,7 +13,7 @@
 <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;">
     <div>
         <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Fee Structure Details</h1>
-        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">{{ $feeStructure->schoolClass?->class_name }} — {{ $feeStructure->feeCategory?->category_name }}</p>
+        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">{{ $feeStructure->targetLabel() }} — {{ $feeStructure->feeCategory?->category_name }}</p>
     </div>
     <div style="display:flex;gap:.75rem;">
         <x-core-package::btn :href="route('feeStructure.edit', $feeStructure)" color="secondary">Edit</x-core-package::btn>
@@ -24,8 +24,12 @@
 <x-core-package::card title="Structure Info" style="max-width:36rem;">
     <dl style="display:grid;grid-template-columns:1fr 1fr;gap:.875rem;">
         <div>
-            <dt style="font-size:.7rem;font-weight:600;color:#94a3b8;text-transform:uppercase;margin-bottom:.2rem;">Class</dt>
-            <dd style="font-size:.9375rem;font-weight:600;color:#1e293b;margin:0;">{{ $feeStructure->schoolClass?->class_name ?? '—' }}</dd>
+            <dt style="font-size:.7rem;font-weight:600;color:#94a3b8;text-transform:uppercase;margin-bottom:.2rem;">Target</dt>
+            <dd style="font-size:.9375rem;font-weight:600;color:#1e293b;margin:0;">{{ $feeStructure->targetLabel() }}</dd>
+        </div>
+        <div>
+            <dt style="font-size:.7rem;font-weight:600;color:#94a3b8;text-transform:uppercase;margin-bottom:.2rem;">Frequency</dt>
+            <dd style="font-size:.875rem;color:#475569;margin:0;">{{ $feeStructure->frequency === 'monthly' ? 'Monthly'.($feeStructure->billing_month ? ' · '.$feeStructure->billing_month : '') : 'One-time' }}</dd>
         </div>
         <div>
             <dt style="font-size:.7rem;font-weight:600;color:#94a3b8;text-transform:uppercase;margin-bottom:.2rem;">Category</dt>

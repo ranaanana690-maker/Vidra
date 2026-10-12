@@ -45,20 +45,20 @@ class FeePaymentController extends Controller
             'student_fee_id'        => 'required|integer',
             'payment_date'          => 'required|date',
             'amount_paid'           => 'required|numeric|min:0.01',
-            'payment_mode'          => 'required|in:Cash,Card,UPI,Bank Transfer',
+            'payment_mode'          => 'required|in:Cash,CCP,BaridiMob,Bank Transfer',
             'transaction_reference' => 'nullable|string|max:150',
         ]);
 
         $payment = FeePayment::create($validated);
         $payment->studentFee->syncPaymentStatus();
 
-        Event::dispatch('webhook.fee.paid', [
+        Event::dispatch('webhook.fee.paid', [[
             'id'             => $payment->payment_id,
             'student_fee_id' => $payment->student_fee_id,
             'amount_paid'    => $payment->amount_paid,
             'payment_mode'   => $payment->payment_mode,
             'payment_date'   => $payment->payment_date,
-        ]);
+        ]]);
 
         return redirect()->route('feePayment.index')->with('success', 'Payment recorded successfully.');
     }
@@ -81,7 +81,7 @@ class FeePaymentController extends Controller
             'student_fee_id'        => 'required|integer',
             'payment_date'          => 'required|date',
             'amount_paid'           => 'required|numeric|min:0.01',
-            'payment_mode'          => 'required|in:Cash,Card,UPI,Bank Transfer',
+            'payment_mode'          => 'required|in:Cash,CCP,BaridiMob,Bank Transfer',
             'transaction_reference' => 'nullable|string|max:150',
         ]);
 
