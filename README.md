@@ -1,4 +1,17 @@
-# School ERP
+# نظام إدارة مركز الدعم (DZ Tutoring Centre) — `v2.0-centre`
+
+> Fork عربّي بالكامل (RTL) من School ERP، مكيّف لمراكز دروس الدعم الجزائرية:
+> الأطوار (ابتدائي/متوسط/ثانوي + الشعب)، وحدة الدورات المستقلة (قرآن/لغات/سوروبان
+> مع تتبع الحفظ والمستويات)، اشتراكات شهرية + دفع الدورات (نقدي/CCP/بريدي موب)
+> مع تقرير المتأخرات.
+>
+> الفروع: `main` (إصدارات) ← `develop` (التطوير) ← `feature/*`.
+> الوسوم: `v1.0-school` (الأصل) ← `v2.0-centre` (هذه النسخة).
+> الدخول التجريبي بعد `db:seed`: `admin@school.com / admin123`.
+> ملاحظة: بعد أول `migrate:fresh + db:seed` نفّذ معالجَي `/library/setup` ثم
+> `/alumni/setup` (زر Run All Setup) لتفعيل صلاحياتهما.
+
+# School ERP (upstream original below)
 
 A comprehensive school management system built with **Laravel 13**, covering students, staff, classes, subjects, exams, fees, timetables, attendance, communication, hostels, transport, and RBAC.
 
