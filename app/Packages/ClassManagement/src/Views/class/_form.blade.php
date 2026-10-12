@@ -34,6 +34,24 @@
                     </option>
                     @endforeach
                 </x-core-package::form.select>
+                <x-core-package::form.select name="level" label="Level" placeholder="Select Level">
+                    <option value="">— None —</option>
+                    @foreach($levels as $code => $label)
+                    <option value="{{ $code }}"
+                        @selected(old('level', $schoolClass->level ?? '') === $code)>
+                        {{ $label }}
+                    </option>
+                    @endforeach
+                </x-core-package::form.select>
+                <x-core-package::form.select name="stream" label="Stream (secondary only)" placeholder="Select Stream">
+                    <option value="">— None —</option>
+                    @foreach($streams as $code => $label)
+                    <option value="{{ $code }}"
+                        @selected(old('stream', $schoolClass->stream ?? '') === $code)>
+                        {{ $label }}
+                    </option>
+                    @endforeach
+                </x-core-package::form.select>
                 <div style="display:flex;align-items:center;gap:.625rem;padding-top:1.5rem;">
                     <label style="display:flex;align-items:center;gap:.625rem;cursor:pointer;">
                         <input type="checkbox" name="is_active" value="1"
