@@ -34,3 +34,5 @@ DB_Structure
 docs
 mail.txt
 app/Packages/Pro
+# Local dev helpers (machine-specific paths)
+start-server.bat

@@ -17,42 +17,19 @@ use App\Packages\DataTransfer\Providers\DataTransferServiceProvider;
 use App\Packages\Installer\Providers\InstallerServiceProvider;
 use App\Packages\BundleInstaller\Providers\BundleInstallerServiceProvider;
 use App\Packages\Webhook\Providers\WebhookServiceProvider;
-use App\Packages\Pro\AnalyticsBundle\Providers\AnalyticsBundleServiceProvider;
-use App\Packages\Pro\AdmissionManagement\Providers\AdmissionManagementServiceProvider;
 use App\Packages\Pro\AlumniManagement\Providers\AlumniManagementServiceProvider;
-use App\Packages\Pro\AuditManagement\Providers\AuditManagementServiceProvider;
-use App\Packages\Pro\BehaviorManagement\Providers\BehaviorManagementServiceProvider;
-use App\Packages\Pro\EventManagement\Providers\EventManagementServiceProvider;
-use App\Packages\Pro\ExtracurricularManagement\Providers\ExtracurricularManagementServiceProvider;
-use App\Packages\Pro\GrievanceManagement\Providers\GrievanceManagementServiceProvider;
-use App\Packages\Pro\HealthManagement\Providers\HealthManagementServiceProvider;
-use App\Packages\Pro\HomeworkManagement\Providers\HomeworkManagementServiceProvider;
-use App\Packages\Pro\InventoryManagement\Providers\InventoryManagementServiceProvider;
 use App\Packages\Pro\LibraryManagement\Providers\LibraryManagementServiceProvider;
-use App\Packages\Pro\PTMManagement\Providers\PTMManagementServiceProvider;
-use App\Packages\Pro\ReportsManagement\Providers\ReportsManagementServiceProvider;
-use App\Packages\Pro\TransportGpsManagement\Providers\TransportGpsManagementServiceProvider;
+// NOTE: other Pro bundles are not in the repo yet (only AlumniManagement +
+// LibraryManagement exist under app/Packages/Pro). Re-enable their providers
+// after installing the corresponding ZIP via /bundle-installer.
 // installed pro bundles
 
 
 use App\Providers\AppServiceProvider;
 
 return [
-    AnalyticsBundleServiceProvider::class,
-    AdmissionManagementServiceProvider::class,
     AlumniManagementServiceProvider::class,
-    AuditManagementServiceProvider::class,
-    BehaviorManagementServiceProvider::class,
-    EventManagementServiceProvider::class,
-    ExtracurricularManagementServiceProvider::class,
-    GrievanceManagementServiceProvider::class,
-    HealthManagementServiceProvider::class,
-    HomeworkManagementServiceProvider::class,
-    InventoryManagementServiceProvider::class,
     LibraryManagementServiceProvider::class,
-    PTMManagementServiceProvider::class,
-    ReportsManagementServiceProvider::class,
-    TransportGpsManagementServiceProvider::class,
     AppServiceProvider::class,
     InstallerServiceProvider::class,
     BundleInstallerServiceProvider::class,
