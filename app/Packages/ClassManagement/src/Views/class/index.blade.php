@@ -21,9 +21,21 @@
 
 <x-core-package::card style="margin-bottom:1.25rem;">
     <form method="GET" action="{{ route('classes.index') }}"
-          style="display:grid;grid-template-columns:1fr 220px 160px auto auto;gap:.75rem;align-items:end;">
+          style="display:grid;grid-template-columns:1fr 200px 180px 180px 140px auto auto;gap:.75rem;align-items:end;">
         <x-core-package::form.input name="search" label="Search" placeholder="Class name or code"
             value="{{ request('search') }}" />
+        <x-core-package::form.select name="level" label="Level">
+            <option value="" @selected(!request('level'))>All Levels</option>
+            @foreach($levels as $code => $label)
+            <option value="{{ $code }}" @selected(request('level') === $code)>{{ $label }}</option>
+            @endforeach
+        </x-core-package::form.select>
+        <x-core-package::form.select name="stream" label="Stream">
+            <option value="" @selected(!request('stream'))>All Streams</option>
+            @foreach($streams as $code => $label)
+            <option value="{{ $code }}" @selected(request('stream') === $code)>{{ $label }}</option>
+            @endforeach
+        </x-core-package::form.select>
         <x-core-package::form.select name="academic_year_id" label="Academic Year">
             <option value="" @selected(!request('academic_year_id'))>All Years</option>
             @foreach($academicYears as $year)
@@ -48,6 +60,8 @@
             <thead>
                 <tr style="background:#f8fafc;">
                     <th style="padding:.625rem 1.25rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Class</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Level</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Stream</th>
                     <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Academic Year</th>
                     <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Sections</th>
                     <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Status</th>
@@ -70,6 +84,8 @@
                         </div>
                     </div>
                 </td>
+                <td style="padding:.75rem 1rem;color:#64748b;">{{ $levels[$item->level] ?? '—' }}</td>
+                <td style="padding:.75rem 1rem;color:#64748b;">{{ $streams[$item->stream] ?? '—' }}</td>
                 <td style="padding:.75rem 1rem;color:#64748b;">{{ $item->academicYear->year_range ?? '—' }}</td>
                 <td style="padding:.75rem 1rem;">
                     <span style="font-size:.875rem;font-weight:600;color:#1e293b;">{{ $item->sections->count() }}</span>
@@ -94,7 +110,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="5" style="padding:2.5rem;text-align:center;color:#94a3b8;font-size:.875rem;">
+                    <td colspan="7" style="padding:2.5rem;text-align:center;color:#94a3b8;font-size:.875rem;">
                     No classes found.
                 </td>
             </tr>

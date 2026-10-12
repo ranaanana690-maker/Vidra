@@ -18,7 +18,7 @@ class ClassController extends Controller
         if ($request->filled('search')) {
             $query->where(function ($q) use ($request) {
                 $q->where('class_name', 'like', '%'.$request->search.'%')
-                  ->orWhere('class_code', 'like', '%'.$request->search.'%');
+                    ->orWhere('class_code', 'like', '%'.$request->search.'%');
             });
         }
         if ($request->filled('academic_year_id')) {
@@ -27,28 +27,40 @@ class ClassController extends Controller
         if ($request->filled('status')) {
             $query->where('is_active', $request->status === 'active');
         }
+        if ($request->filled('level')) {
+            $query->where('level', $request->level);
+        }
+        if ($request->filled('stream')) {
+            $query->where('stream', $request->stream);
+        }
 
-        $items        = $query->orderBy('class_name')->paginate(15)->withQueryString();
+        $items = $query->orderBy('class_name')->paginate(15)->withQueryString();
         $academicYears = AcademicYear::orderByDesc('start_date')->get();
+        $levels = SchoolClass::LEVELS;
+        $streams = SchoolClass::STREAMS;
 
-        return view('class-management::class.index', compact('items', 'academicYears'));
+        return view('class-management::class.index', compact('items', 'academicYears', 'levels', 'streams'));
     }
 
     public function create(): View
     {
         $academicYears = AcademicYear::orderByDesc('start_date')->get();
+        $levels = SchoolClass::LEVELS;
+        $streams = SchoolClass::STREAMS;
 
-        return view('class-management::class.create', compact('academicYears'));
+        return view('class-management::class.create', compact('academicYears', 'levels', 'streams'));
     }
 
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'class_name'       => 'required|string|max:50',
-            'class_code'       => 'nullable|string|max:20|unique:classes,class_code',
+            'class_name' => 'required|string|max:50',
+            'class_code' => 'nullable|string|max:20|unique:classes,class_code',
+            'level' => 'nullable|string|in:primary,middle,secondary',
+            'stream' => 'nullable|string|in:tc-st,tc-l,se,math,tm,ge,philo,lang',
             'academic_year_id' => 'nullable|integer|exists:academic_years,academic_year_id',
-            'description'      => 'nullable|string',
-            'is_active'        => 'sometimes|boolean',
+            'description' => 'nullable|string',
+            'is_active' => 'sometimes|boolean',
         ]);
 
         $validated['is_active'] = $request->boolean('is_active', true);
@@ -69,18 +81,22 @@ class ClassController extends Controller
     public function edit(SchoolClass $schoolClass): View
     {
         $academicYears = AcademicYear::orderByDesc('start_date')->get();
+        $levels = SchoolClass::LEVELS;
+        $streams = SchoolClass::STREAMS;
 
-        return view('class-management::class.edit', compact('schoolClass', 'academicYears'));
+        return view('class-management::class.edit', compact('schoolClass', 'academicYears', 'levels', 'streams'));
     }
 
     public function update(Request $request, SchoolClass $schoolClass): RedirectResponse
     {
         $validated = $request->validate([
-            'class_name'       => 'required|string|max:50',
-            'class_code'       => 'nullable|string|max:20|unique:classes,class_code,'.$schoolClass->class_id.',class_id',
+            'class_name' => 'required|string|max:50',
+            'class_code' => 'nullable|string|max:20|unique:classes,class_code,'.$schoolClass->class_id.',class_id',
+            'level' => 'nullable|string|in:primary,middle,secondary',
+            'stream' => 'nullable|string|in:tc-st,tc-l,se,math,tm,ge,philo,lang',
             'academic_year_id' => 'nullable|integer|exists:academic_years,academic_year_id',
-            'description'      => 'nullable|string',
-            'is_active'        => 'sometimes|boolean',
+            'description' => 'nullable|string',
+            'is_active' => 'sometimes|boolean',
         ]);
 
         $validated['is_active'] = $request->boolean('is_active');

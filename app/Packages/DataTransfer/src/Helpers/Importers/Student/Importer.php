@@ -21,17 +21,35 @@ class Importer extends AbstractImporter
         ];
     }
 
+    /**
+     * Normalize enum casing from CSV (male/MALE -> Male) to match DB enums.
+     * Accepts the documented lowercase values and the capitalized DB values.
+     */
+    private function normalizeRow(array $row): array
+    {
+        if (! empty($row['gender'])) {
+            $row['gender'] = ucfirst(strtolower(trim((string) $row['gender'])));
+        }
+        if (! empty($row['status'])) {
+            $row['status'] = ucfirst(strtolower(trim((string) $row['status'])));
+        }
+
+        return $row;
+    }
+
     public function validateRow(array $row, int $rowNumber): bool
     {
+        $row = $this->normalizeRow($row);
+
         $validator = Validator::make($row, [
-            'first_name'       => 'required|string|max:100',
-            'last_name'        => 'required|string|max:100',
+            'first_name' => 'required|string|max:100',
+            'last_name' => 'required|string|max:100',
             'admission_number' => 'required|string|max:50',
-            'email'            => 'nullable|email',
-            'gender'           => 'nullable|in:male,female,other',
-            'date_of_birth'    => 'nullable|date',
-            'date_of_admission'=> 'nullable|date',
-            'status'           => 'nullable|in:active,inactive,graduated,transferred',
+            'email' => 'nullable|email',
+            'gender' => 'nullable|in:Male,Female,Other',
+            'date_of_birth' => 'nullable|date',
+            'date_of_admission' => 'nullable|date',
+            'status' => 'nullable|in:Active,Inactive,Graduated,Transferred',
         ]);
 
         if ($validator->fails()) {
@@ -47,23 +65,25 @@ class Importer extends AbstractImporter
 
     public function processRow(array $row, string $action): void
     {
+        $row = $this->normalizeRow($row);
+
         $existing = Student::where('admission_number', $row['admission_number'])->first();
 
         $data = array_filter([
-            'first_name'        => $row['first_name'] ?? null,
-            'last_name'         => $row['last_name'] ?? null,
-            'date_of_birth'     => $row['date_of_birth'] ?? null,
-            'gender'            => $row['gender'] ?? null,
-            'blood_group'       => $row['blood_group'] ?? null,
-            'nationality'       => $row['nationality'] ?? null,
-            'religion'          => $row['religion'] ?? null,
-            'current_address'   => $row['current_address'] ?? null,
+            'first_name' => $row['first_name'] ?? null,
+            'last_name' => $row['last_name'] ?? null,
+            'date_of_birth' => $row['date_of_birth'] ?? null,
+            'gender' => $row['gender'] ?? null,
+            'blood_group' => $row['blood_group'] ?? null,
+            'nationality' => $row['nationality'] ?? null,
+            'religion' => $row['religion'] ?? null,
+            'current_address' => $row['current_address'] ?? null,
             'permanent_address' => $row['permanent_address'] ?? null,
-            'phone_number'      => $row['phone_number'] ?? null,
-            'email'             => $row['email'] ?? null,
+            'phone_number' => $row['phone_number'] ?? null,
+            'email' => $row['email'] ?? null,
             'date_of_admission' => $row['date_of_admission'] ?? null,
-            'admission_number'  => $row['admission_number'],
-            'status'            => $row['status'] ?? 'active',
+            'admission_number' => $row['admission_number'],
+            'status' => $row['status'] ?? 'Active',
         ], fn ($v) => $v !== null && $v !== '');
 
         if ($action === 'delete') {

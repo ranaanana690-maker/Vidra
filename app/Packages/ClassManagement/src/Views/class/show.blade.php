@@ -155,6 +155,8 @@
                 @endphp
                 @php classInfoRow('Class Name', $schoolClass->class_name); @endphp
                 @php classInfoRow('Class Code', $schoolClass->class_code); @endphp
+                @php classInfoRow('Level', \App\Packages\ClassManagement\Models\SchoolClass::LEVELS[$schoolClass->level] ?? null); @endphp
+                @php classInfoRow('Stream', \App\Packages\ClassManagement\Models\SchoolClass::STREAMS[$schoolClass->stream] ?? null); @endphp
                 @php classInfoRow('Academic Year', $schoolClass->academicYear->year_range ?? null); @endphp
                 @if($schoolClass->description)
                 <div>

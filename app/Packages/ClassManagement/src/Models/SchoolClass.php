@@ -18,9 +18,30 @@ class SchoolClass extends Model
     protected $fillable = [
         'class_name',
         'class_code',
+        'level',
+        'stream',
         'description',
         'academic_year_id',
         'is_active',
+    ];
+
+    /** DZ tutoring-center levels (DB values are stable codes; labels are English until the Arabic phase). */
+    public const LEVELS = [
+        'primary' => 'Primary',
+        'middle' => 'Middle',
+        'secondary' => 'Secondary',
+    ];
+
+    /** DZ secondary streams (only meaningful when level = secondary). */
+    public const STREAMS = [
+        'tc-st' => 'TC Science & Technology',
+        'tc-l' => 'TC Letters',
+        'se' => 'Experimental Sciences',
+        'math' => 'Mathematics',
+        'tm' => 'Technical Mathematics',
+        'ge' => 'Management & Economics',
+        'philo' => 'Literature & Philosophy',
+        'lang' => 'Foreign Languages',
     ];
 
     protected $casts = [
