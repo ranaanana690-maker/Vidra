@@ -41,6 +41,7 @@
                 <x-core-package::form.input name="penalty_amount" label="Penalty (₹)" type="number" value="{{ old('penalty_amount', $studentFee->penalty_amount) }}" />
             </div>
             <x-core-package::form.input name="due_date" label="Due Date" type="date" required value="{{ old('due_date', $studentFee->due_date?->format('Y-m-d')) }}" />
+            <x-core-package::form.input name="billing_period" label="Billing Period (YYYY-MM, for monthly)" placeholder="e.g. 2026-10" value="{{ old('billing_period', $studentFee->billing_period) }}" />
             @if($errors->any())
             <x-core-package::alert type="error">{{ $errors->first() }}</x-core-package::alert>
             @endif

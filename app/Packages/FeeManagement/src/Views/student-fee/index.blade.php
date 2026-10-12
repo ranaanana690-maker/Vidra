@@ -21,7 +21,7 @@
 
 <x-core-package::card style="margin-bottom:1.25rem;">
     <form method="GET" action="{{ route('studentFee.index') }}"
-          style="display:grid;grid-template-columns:1fr 160px auto auto;gap:.75rem;align-items:end;">
+          style="display:grid;grid-template-columns:1fr 160px 160px auto auto;gap:.75rem;align-items:end;">
         <x-core-package::form.input name="search" label="Search Student" placeholder="Name..." value="{{ request('search') }}" />
         <x-core-package::form.select name="payment_status" label="Status">
             <option value="">All</option>
@@ -29,6 +29,7 @@
             <option value="Partially Paid" @selected(request('payment_status') === 'Partially Paid')>Partially Paid</option>
             <option value="Paid" @selected(request('payment_status') === 'Paid')>Paid</option>
         </x-core-package::form.select>
+        <x-core-package::form.input name="billing_period" label="Period (YYYY-MM)" placeholder="e.g. 2026-10" value="{{ request('billing_period') }}" />
         <div style="padding-top:1.375rem;"><x-core-package::btn type="submit" color="primary">Filter</x-core-package::btn></div>
         <div style="padding-top:1.375rem;"><x-core-package::btn :href="route('studentFee.index')" color="secondary">Reset</x-core-package::btn></div>
     </form>
@@ -44,6 +45,7 @@
                     <th style="padding:.625rem 1rem;text-align:right;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Amount Due</th>
                     <th style="padding:.625rem 1rem;text-align:right;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Total Payable</th>
                     <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Due Date</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Period</th>
                     <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Status</th>
                     <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Actions</th>
                 </tr>
@@ -68,6 +70,7 @@
                 <td style="padding:.75rem 1rem;text-align:right;color:#374151;">₹{{ number_format($item->amount_due, 2) }}</td>
                 <td style="padding:.75rem 1rem;text-align:right;font-weight:600;color:#0f766e;">₹{{ number_format($item->total_payable, 2) }}</td>
                 <td style="padding:.75rem 1rem;color:#64748b;">{{ $item->due_date?->format('d M Y') ?? '—' }}</td>
+                <td style="padding:.75rem 1rem;color:#64748b;">{{ $item->billing_period ?? '—' }}</td>
                 <td style="padding:.75rem 1rem;">
                     <x-core-package::badge color="{{ $statusColor }}">{{ $item->payment_status }}</x-core-package::badge>
                 </td>
@@ -85,7 +88,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="7" style="padding:2.5rem;text-align:center;color:#94a3b8;font-size:.875rem;">No student fee records found.</td>
+                <td colspan="8" style="padding:2.5rem;text-align:center;color:#94a3b8;font-size:.875rem;">No student fee records found.</td>
             </tr>
             @endforelse
             </tbody>

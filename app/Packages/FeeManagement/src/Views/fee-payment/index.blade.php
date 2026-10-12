@@ -24,7 +24,7 @@
           style="display:grid;grid-template-columns:160px 1fr 1fr auto auto;gap:.75rem;align-items:end;">
         <x-core-package::form.select name="payment_mode" label="Mode">
             <option value="">All Modes</option>
-            @foreach(['Cash','Card','UPI','Bank Transfer'] as $mode)
+            @foreach(['Cash','CCP','BaridiMob','Bank Transfer'] as $mode)
             <option value="{{ $mode }}" @selected(request('payment_mode') === $mode)>{{ $mode }}</option>
             @endforeach
         </x-core-package::form.select>
@@ -59,7 +59,7 @@
                 <td style="padding:.75rem 1rem;color:#64748b;">{{ $item->payment_date?->format('d M Y') }}</td>
                 <td style="padding:.75rem 1rem;text-align:right;font-weight:600;color:#0f766e;">₹{{ number_format($item->amount_paid, 2) }}</td>
                 <td style="padding:.75rem 1rem;">
-                    <x-core-package::badge color="{{ match($item->payment_mode) { 'Cash' => 'green', 'UPI' => 'blue', 'Card' => 'indigo', default => 'gray' } }}">{{ $item->payment_mode }}</x-core-package::badge>
+                    <x-core-package::badge color="{{ match($item->payment_mode) { 'Cash' => 'green', 'CCP' => 'blue', 'BaridiMob' => 'indigo', default => 'gray' } }}">{{ $item->payment_mode }}</x-core-package::badge>
                 </td>
                 <td style="padding:.75rem 1rem;color:#94a3b8;font-size:.75rem;">{{ $item->transaction_reference ?? '—' }}</td>
                 <td style="padding:.75rem 1rem;">

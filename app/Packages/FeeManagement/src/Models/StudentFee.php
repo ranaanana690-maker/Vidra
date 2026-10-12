@@ -21,6 +21,7 @@ class StudentFee extends Model
         'total_payable',
         'payment_status',
         'due_date',
+        'billing_period',
     ];
 
     protected $casts = [

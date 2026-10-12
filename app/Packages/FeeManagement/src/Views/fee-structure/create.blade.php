@@ -27,12 +27,34 @@
                     <option value="{{ $year->academic_year_id }}" @selected(old('academic_year_id') == $year->academic_year_id)>{{ $year->year_range }}</option>
                     @endforeach
                 </x-core-package::form.select>
-                <x-core-package::form.select name="class_id" label="Class" required>
+                <x-core-package::form.select name="class_id" label="Class (leave empty for course fees)">
                     <option value="">Select class...</option>
                     @foreach($classes as $class)
                     <option value="{{ $class->class_id }}" @selected(old('class_id') == $class->class_id)>{{ $class->class_name }}</option>
                     @endforeach
                 </x-core-package::form.select>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                <x-core-package::form.select name="course_id" label="Course (leave empty for class fees)">
+                    <option value="">Select course...</option>
+                    @foreach($courses as $course)
+                    <option value="{{ $course->course_id }}" @selected(old('course_id') == $course->course_id)>{{ $course->name }}</option>
+                    @endforeach
+                </x-core-package::form.select>
+                <x-core-package::form.select name="subject_id" label="Subject (optional)">
+                    <option value="">Select subject...</option>
+                    @foreach($subjects as $subject)
+                    <option value="{{ $subject->subject_id }}" @selected(old('subject_id') == $subject->subject_id)>{{ $subject->subject_name }}</option>
+                    @endforeach
+                </x-core-package::form.select>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                <x-core-package::form.select name="frequency" label="Frequency" required>
+                    @foreach($frequencies as $code => $label)
+                    <option value="{{ $code }}" @selected(old('frequency', 'once') === $code)>{{ $label }}</option>
+                    @endforeach
+                </x-core-package::form.select>
+                <x-core-package::form.input name="billing_month" label="Billing Month (YYYY-MM, for monthly)" placeholder="e.g. 2026-10" value="{{ old('billing_month') }}" />
             </div>
             <x-core-package::form.select name="fee_category_id" label="Fee Category" required>
                 <option value="">Select category...</option>

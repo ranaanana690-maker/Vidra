@@ -4,6 +4,8 @@ namespace App\Packages\FeeManagement\Models;
 
 use App\Packages\ClassManagement\Models\AcademicYear;
 use App\Packages\ClassManagement\Models\SchoolClass;
+use App\Packages\CourseManagement\Models\Course;
+use App\Packages\SubjectManagement\Models\Subject;
 use Illuminate\Database\Eloquent\Model;
 
 class FeeStructure extends Model
@@ -15,10 +17,19 @@ class FeeStructure extends Model
 
     protected $fillable = [
         'class_id',
+        'subject_id',
+        'course_id',
+        'frequency',
+        'billing_month',
         'fee_category_id',
         'amount',
         'due_date',
         'academic_year_id',
+    ];
+
+    public const FREQUENCIES = [
+        'once' => 'One-time',
+        'monthly' => 'Monthly subscription',
     ];
 
     protected $casts = [
@@ -29,6 +40,29 @@ class FeeStructure extends Model
     public function schoolClass()
     {
         return $this->belongsTo(SchoolClass::class, 'class_id', 'class_id');
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class, 'subject_id', 'subject_id');
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class, 'course_id', 'course_id');
+    }
+
+    /** Human target label: course name or class name (used in selects). */
+    public function targetLabel(): string
+    {
+        if ($this->course) {
+            return 'Course: '.$this->course->name;
+        }
+        if ($this->schoolClass) {
+            return 'Class: '.$this->schoolClass->class_name;
+        }
+
+        return '—';
     }
 
     public function feeCategory()

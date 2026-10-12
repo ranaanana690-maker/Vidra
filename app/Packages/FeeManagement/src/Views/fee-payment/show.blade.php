@@ -47,7 +47,7 @@
         </div>
         <div>
             <dt style="font-size:.7rem;font-weight:600;color:#94a3b8;text-transform:uppercase;margin-bottom:.2rem;">Payment Mode</dt>
-            <dd style="margin:0;"><x-core-package::badge color="{{ match($feePayment->payment_mode) { 'Cash' => 'green', 'UPI' => 'blue', 'Card' => 'indigo', default => 'gray' } }}">{{ $feePayment->payment_mode }}</x-core-package::badge></dd>
+            <dd style="margin:0;"><x-core-package::badge color="{{ match($feePayment->payment_mode) { 'Cash' => 'green', 'CCP' => 'blue', 'BaridiMob' => 'indigo', default => 'gray' } }}">{{ $feePayment->payment_mode }}</x-core-package::badge></dd>
         </div>
         <div style="grid-column:span 2;">
             <dt style="font-size:.7rem;font-weight:600;color:#94a3b8;text-transform:uppercase;margin-bottom:.2rem;">Transaction Reference</dt>
