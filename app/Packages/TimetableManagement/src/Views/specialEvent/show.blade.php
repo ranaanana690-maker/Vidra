@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('specialEvent.index') }}" style="color:#64748b;text-decoration:none;">Special Events</a>
+    <a href="{{ route('specialEvent.index') }}" style="color:#64748b;text-decoration:none;">المناسبات</a>
     <span style="margin:0 .375rem;">›</span>
     <span style="color:#374151;font-weight:500;">{{ $specialEvent->event_name }}</span>
 </nav>
@@ -16,43 +16,43 @@
         <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">{{ $specialEvent->event_date?->format('d M Y') }}</p>
     </div>
     <div style="display:flex;gap:.75rem;">
-        <x-core-package::btn :href="route('specialEvent.edit', $specialEvent)" color="secondary">Edit</x-core-package::btn>
-        <form method="POST" action="{{ route('specialEvent.destroy', $specialEvent) }}" onsubmit="return confirm('Delete this event?')">
+        <x-core-package::btn :href="route('specialEvent.edit', $specialEvent)" color="secondary">تعديل</x-core-package::btn>
+        <form method="POST" action="{{ route('specialEvent.destroy', $specialEvent) }}" onsubmit="return confirm('حذف هذه المناسبة؟')">
             @csrf @method('DELETE')
-            <x-core-package::btn type="submit" color="danger">Delete</x-core-package::btn>
+            <x-core-package::btn type="submit" color="danger">حذف</x-core-package::btn>
         </form>
     </div>
 </div>
 
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
-    <x-core-package::card title="Event Details">
+    <x-core-package::card title="تفاصيل المناسبة">
         <dl style="display:grid;gap:.875rem;">
             <div>
-                <dt style="font-size:.7rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;">Event Name</dt>
+                <dt style="font-size:.7rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;">اسم المناسبة</dt>
                 <dd style="font-size:.9375rem;font-weight:600;color:#1e293b;margin:.25rem 0 0;">{{ $specialEvent->event_name }}</dd>
             </div>
             <div>
-                <dt style="font-size:.7rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;">Date</dt>
+                <dt style="font-size:.7rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;">التاريخ</dt>
                 <dd style="font-size:.9375rem;color:#475569;margin:.25rem 0 0;">{{ $specialEvent->event_date?->format('d M Y') }}</dd>
             </div>
             <div>
-                <dt style="font-size:.7rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;">Time</dt>
+                <dt style="font-size:.7rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;">الوقت</dt>
                 <dd style="font-size:.9375rem;color:#475569;margin:.25rem 0 0;">{{ $specialEvent->start_time }} – {{ $specialEvent->end_time }}</dd>
             </div>
             <div>
-                <dt style="font-size:.7rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;">Venue</dt>
+                <dt style="font-size:.7rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;">المكان</dt>
                 <dd style="font-size:.9375rem;color:#475569;margin:.25rem 0 0;">
                     @if($specialEvent->room)
                     {{ $specialEvent->room->room_name }}
                     <x-core-package::badge color="blue">{{ $specialEvent->room->room_type }}</x-core-package::badge>
                     @else
-                    <span style="color:#94a3b8;">Not specified</span>
+                    <span style="color:#94a3b8;">غير محدد</span>
                     @endif
                 </dd>
             </div>
             @if($specialEvent->description)
             <div>
-                <dt style="font-size:.7rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;">Description</dt>
+                <dt style="font-size:.7rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;">الوصف</dt>
                 <dd style="font-size:.875rem;color:#475569;margin:.25rem 0 0;line-height:1.5;">{{ $specialEvent->description }}</dd>
             </div>
             @endif

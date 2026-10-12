@@ -53,7 +53,7 @@ class StudentTransportController extends Controller
         StudentTransport::create($validated);
 
         return redirect()->route('student-transport.index')
-            ->with('success', 'Student assigned to transport successfully.');
+            ->with('success', 'تم إسناد النقل للتلميذ بنجاح.');
     }
 
     public function show(StudentTransport $studentTransport): View
@@ -84,7 +84,7 @@ class StudentTransportController extends Controller
         $studentTransport->update($validated);
 
         return redirect()->route('student-transport.index')
-            ->with('success', 'Transport assignment updated successfully.');
+            ->with('success', 'تم تحديث إسناد النقل بنجاح.');
     }
 
     public function destroy(StudentTransport $studentTransport): RedirectResponse
@@ -92,6 +92,6 @@ class StudentTransportController extends Controller
         $studentTransport->delete();
 
         return redirect()->route('student-transport.index')
-            ->with('success', 'Transport assignment removed.');
+            ->with('success', 'تمت إزالة إسناد النقل.');
     }
 }

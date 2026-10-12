@@ -61,6 +61,6 @@ class SectionApiController extends Controller
     {
         $section->delete();
 
-        return response()->json(['message' => 'Section deleted']);
+        return response()->json(['message' => 'تم حذف الفوج.']);
     }
 }

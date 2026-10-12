@@ -25,15 +25,37 @@ class StudentFeeController extends Controller
         if ($request->filled('payment_status')) {
             $query->where('payment_status', $request->payment_status);
         }
+        if ($request->filled('billing_period')) {
+            $query->where('billing_period', $request->billing_period);
+        }
 
         $items = $query->orderByDesc('created_at')->paginate(20)->withQueryString();
         return view('fee-management::student-fee.index', compact('items'));
     }
 
+    /**
+     * Arrears report: unpaid obligations whose due date has passed.
+     */
+    public function arrears(Request $request): View
+    {
+        $query = StudentFee::with('student', 'feeStructure.feeCategory', 'feeStructure.schoolClass', 'feeStructure.course')
+            ->whereIn('payment_status', ['Pending', 'Partially Paid'])
+            ->whereDate('due_date', '<', today());
+
+        if ($request->filled('billing_period')) {
+            $query->where('billing_period', $request->billing_period);
+        }
+
+        $items = $query->orderBy('due_date')->paginate(20)->withQueryString();
+        $totalDue = (clone $query)->get()->sum(fn ($fee) => $fee->total_payable - $fee->payments()->sum('amount_paid'));
+
+        return view('fee-management::student-fee.arrears', compact('items', 'totalDue'));
+    }
+
     public function create(): View
     {
         $students      = Student::orderBy('first_name')->get();
-        $feeStructures = FeeStructure::with('feeCategory', 'schoolClass', 'academicYear')->get();
+        $feeStructures = FeeStructure::with('feeCategory', 'schoolClass', 'course', 'academicYear')->get();
         return view('fee-management::student-fee.create', compact('students', 'feeStructures'));
     }
 
@@ -46,6 +68,7 @@ class StudentFeeController extends Controller
             'discount_amount'  => 'nullable|numeric|min:0',
             'penalty_amount'   => 'nullable|numeric|min:0',
             'due_date'         => 'required|date',
+            'billing_period'   => 'nullable|date_format:Y-m',
         ]);
 
         $validated['discount_amount'] = $validated['discount_amount'] ?? 0;
@@ -54,7 +77,7 @@ class StudentFeeController extends Controller
         $validated['payment_status']  = 'Pending';
 
         StudentFee::create($validated);
-        return redirect()->route('studentFee.index')->with('success', 'Student fee record created successfully.');
+        return redirect()->route('studentFee.index')->with('success', 'تم إنشاء سجل رسم التلميذ بنجاح.');
     }
 
     public function show(StudentFee $studentFee): View
@@ -66,7 +89,7 @@ class StudentFeeController extends Controller
     public function edit(StudentFee $studentFee): View
     {
         $students      = Student::orderBy('first_name')->get();
-        $feeStructures = FeeStructure::with('feeCategory', 'schoolClass', 'academicYear')->get();
+        $feeStructures = FeeStructure::with('feeCategory', 'schoolClass', 'course', 'academicYear')->get();
         return view('fee-management::student-fee.edit', compact('studentFee', 'students', 'feeStructures'));
     }
 
@@ -79,6 +102,7 @@ class StudentFeeController extends Controller
             'discount_amount'  => 'nullable|numeric|min:0',
             'penalty_amount'   => 'nullable|numeric|min:0',
             'due_date'         => 'required|date',
+            'billing_period'   => 'nullable|date_format:Y-m',
         ]);
 
         $validated['discount_amount'] = $validated['discount_amount'] ?? 0;
@@ -88,12 +112,12 @@ class StudentFeeController extends Controller
         $studentFee->update($validated);
         $studentFee->syncPaymentStatus();
 
-        return redirect()->route('studentFee.index')->with('success', 'Student fee record updated successfully.');
+        return redirect()->route('studentFee.index')->with('success', 'تم تحديث سجل رسم التلميذ بنجاح.');
     }
 
     public function destroy(StudentFee $studentFee): RedirectResponse
     {
         $studentFee->delete();
-        return redirect()->route('studentFee.index')->with('success', 'Student fee record deleted.');
+        return redirect()->route('studentFee.index')->with('success', 'تم حذف سجل رسم التلميذ.');
     }
 }

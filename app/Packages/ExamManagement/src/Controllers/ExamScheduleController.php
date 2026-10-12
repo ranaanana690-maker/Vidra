@@ -52,7 +52,7 @@ class ExamScheduleController extends Controller
         ExamSchedule::create($validated);
 
         return redirect()->route('examSchedule.index')
-            ->with('success', 'Exam schedule created successfully.');
+            ->with('success', 'تم إنشاء رزنامة الامتحان بنجاح.');
     }
 
     public function show(ExamSchedule $examSchedule): View
@@ -86,13 +86,13 @@ class ExamScheduleController extends Controller
         $examSchedule->update($validated);
 
         return redirect()->route('examSchedule.index')
-            ->with('success', 'Exam schedule updated successfully.');
+            ->with('success', 'تم تحديث رزنامة الامتحان بنجاح.');
     }
 
     public function destroy(ExamSchedule $examSchedule): RedirectResponse
     {
         $examSchedule->delete();
         return redirect()->route('examSchedule.index')
-            ->with('success', 'Exam schedule deleted successfully.');
+            ->with('success', 'تم حذف رزنامة الامتحان بنجاح.');
     }
 }

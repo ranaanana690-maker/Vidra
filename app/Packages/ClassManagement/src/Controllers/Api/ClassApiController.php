@@ -60,6 +60,6 @@ class ClassApiController extends Controller
     {
         $schoolClass->delete();
 
-        return response()->json(['message' => 'Class deleted']);
+        return response()->json(['message' => 'تم حذف القسم.']);
     }
 }

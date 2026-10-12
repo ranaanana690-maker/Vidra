@@ -11,106 +11,114 @@ class ClassManagementSeeder extends Seeder
     {
         $now = now()->toDateTimeString();
 
-        // Academic Years
+        // Academic Years (DZ school year: September -> June)
         DB::table('academic_years')->insert([
             [
-                'year_range'  => '2024-2025',
-                'start_date'  => '2024-04-01',
-                'end_date'    => '2025-03-31',
-                'is_current'  => true,
-                'description' => 'Current academic year',
-                'created_at'  => $now,
-                'updated_at'  => $now,
+                'year_range' => '2026-2027',
+                'start_date' => '2026-09-01',
+                'end_date' => '2027-06-30',
+                'is_current' => true,
+                'description' => 'السنة الدراسية الحالية',
+                'created_at' => $now,
+                'updated_at' => $now,
             ],
             [
-                'year_range'  => '2023-2024',
-                'start_date'  => '2023-04-01',
-                'end_date'    => '2024-03-31',
-                'is_current'  => false,
-                'description' => 'Previous academic year',
-                'created_at'  => $now,
-                'updated_at'  => $now,
+                'year_range' => '2025-2026',
+                'start_date' => '2025-09-01',
+                'end_date' => '2026-06-30',
+                'is_current' => false,
+                'description' => 'السنة الدراسية السابقة',
+                'created_at' => $now,
+                'updated_at' => $now,
             ],
         ]);
 
-        // Classes
+        // DZ levels: 5 primary (AP) + 4 middle (AM) + secondary (1AS TC + 2AS/3AS streams)
+        // [name, code, level, stream]
         $classes = [
-            ['Class 1', 'CLS-01'],
-            ['Class 2', 'CLS-02'],
-            ['Class 3', 'CLS-03'],
-            ['Class 4', 'CLS-04'],
-            ['Class 5', 'CLS-05'],
+            ['1AP', 'CLS-AP1', 'primary', null],
+            ['2AP', 'CLS-AP2', 'primary', null],
+            ['3AP', 'CLS-AP3', 'primary', null],
+            ['4AP', 'CLS-AP4', 'primary', null],
+            ['5AP', 'CLS-AP5', 'primary', null],
+            ['1AM', 'CLS-AM1', 'middle', null],
+            ['2AM', 'CLS-AM2', 'middle', null],
+            ['3AM', 'CLS-AM3', 'middle', null],
+            ['4AM', 'CLS-AM4', 'middle', null],
+            ['1AS TC-ST', 'CLS-TCST', 'secondary', 'tc-st'],
+            ['1AS TC-L', 'CLS-TCL', 'secondary', 'tc-l'],
+            ['2AS-SE', 'CLS-2SE', 'secondary', 'se'],
+            ['2AS-MATH', 'CLS-2MATH', 'secondary', 'math'],
+            ['2AS-TM', 'CLS-2TM', 'secondary', 'tm'],
+            ['2AS-GE', 'CLS-2GE', 'secondary', 'ge'],
+            ['2AS-PHILO', 'CLS-2PHILO', 'secondary', 'philo'],
+            ['2AS-LANG', 'CLS-2LANG', 'secondary', 'lang'],
+            ['3AS-SE', 'CLS-3SE', 'secondary', 'se'],
+            ['3AS-MATH', 'CLS-3MATH', 'secondary', 'math'],
+            ['3AS-TM', 'CLS-3TM', 'secondary', 'tm'],
+            ['3AS-GE', 'CLS-3GE', 'secondary', 'ge'],
+            ['3AS-PHILO', 'CLS-3PHILO', 'secondary', 'philo'],
+            ['3AS-LANG', 'CLS-3LANG', 'secondary', 'lang'],
         ];
 
-        foreach ($classes as [$name, $code]) {
+        foreach ($classes as [$name, $code, $level, $stream]) {
             DB::table('classes')->insert([
-                'class_name'       => $name,
-                'class_code'       => $code,
+                'class_name' => $name,
+                'class_code' => $code,
+                'level' => $level,
+                'stream' => $stream,
                 'academic_year_id' => 1,
-                'description'      => "Standard {$name} curriculum",
-                'is_active'        => true,
-                'created_at'       => $now,
-                'updated_at'       => $now,
+                'description' => "مستوى الدعم الجزائري {$name}",
+                'is_active' => true,
+                'created_at' => $now,
+                'updated_at' => $now,
             ]);
         }
 
-        // Sections — class_teacher_id maps to staff IDs 1-10
-        $sections = [
-            [1, 'A', 30, 1],
-            [1, 'B', 30, 2],
-            [2, 'A', 35, 3],
-            [2, 'B', 35, 4],
-            [3, 'A', 32, 5],
-            [3, 'B', 32, 6],
-            [4, 'A', 30, 7],
-            [4, 'B', 30, 8],
-            [5, 'A', 28, 9],
-            [5, 'B', 28, 10],
-        ];
+        // Sections (groups/أفواج): A+B for primary (classes 1-5 -> section ids 1-10),
+        // A only for the rest (ids 11-28). class_teacher_id cycles over staff 1-10.
+        $sectionId = 0;
+        $sections = [];
+        foreach (range(1, 23) as $classId) {
+            $groups = $classId <= 5 ? ['A', 'B'] : ['A'];
+            foreach ($groups as $group) {
+                $sectionId++;
+                $sections[] = [$classId, $group, 30, (($sectionId - 1) % 10) + 1];
+            }
+        }
 
         foreach ($sections as [$classId, $sectionName, $capacity, $teacherId]) {
             DB::table('sections')->insert([
-                'class_id'         => $classId,
-                'section_name'     => $sectionName,
-                'capacity'         => $capacity,
+                'class_id' => $classId,
+                'section_name' => $sectionName,
+                'capacity' => $capacity,
                 'class_teacher_id' => $teacherId,
-                'description'      => "Section {$sectionName} of Class {$classId}",
-                'is_active'        => true,
-                'created_at'       => $now,
-                'updated_at'       => $now,
+                'description' => "الفوج {$sectionName} من القسم {$classId}",
+                'is_active' => true,
+                'created_at' => $now,
+                'updated_at' => $now,
             ]);
         }
 
-        // Batches (one per class-section-academic year combination)
-        // section_ids 1-10 correspond to [class1-A, class1-B, class2-A, ...]
-        $batchMap = [
-            [1, 1, 1, 'Batch 2024-25 Class 1 A', 'BCH-01'],
-            [1, 2, 1, 'Batch 2024-25 Class 1 B', 'BCH-02'],
-            [2, 3, 1, 'Batch 2024-25 Class 2 A', 'BCH-03'],
-            [2, 4, 1, 'Batch 2024-25 Class 2 B', 'BCH-04'],
-            [3, 5, 1, 'Batch 2024-25 Class 3 A', 'BCH-05'],
-            [3, 6, 1, 'Batch 2024-25 Class 3 B', 'BCH-06'],
-            [4, 7, 1, 'Batch 2024-25 Class 4 A', 'BCH-07'],
-            [4, 8, 1, 'Batch 2024-25 Class 4 B', 'BCH-08'],
-            [5, 9, 1, 'Batch 2024-25 Class 5 A', 'BCH-09'],
-            [5, 10, 1, 'Batch 2024-25 Class 5 B', 'BCH-10'],
-        ];
-
-        foreach ($batchMap as [$classId, $sectionId, $ayId, $batchName, $batchCode]) {
+        // Batches: one per section (batch ids follow section insertion order,
+        // so batches 1-10 are the primary A/B groups used by student enrollments).
+        foreach ($sections as $i => [$classId, $sectionName, $_capacity, $_teacher]) {
+            $sectionDbId = $i + 1;
+            $batchCode = 'BCH-'.str_pad((string) $sectionDbId, 2, '0', STR_PAD_LEFT);
             DB::table('batches')->insert([
-                'class_id'         => $classId,
-                'section_id'       => $sectionId,
-                'academic_year_id' => $ayId,
-                'batch_name'       => $batchName,
-                'batch_code'       => $batchCode,
-                'start_date'       => '2024-04-01',
-                'end_date'         => '2025-03-31',
-                'start_time'       => '08:00:00',
-                'end_time'         => '14:00:00',
-                'is_active'        => true,
-                'description'      => "{$batchName}",
-                'created_at'       => $now,
-                'updated_at'       => $now,
+                'class_id' => $classId,
+                'section_id' => $sectionDbId,
+                'academic_year_id' => 1,
+                'batch_name' => "Batch 2026-27 Class {$classId} {$sectionName}",
+                'batch_code' => $batchCode,
+                'start_date' => '2026-09-01',
+                'end_date' => '2027-06-30',
+                'start_time' => '08:00:00',
+                'end_time' => '14:00:00',
+                'is_active' => true,
+                'description' => "دفعة 2026-27 للقسم {$classId} {$sectionName}",
+                'created_at' => $now,
+                'updated_at' => $now,
             ]);
         }
     }

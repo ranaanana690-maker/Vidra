@@ -14,34 +14,34 @@
         @csrf
         @if($method !== 'POST') @method($method) @endif
 
-        <x-core-package::card title="Facility Information">
+        <x-core-package::card title="معلومات المرفق">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;">
                 <x-core-package::form.input
-                    name="facility_name" label="Facility Name" required
-                    placeholder="e.g. Gym, Library, Lab A"
+                    name="facility_name" label="اسم المرفق" required
+                    placeholder="مثال: قاعة رياضية، مكتبة، مخبر أ"
                     value="{{ old('facility_name', $facility->facility_name ?? '') }}" />
 
-                <x-core-package::form.select name="facility_type" label="Facility Type" required>
-                    <option value="">— Select Type —</option>
+                <x-core-package::form.select name="facility_type" label="نوع المرفق" required>
+                    <option value="">— اختر النوع —</option>
                     @foreach(['Sports','Library','Cafeteria','Lab'] as $t)
-                    <option value="{{ $t }}" @selected(old('facility_type', $facility->facility_type ?? '') === $t)>{{ $t }}</option>
+                    <option value="{{ $t }}" @selected(old('facility_type', $facility->facility_type ?? '') === $t)>{{ $t == 'Sports' ? 'رياضة' : ($t == 'Library' ? 'مكتبة' : ($t == 'Cafeteria' ? 'مطعم' : 'مخبر')) }}</option>
                     @endforeach
                 </x-core-package::form.select>
 
                 <x-core-package::form.input
-                    name="capacity" label="Total Capacity" type="number" required
-                    placeholder="Maximum occupancy"
+                    name="capacity" label="السعة الكلية" type="number" required
+                    placeholder="السعة القصوى"
                     value="{{ old('capacity', $facility->capacity ?? '') }}" />
 
                 <x-core-package::form.input
-                    name="available_capacity" label="Available Capacity" type="number" required
-                    placeholder="Currently available slots"
+                    name="available_capacity" label="السعة المتاحة" type="number" required
+                    placeholder="الخانات المتاحة حالياً"
                     value="{{ old('available_capacity', $facility->available_capacity ?? '') }}" />
 
                 <div style="grid-column:1/-1;">
                     <x-core-package::form.input
-                        name="location" label="Location"
-                        placeholder="e.g. Block C, Ground Floor"
+                        name="location" label="الموقع"
+                        placeholder="مثال: الجناح ج، الطابق الأرضي"
                         value="{{ old('location', $facility->location ?? '') }}" />
                 </div>
             </div>
@@ -49,9 +49,9 @@
 
         <div style="display:flex;gap:.75rem;">
             <x-core-package::btn type="submit" color="primary">
-                {{ isset($facility) ? 'Update Facility' : 'Create Facility' }}
+                {{ isset($facility) ? 'تحديث المرفق' : 'إنشاء مرفق' }}
             </x-core-package::btn>
-            <x-core-package::btn :href="route('facilities.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn :href="route('facilities.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
     </form>
 </div>

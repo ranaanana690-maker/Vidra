@@ -48,16 +48,16 @@ class StudentAttendanceController extends Controller
 
         $attendance = StudentAttendance::create($validated);
 
-        Event::dispatch('webhook.attendance.marked', [
+        Event::dispatch('webhook.attendance.marked', [[
             'id'         => $attendance->attendance_id,
             'type'       => 'student',
             'student_id' => $attendance->student_id,
             'date'       => $attendance->date,
             'status'     => $attendance->status,
-        ]);
+        ]]);
 
         return redirect()->route('studentAttendance.index')
-            ->with('success', 'Attendance recorded successfully.');
+            ->with('success', 'تم تسجيل الحضور بنجاح.');
     }
 
     public function show(StudentAttendance $studentAttendance): View
@@ -86,7 +86,7 @@ class StudentAttendanceController extends Controller
         $studentAttendance->update($validated);
 
         return redirect()->route('studentAttendance.index')
-            ->with('success', 'Attendance updated successfully.');
+            ->with('success', 'تم تحديث الحضور بنجاح.');
     }
 
     public function destroy(StudentAttendance $studentAttendance): RedirectResponse
@@ -94,6 +94,6 @@ class StudentAttendanceController extends Controller
         $studentAttendance->delete();
 
         return redirect()->route('studentAttendance.index')
-            ->with('success', 'Attendance record deleted.');
+            ->with('success', 'تم حذف سجل الحضور.');
     }
 }

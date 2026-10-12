@@ -14,10 +14,10 @@ class StaffManagementSeeder extends Seeder
 
         // Departments
         DB::table('departments')->insertOrIgnore([
-            ['department_name' => 'Mathematics & Science', 'description' => 'Handles all science and mathematics subjects', 'created_at' => $now, 'updated_at' => $now],
-            ['department_name' => 'Languages & Arts',      'description' => 'Covers languages, arts and social studies', 'created_at' => $now, 'updated_at' => $now],
-            ['department_name' => 'Physical Education',    'description' => 'Sports, health and physical activities', 'created_at' => $now, 'updated_at' => $now],
-            ['department_name' => 'Administration',        'description' => 'School administration and management', 'created_at' => $now, 'updated_at' => $now],
+            ['department_name' => 'Mathematics & Science', 'description' => 'يُعنى بجميع مواد العلوم والرياضيات', 'created_at' => $now, 'updated_at' => $now],
+            ['department_name' => 'Languages & Arts',      'description' => 'يغطي اللغات والفنون والدراسات الاجتماعية', 'created_at' => $now, 'updated_at' => $now],
+            ['department_name' => 'Physical Education',    'description' => 'الرياضة والصحة والأنشطة البدنية', 'created_at' => $now, 'updated_at' => $now],
+            ['department_name' => 'Administration',        'description' => 'إدارة المدرسة وتسييرها', 'created_at' => $now, 'updated_at' => $now],
         ]);
 
         // Staff

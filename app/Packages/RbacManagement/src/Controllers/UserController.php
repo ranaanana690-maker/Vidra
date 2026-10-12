@@ -27,6 +27,6 @@ class UserController extends Controller
 
         User::create($validated);
 
-        return redirect()->route('user-roles.index')->with('success', 'User created successfully.');
+        return redirect()->route('user-roles.index')->with('success', 'تم إنشاء المستخدم بنجاح.');
     }
 }

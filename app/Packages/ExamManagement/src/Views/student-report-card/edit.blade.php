@@ -2,9 +2,9 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('studentReportCard.index') }}" style="color:#374151;font-weight:500;text-decoration:none;">Report Cards</a>
+    <a href="{{ route('studentReportCard.index') }}" style="color:#374151;font-weight:500;text-decoration:none;">كشوف النقاط</a>
     <span style="margin:0 .375rem;color:#94a3b8;">/</span>
-    <span style="color:#374151;font-weight:500;">Edit Report</span>
+    <span style="color:#374151;font-weight:500;">تعديل الكشف</span>
 </nav>
 @endsection
 
@@ -12,8 +12,8 @@
 
 <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;">
     <div>
-        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Edit Report Card</h1>
-        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">Update report card details</p>
+        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">تعديل كشف النقاط</h1>
+        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">تحديث تفاصيل كشف النقاط</p>
     </div>
 </div>
 
@@ -21,32 +21,32 @@
     <form method="POST" action="{{ route('studentReportCard.update', $studentReportCard) }}">
         @csrf @method('PUT')
 
-        <x-core-package::form.input name="student_id" label="Student ID" type="number" value="{{ old('student_id', $studentReportCard->student_id) }}" required />
+        <x-core-package::form.input name="student_id" label="معرف التلميذ" type="number" value="{{ old('student_id', $studentReportCard->student_id) }}" required />
         
-        <x-core-package::form.select name="exam_id" label="Exam" required>
-            <option value="">Select Exam</option>
+        <x-core-package::form.select name="exam_id" label="امتحان" required>
+            <option value="">اختر الامتحان</option>
             @foreach($exams ?? [] as $exam)
             <option value="{{ $exam->exam_id }}" @selected(old('exam_id', $studentReportCard->exam_id) == $exam->exam_id)>{{ $exam->exam_name }}</option>
             @endforeach
         </x-core-package::form.select>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-            <x-core-package::form.input name="total_marks" label="Total Marks Obtained" type="number" step="0.01" value="{{ old('total_marks', $studentReportCard->total_marks) }}" required />
-            <x-core-package::form.input name="maximum_marks" label="Maximum Marks" type="number" step="0.01" value="{{ old('maximum_marks', $studentReportCard->maximum_marks) }}" required />
+            <x-core-package::form.input name="total_marks" label="مجموع النقاط المحصل عليها" type="number" step="0.01" value="{{ old('total_marks', $studentReportCard->total_marks) }}" required />
+            <x-core-package::form.input name="maximum_marks" label="العلامة القصوى" type="number" step="0.01" value="{{ old('maximum_marks', $studentReportCard->maximum_marks) }}" required />
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-            <x-core-package::form.input name="overall_percentage" label="Overall Percentage" type="number" step="0.01" value="{{ old('overall_percentage', $studentReportCard->overall_percentage) }}" />
-            <x-core-package::form.input name="overall_grade" label="Overall Grade" value="{{ old('overall_grade', $studentReportCard->overall_grade) }}" />
+            <x-core-package::form.input name="overall_percentage" label="النسبة المئوية العامة" type="number" step="0.01" value="{{ old('overall_percentage', $studentReportCard->overall_percentage) }}" />
+            <x-core-package::form.input name="overall_grade" label="المعدل العام" value="{{ old('overall_grade', $studentReportCard->overall_grade) }}" />
         </div>
 
-        <x-core-package::form.input name="rank_in_class" label="Class Rank" type="number" value="{{ old('rank_in_class', $studentReportCard->rank_in_class) }}" />
+        <x-core-package::form.input name="rank_in_class" label="الترتيب في القسم" type="number" value="{{ old('rank_in_class', $studentReportCard->rank_in_class) }}" />
 
-        <x-core-package::form.textarea name="remarks" label="Remarks" rows="3">{{ old('remarks', $studentReportCard->remarks) }}</x-core-package::form.textarea>
+        <x-core-package::form.textarea name="remarks" label="ملاحظات" rows="3">{{ old('remarks', $studentReportCard->remarks) }}</x-core-package::form.textarea>
 
         <div style="display:flex;gap:.75rem;margin-top:1.5rem;">
-            <x-core-package::btn type="submit" color="primary">Update Report</x-core-package::btn>
-            <x-core-package::btn :href="route('studentReportCard.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn type="submit" color="primary">تحديث الكشف</x-core-package::btn>
+            <x-core-package::btn :href="route('studentReportCard.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
     </form>
 </x-core-package::card>

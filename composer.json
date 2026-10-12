@@ -32,6 +32,7 @@
             "App\\Packages\\CommunicationManagement\\": "app/Packages/CommunicationManagement/src/",
             "App\\Packages\\ContactBundle\\": "app/Packages/ContactBundle/src/",
             "App\\Packages\\CorePackage\\": "app/Packages/CorePackage/src/",
+            "App\\Packages\\CourseManagement\\": "app/Packages/CourseManagement/src/",
             "App\\Packages\\DataTransfer\\": "app/Packages/DataTransfer/src/",
             "App\\Packages\\ExamManagement\\": "app/Packages/ExamManagement/src/",
             "App\\Packages\\FeeManagement\\": "app/Packages/FeeManagement/src/",

@@ -44,7 +44,7 @@ class SubstituteAssignmentController extends Controller
 
         SubstituteAssignment::create($validated);
 
-        return redirect()->route('substituteAssignment.index')->with('success', 'Substitute assignment created successfully.');
+        return redirect()->route('substituteAssignment.index')->with('success', 'تم إنشاء إسناد الاستخلاف بنجاح.');
     }
 
     public function show(SubstituteAssignment $substituteAssignment): View
@@ -73,13 +73,13 @@ class SubstituteAssignmentController extends Controller
 
         $substituteAssignment->update($validated);
 
-        return redirect()->route('substituteAssignment.index')->with('success', 'Substitute assignment updated successfully.');
+        return redirect()->route('substituteAssignment.index')->with('success', 'تم تحديث إسناد الاستخلاف بنجاح.');
     }
 
     public function destroy(SubstituteAssignment $substituteAssignment): RedirectResponse
     {
         $substituteAssignment->delete();
 
-        return redirect()->route('substituteAssignment.index')->with('success', 'Substitute assignment deleted.');
+        return redirect()->route('substituteAssignment.index')->with('success', 'تم حذف إسناد الاستخلاف.');
     }
 }

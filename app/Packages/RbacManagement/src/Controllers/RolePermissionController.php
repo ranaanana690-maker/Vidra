@@ -37,6 +37,6 @@ class RolePermissionController extends Controller
         $permissions   = Permission::whereIn('id', $permissionIds)->get();
         $role->syncPermissions($permissions);
 
-        return redirect()->route('role-permissions.index')->with('success', 'Permissions for role "'.$role->name.'" updated.');
+        return redirect()->route('role-permissions.index')->with('success', 'الصلاحيات للدور "'.$role->name.'" تم تحديثها.');
     }
 }

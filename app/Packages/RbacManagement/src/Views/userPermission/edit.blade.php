@@ -2,9 +2,9 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('user-roles.index') }}" style="color:#64748b;text-decoration:none;">User Role Assignment</a>
+    <a href="{{ route('user-roles.index') }}" style="color:#64748b;text-decoration:none;">إسناد أدوار المستخدم</a>
     <span style="margin:0 .375rem;">›</span>
-    <span style="color:#374151;font-weight:500;">{{ $user->name }} — Direct Permissions</span>
+    <span style="color:#374151;font-weight:500;">{{ $user->name }} — صلاحيات مباشرة</span>
 </nav>
 @endsection
 
@@ -44,7 +44,7 @@
 
     <x-core-package::card>
         <p style="font-size:.8125rem;color:#64748b;margin:0 0 1.25rem;">
-            Select direct permissions for <strong>{{ $user->name }}</strong>.
+            اختر الصلاحيات المباشرة لـ <strong>{{ $user->name }}</strong>.
         </p>
 
         @forelse($allPermissions as $module => $perms)
@@ -70,12 +70,12 @@
             </div>
         </div>
         @empty
-        <p style="color:#94a3b8;font-size:.875rem;text-align:center;padding:1.5rem 0;">No permissions defined.</p>
+        <p style="color:#94a3b8;font-size:.875rem;text-align:center;padding:1.5rem 0;">لا يوجد صلاحيات معرفة.</p>
         @endforelse
 
         <div style="padding-top:1rem;border-top:1px solid #e2e8f0;display:flex;gap:.75rem;">
-            <x-core-package::btn type="submit" color="primary">Save Direct Permissions</x-core-package::btn>
-            <x-core-package::btn :href="route('user-roles.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn type="submit" color="primary">حفظ الصلاحيات المباشرة</x-core-package::btn>
+            <x-core-package::btn :href="route('user-roles.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
     </x-core-package::card>
 </form>

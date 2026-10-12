@@ -1,14 +1,14 @@
 @extends('core-package::layouts.app')
 
-@section('title', 'Webhook Logs')
+@section('title', 'سجلات الويب هوك')
 
 @section('content')
 <div class="max-w-6xl mx-auto px-4 py-8">
 
-    <x-core-package::page-header title="Webhook Logs" subtitle="History of all outbound webhook calls.">
+    <x-core-package::page-header title="سجلات الويب هوك" subtitle="سجل كل مكالمات الويب هوك الصادرة.">
         <x-slot:actions>
             <x-core-package::btn href="{{ route('webhook.settings.index') }}" color="secondary">
-                ← Settings
+                ← الإعدادات
             </x-core-package::btn>
         </x-slot:actions>
     </x-core-package::page-header>
@@ -20,12 +20,12 @@
             <thead class="bg-gray-50">
                 <tr>
                     <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">#</th>
-                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Event</th>
-                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Entity</th>
-                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Triggered By</th>
-                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Status</th>
-                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Date</th>
-                    <th class="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase">Action</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">الحدث</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">الكيان</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">أطلق بواسطة</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">الحالة</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">التاريخ</th>
+                    <th class="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase">إجراء</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-50">
@@ -42,22 +42,22 @@
                         <td class="px-4 py-3 text-gray-600">{{ $log->triggered_by ?? '—' }}</td>
                         <td class="px-4 py-3">
                             @if($log->status)
-                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">Success</span>
+                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-700">نجاح</span>
                             @else
-                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700">Failed</span>
+                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700">فشل</span>
                             @endif
                         </td>
                         <td class="px-4 py-3 text-gray-500 text-xs">{{ $log->created_at->format('d M Y, H:i') }}</td>
                         <td class="px-4 py-3 text-right">
                             <button onclick="deleteLog({{ $log->id }})"
                                 class="text-red-500 hover:text-red-700 text-xs font-medium">
-                                Delete
+                                حذف
                             </button>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="px-4 py-10 text-center text-gray-400 text-sm">No webhook logs yet.</td>
+                        <td colspan="7" class="px-4 py-10 text-center text-gray-400 text-sm">لا يوجد سجلات ويب هوك بعد.</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -74,7 +74,7 @@
 
 <script>
 function deleteLog(id) {
-    if (! confirm('Delete this log entry?')) return;
+    if (! confirm('حذف هذا السجل؟')) return;
 
     fetch(`/webhook/logs/${id}`, {
         method: 'DELETE',
@@ -88,7 +88,7 @@ function deleteLog(id) {
         document.getElementById('row-' + id)?.remove();
         showFlash(data.message, true);
     })
-    .catch(() => showFlash('Failed to delete log.', false));
+    .catch(() => showFlash('فشل حذف السجل.', false));
 }
 
 function showFlash(msg, success) {

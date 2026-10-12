@@ -52,16 +52,16 @@ class StudentMarkController extends Controller
 
         $mark = StudentMark::create($validated);
 
-        Event::dispatch('webhook.exam.result', [
+        Event::dispatch('webhook.exam.result', [[
             'id'             => $mark->mark_id,
             'student_id'     => $mark->student_id,
             'schedule_id'    => $mark->schedule_id,
             'marks_obtained' => $mark->marks_obtained,
             'grade'          => $mark->grade,
-        ]);
+        ]]);
 
         return redirect()->route('studentMark.index')
-            ->with('success', 'Marks saved successfully.');
+            ->with('success', 'تم حفظ النقاط بنجاح.');
     }
 
     public function show(StudentMark $studentMark): View
@@ -93,14 +93,14 @@ class StudentMarkController extends Controller
         $studentMark->update($validated);
 
         return redirect()->route('studentMark.index')
-            ->with('success', 'Marks updated successfully.');
+            ->with('success', 'تم تحديث النقاط بنجاح.');
     }
 
     public function destroy(StudentMark $studentMark): RedirectResponse
     {
         $studentMark->delete();
         return redirect()->route('studentMark.index')
-            ->with('success', 'Marks deleted successfully.');
+            ->with('success', 'تم حذف النقاط بنجاح.');
     }
 
     private function calculateGrade(int $scheduleId, float $marksObtained): ?string

@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('user-roles.index') }}" style="color:#64748b;text-decoration:none;">User Role Assignment</a>
+    <a href="{{ route('user-roles.index') }}" style="color:#64748b;text-decoration:none;">إسناد أدوار المستخدم</a>
     <span style="margin:0 .375rem;">›</span>
     <span style="color:#374151;font-weight:500;">{{ $user->name }}</span>
 </nav>
@@ -31,7 +31,7 @@
     <form method="POST" action="{{ route('user-roles.update', $user) }}">
         @csrf @method('PUT')
         <p style="font-size:.8125rem;color:#64748b;margin:0 0 1.25rem;">
-            Select roles to assign to this user. All permissions from the selected roles will apply.
+            اختر الأدوار لإسنادها لهذا المستخدم. كل صلاحيات الأدوار المحددة ستطبق.
         </p>
         <div style="display:flex;flex-direction:column;gap:.625rem;">
             @forelse($roles as $role)
@@ -49,14 +49,14 @@
             </label>
             @empty
             <p style="color:#94a3b8;font-size:.875rem;text-align:center;padding:1rem 0;">
-                No roles defined. <a href="{{ route('roles.create') }}" style="color:#4f46e5;">Create a role</a>
+                لا يوجد أدوار معرفة. <a href="{{ route('roles.create') }}" style="color:#4f46e5;">إنشاء دور</a>
             </p>
             @endforelse
         </div>
 
         <div style="padding-top:1.25rem;border-top:1px solid #e2e8f0;margin-top:1rem;display:flex;gap:.75rem;">
-            <x-core-package::btn type="submit" color="primary">Save Roles</x-core-package::btn>
-            <x-core-package::btn :href="route('user-roles.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn type="submit" color="primary">حفظ الأدوار</x-core-package::btn>
+            <x-core-package::btn :href="route('user-roles.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
     </form>
 </x-core-package::card>

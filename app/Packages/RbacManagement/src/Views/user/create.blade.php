@@ -2,9 +2,9 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('user-roles.index') }}" style="color:#0ea5e9;">User Roles</a>
+    <a href="{{ route('user-roles.index') }}" style="color:#0ea5e9;">أدوار المستخدمين</a>
     <span style="color:#cbd5e1;">/</span>
-    <span style="color:#374151;font-weight:500;">Create User</span>
+    <span style="color:#374151;font-weight:500;">إنشاء مستخدم</span>
 </nav>
 @endsection
 
@@ -12,8 +12,8 @@
 
 <div style="max-width:32rem;margin:0 auto;">
     <div style="margin-bottom:1.5rem;">
-        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Create User</h1>
-        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">Add a new user to the system</p>
+        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">إنشاء مستخدم</h1>
+        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">إضافة مستخدم جديد للنظام</p>
     </div>
 
     @if($errors->any())
@@ -33,9 +33,9 @@
             <div style="margin-bottom:1.25rem;">
                 <x-core-package::form.input
                     name="name"
-                    label="Full Name"
+                    label="الاسم الكامل"
                     type="text"
-                    placeholder="John Doe"
+                    placeholder="محمد أحمد"
                     :value="old('name')"
                     required
                 />
@@ -44,7 +44,7 @@
             <div style="margin-bottom:1.25rem;">
                 <x-core-package::form.input
                     name="email"
-                    label="Email Address"
+                    label="البريد الإلكتروني"
                     type="email"
                     placeholder="john@example.com"
                     :value="old('email')"
@@ -55,9 +55,9 @@
             <div style="margin-bottom:1.25rem;">
                 <x-core-package::form.input
                     name="password"
-                    label="Password"
+                    label="كلمة المرور"
                     type="password"
-                    placeholder="Minimum 8 characters"
+                    placeholder="8 أحرف على الأقل"
                     required
                 />
             </div>
@@ -65,16 +65,16 @@
             <div style="margin-bottom:1.5rem;">
                 <x-core-package::form.input
                     name="password_confirmation"
-                    label="Confirm Password"
+                    label="تأكيد كلمة المرور"
                     type="password"
-                    placeholder="Re-enter password"
+                    placeholder="أعد إدخال كلمة المرور"
                     required
                 />
             </div>
 
             <div style="display:flex;gap:.75rem;">
-                <x-core-package::btn type="submit" color="primary">Create User</x-core-package::btn>
-                <x-core-package::btn :href="route('user-roles.index')" color="secondary">Cancel</x-core-package::btn>
+                <x-core-package::btn type="submit" color="primary">إنشاء مستخدم</x-core-package::btn>
+                <x-core-package::btn :href="route('user-roles.index')" color="secondary">إلغاء</x-core-package::btn>
             </div>
         </form>
     </x-core-package::card>

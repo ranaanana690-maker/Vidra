@@ -13,10 +13,10 @@
         @csrf
         @if($method !== 'POST') @method($method) @endif
 
-        <x-core-package::card title="Class-Subject Assignment">
+        <x-core-package::card title="إسناد المادة للقسم">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;">
-                <x-core-package::form.select name="class_id" label="Class" required>
-                    <option value="">— Select Class —</option>
+                <x-core-package::form.select name="class_id" label="القسم" required>
+                    <option value="">— اختر القسم —</option>
                     @foreach($classes as $class)
                     <option value="{{ $class->class_id }}"
                         @selected((string) old('class_id', $classSubject->class_id ?? '') === (string) $class->class_id)>
@@ -24,8 +24,8 @@
                     </option>
                     @endforeach
                 </x-core-package::form.select>
-                <x-core-package::form.select name="subject_id" label="Subject" required>
-                    <option value="">— Select Subject —</option>
+                <x-core-package::form.select name="subject_id" label="المادة" required>
+                    <option value="">— اختر المادة —</option>
                     @foreach($subjects as $subject)
                     <option value="{{ $subject->subject_id }}"
                         @selected((string) old('subject_id', $classSubject->subject_id ?? '') === (string) $subject->subject_id)>
@@ -38,7 +38,7 @@
                         <input type="checkbox" name="is_mandatory" value="1"
                                style="width:1rem;height:1rem;accent-color:#4f46e5;"
                                {{ old('is_mandatory', $classSubject->is_mandatory ?? true) ? 'checked' : '' }}>
-                        <span style="font-size:.875rem;font-weight:500;color:#374151;">Mandatory for this class</span>
+                        <span style="font-size:.875rem;font-weight:500;color:#374151;">إجباري لهذا القسم</span>
                     </label>
                 </div>
             </div>
@@ -46,9 +46,9 @@
 
         <div style="display:flex;gap:.75rem;">
             <x-core-package::btn type="submit" color="primary">
-                {{ isset($classSubject) ? 'Update Assignment' : 'Assign Subject' }}
+                {{ isset($classSubject) ? 'Update Assignment' : 'إسناد مادة' }}
             </x-core-package::btn>
-            <x-core-package::btn :href="route('class-subjects.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn :href="route('class-subjects.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
     </form>
 </div>

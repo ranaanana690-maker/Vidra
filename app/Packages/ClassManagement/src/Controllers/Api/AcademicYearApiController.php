@@ -60,6 +60,6 @@ class AcademicYearApiController extends Controller
     {
         $academicYear->delete();
 
-        return response()->json(['message' => 'AcademicYear deleted']);
+        return response()->json(['message' => 'تم حذف السنة الدراسية.']);
     }
 }

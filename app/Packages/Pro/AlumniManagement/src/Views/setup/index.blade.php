@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <span style="color:#374151;font-weight:500;">Alumni / Setup</span>
+    <span style="color:#374151;font-weight:500;">الخريجون / الإعداد</span>
 </nav>
 @endsection
 
@@ -11,8 +11,8 @@
 <div style="max-width:720px;margin:0 auto;">
 
 <div style="margin-bottom:1.5rem;">
-    <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Alumni Management Setup</h1>
-    <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">Run these steps once after installation to get started</p>
+    <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">إعداد إدارة الخريجين</h1>
+    <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">نفّذ هذه الخطوات مرة واحدة بعد التثبيت للبدء</p>
 </div>
 
 <div id="setup-alerts" style="margin-bottom:1rem;"></div>
@@ -20,9 +20,9 @@
 {{-- Status cards --}}
 <div style="display:grid;gap:1rem;margin-bottom:1.5rem;">
     @foreach([
-        ['key'=>'migrations',  'label'=>'Database Migrations', 'desc'=>'Creates all 7 alumni tables in the database'],
-        ['key'=>'permissions', 'label'=>'Permissions',         'desc'=>'Creates 6 RBAC permissions for the alumni module'],
-        ['key'=>'roles',       'label'=>'Roles',               'desc'=>'Creates alumni_coordinator role and assigns permissions'],
+        ['key'=>'migrations',  'label'=>'ترحيلات قاعدة البيانات', 'desc'=>'إنشاء جداول الخريجين السبعة في قاعدة البيانات'],
+        ['key'=>'permissions', 'label'=>'الصلاحيات',         'desc'=>'إنشاء 6 صلاحيات لوحدة الخريجين'],
+        ['key'=>'roles',       'label'=>'الأدوار',               'desc'=>'إنشاء دور منسق الخريجين وإسناد الصلاحيات'],
     ] as $step)
     <div style="background:#fff;border-radius:.625rem;border:1px solid #e2e8f0;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;">
         <div style="display:flex;align-items:center;gap:.875rem;">
@@ -43,10 +43,10 @@
         @if(!$status[$step['key']])
         <button onclick="runSetup('{{ $step['key'] }}')"
             style="padding:.375rem .875rem;background:#4f46e5;color:#fff;border:none;border-radius:.375rem;font-size:.8125rem;cursor:pointer;">
-            Run
+            تشغيل
         </button>
         @else
-        <span style="font-size:.75rem;color:#16a34a;font-weight:500;">Done</span>
+        <span style="font-size:.75rem;color:#16a34a;font-weight:500;">تم</span>
         @endif
     </div>
     @endforeach
@@ -57,15 +57,15 @@
 <div style="text-align:center;">
     <button onclick="runSetup('all')"
         style="padding:.625rem 2rem;background:#4f46e5;color:#fff;border:none;border-radius:.5rem;font-size:.9rem;font-weight:600;cursor:pointer;">
-        Run All Setup Steps
+        تشغيل جميع خطوات الإعداد
     </button>
 </div>
 @else
 <div style="text-align:center;">
-    <p style="color:#059669;font-weight:600;font-size:.9rem;margin-bottom:1rem;">✓ All setup steps completed!</p>
+    <p style="color:#059669;font-weight:600;font-size:.9rem;margin-bottom:1rem;">✓ اكتملت جميع خطوات الإعداد!</p>
     <a href="{{ route('alumni.directory') }}"
        style="display:inline-block;padding:.625rem 2rem;background:#059669;color:#fff;border-radius:.5rem;font-size:.875rem;font-weight:600;text-decoration:none;">
-        Go to Alumni Directory →
+        الذهاب إلى دليل الخريجين →
     </a>
 </div>
 @endif
@@ -75,7 +75,7 @@
 <script>
 function runSetup(command) {
     const alertBox = document.getElementById('setup-alerts');
-    alertBox.innerHTML = '<div style="padding:.875rem 1rem;background:#eff6ff;border:1px solid #bfdbfe;border-radius:.5rem;color:#1e40af;font-size:.8125rem;">Running setup...</div>';
+    alertBox.innerHTML = '<div style="padding:.875rem 1rem;background:#eff6ff;border:1px solid #bfdbfe;border-radius:.5rem;color:#1e40af;font-size:.8125rem;">جارٍ تشغيل الإعداد...</div>';
 
     fetch('{{ route('alumni.setup.run') }}', {
         method: 'POST',
@@ -91,11 +91,11 @@ function runSetup(command) {
             alertBox.innerHTML = '<div style="padding:.875rem 1rem;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:.5rem;color:#15803d;font-size:.8125rem;">' + data.message + '</div>';
             setTimeout(() => location.reload(), 1200);
         } else {
-            alertBox.innerHTML = '<div style="padding:.875rem 1rem;background:#fef2f2;border:1px solid #fecaca;border-radius:.5rem;color:#dc2626;font-size:.8125rem;">' + (data.message || 'Setup failed') + '</div>';
+            alertBox.innerHTML = '<div style="padding:.875rem 1rem;background:#fef2f2;border:1px solid #fecaca;border-radius:.5rem;color:#dc2626;font-size:.8125rem;">' + (data.message || 'فشل الإعداد') + '</div>';
         }
     })
     .catch(() => {
-        alertBox.innerHTML = '<div style="padding:.875rem 1rem;background:#fef2f2;border:1px solid #fecaca;border-radius:.5rem;color:#dc2626;font-size:.8125rem;">Network error — please try again.</div>';
+        alertBox.innerHTML = '<div style="padding:.875rem 1rem;background:#fef2f2;border:1px solid #fecaca;border-radius:.5rem;color:#dc2626;font-size:.8125rem;">خطأ في الشبكة — حاول مجددًا.</div>';
     });
 }
 </script>

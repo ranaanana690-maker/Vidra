@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sign In — {{ config('app.name', 'School Management') }}</title>
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet"/>
+    <title>تسجيل الدخول — {{ config('app.name', 'نظام إدارة مركز الدعم') }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; background: #f1f5f9; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        body { font-family: 'Cairo', ui-sans-serif, system-ui, sans-serif; background: #f1f5f9; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
 
         .login-card {
             background: #fff;
@@ -57,13 +58,13 @@
             </svg>
         </div>
         <div>
-            <p style="font-size:.9375rem;font-weight:700;color:#1e293b;line-height:1.2;">{{ config('app.name', 'School Management') }}</p>
-            <p style="font-size:.7rem;color:#94a3b8;">Management System</p>
+            <p style="font-size:.9375rem;font-weight:700;color:#1e293b;line-height:1.2;">{{ config('app.name', 'نظام إدارة مركز الدعم') }}</p>
+            <p style="font-size:.7rem;color:#94a3b8;">نظام إدارة المراكز</p>
         </div>
     </div>
 
-    <h1 style="font-size:1.25rem;font-weight:700;color:#1e293b;margin-bottom:.25rem;">Welcome back</h1>
-    <p style="font-size:.8125rem;color:#64748b;margin-bottom:1.75rem;">Sign in to your account to continue.</p>
+    <h1 style="font-size:1.25rem;font-weight:700;color:#1e293b;margin-bottom:.25rem;">مرحباً بعودتك</h1>
+    <p style="font-size:.8125rem;color:#64748b;margin-bottom:1.75rem;">سجل الدخول إلى حسابك للمتابعة.</p>
 
     @if($errors->any())
     <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:.5rem;padding:.75rem 1rem;margin-bottom:1.25rem;">
@@ -75,7 +76,7 @@
         @csrf
 
         <div style="margin-bottom:1.125rem;">
-            <label class="form-label" for="email">Email address</label>
+            <label class="form-label" for="email">البريد الإلكتروني</label>
             <input
                 id="email"
                 type="email"
@@ -89,7 +90,7 @@
         </div>
 
         <div style="margin-bottom:1.5rem;">
-            <label class="form-label" for="password">Password</label>
+            <label class="form-label" for="password">كلمة المرور</label>
             <input
                 id="password"
                 type="password"
@@ -104,15 +105,15 @@
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
             <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;">
                 <input type="checkbox" name="remember" style="width:1rem;height:1rem;accent-color:#6366f1;">
-                <span style="font-size:.8125rem;color:#4b5563;">Remember me</span>
+                <span style="font-size:.8125rem;color:#4b5563;">تذكرني</span>
             </label>
         </div>
 
-        <button type="submit" class="btn-primary">Sign in</button>
+        <button type="submit" class="btn-primary">دخول</button>
     </form>
 
     <p style="text-align:center;font-size:.75rem;color:#94a3b8;margin-top:1.5rem;">
-        <a href="{{ route('home') }}" style="color:#6366f1;text-decoration:none;font-weight:500;">← Back to home</a>
+        <a href="{{ route('home') }}" style="color:#6366f1;text-decoration:none;font-weight:500;">العودة للرئيسية →</a>
     </p>
 </div>
 

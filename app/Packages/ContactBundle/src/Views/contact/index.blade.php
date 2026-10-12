@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Contact Us - {{ config('app.name', 'School ERP') }}</title>
+    <title>اتصل بنا - {{ config('app.name', 'School ERP') }}</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600&display=swap" rel="stylesheet"/>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -26,17 +26,17 @@
                     </div>
                     <div>
                         <p class="text-sm font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">{{ config('app.name', 'School ERP') }}</p>
-                        <p class="text-xs text-[#706f6c] dark:text-[#A1A09A]">Get in touch</p>
+                        <p class="text-xs text-[#706f6c] dark:text-[#A1A09A]">تواصل معنا</p>
                     </div>
                 </a>
                 <div class="flex items-center gap-4">
                     <nav class="hidden sm:flex items-center gap-6">
                         <a href="{{ url('/') }}" class="text-xs text-[#706f6c] dark:text-[#A1A09A] hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition">
-                            Home
+                            الرئيسية
                         </a>
                         @auth
                             <a href="{{ url('/dashboard') }}" class="text-xs text-[#706f6c] dark:text-[#A1A09A] hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition">
-                                Dashboard
+                                لوحة التحكم
                             </a>
                         @endauth
                         <a href="https://github.com/sandeeep-prajapati/Vidra" target="_blank" class="text-xs text-[#706f6c] dark:text-[#A1A09A] hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition">
@@ -46,11 +46,11 @@
                     <div class="flex items-center gap-3">
                         @auth
                             <a href="{{ url('/dashboard') }}" class="inline-block px-4 py-1.5 border border-[#19140035] dark:border-[#3E3E3A] hover:border-[#1915014a] dark:hover:border-[#62605b] text-[#1b1b18] dark:text-[#EDEDEC] rounded-sm text-xs leading-normal transition">
-                                Dashboard
+                                لوحة التحكم
                             </a>
                         @else
                             <a href="{{ route('login') }}" class="inline-block px-4 py-1.5 border border-[#19140035] dark:border-[#3E3E3A] hover:border-[#1915014a] dark:hover:border-[#62605b] text-[#1b1b18] dark:text-[#EDEDEC] rounded-sm text-xs leading-normal transition">
-                                Login
+                                تسجيل الدخول
                             </a>
                         @endauth
                     </div>
@@ -76,19 +76,19 @@
                     @endif
 
                     <h1 class="text-2xl font-semibold text-[#1b1b18] dark:text-[#EDEDEC] mb-2">Let's work together</h1>
-                    <p class="text-[#706f6c] dark:text-[#A1A09A] mb-8">Have a question or want to discuss premium packages? We'd love to hear from you.</p>
+                    <p class="text-[#706f6c] dark:text-[#A1A09A] mb-8">هل لديك سؤال أو تريد مناقشة الحزم المميزة؟ نحن'd love to hear from you.</p>
 
                     <form method="POST" action="{{ route('contact.submit') }}" class="space-y-5">
                         @csrf
 
                         <div>
-                            <label for="name" class="block text-xs font-medium text-[#1b1b18] dark:text-[#EDEDEC] mb-2 uppercase tracking-wider">Full Name</label>
+                            <label for="name" class="block text-xs font-medium text-[#1b1b18] dark:text-[#EDEDEC] mb-2 uppercase tracking-wider">الاسم الكامل</label>
                             <input
                                 type="text"
                                 id="name"
                                 name="name"
                                 required
-                                placeholder="Your name"
+                                placeholder="اسمك"
                                 class="w-full px-4 py-2.5 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-sm bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] dark:text-[#EDEDEC] placeholder-[#706f6c] dark:placeholder-[#A1A09A] focus:border-[#4f46e5] dark:focus:border-[#6366f1] focus:outline-none transition text-sm @error('name') border-red-500 @enderror"
                                 value="{{ old('name') }}"
                             >
@@ -96,7 +96,7 @@
                         </div>
 
                         <div>
-                            <label for="email" class="block text-xs font-medium text-[#1b1b18] dark:text-[#EDEDEC] mb-2 uppercase tracking-wider">Email Address</label>
+                            <label for="email" class="block text-xs font-medium text-[#1b1b18] dark:text-[#EDEDEC] mb-2 uppercase tracking-wider">البريد الإلكتروني</label>
                             <input
                                 type="email"
                                 id="email"
@@ -110,31 +110,31 @@
                         </div>
 
                         <div>
-                            <label for="subject" class="block text-xs font-medium text-[#1b1b18] dark:text-[#EDEDEC] mb-2 uppercase tracking-wider">Subject</label>
+                            <label for="subject" class="block text-xs font-medium text-[#1b1b18] dark:text-[#EDEDEC] mb-2 uppercase tracking-wider">الموضوع</label>
                             <select
                                 id="subject"
                                 name="subject"
                                 required
                                 class="w-full px-4 py-2.5 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-sm bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] dark:text-[#EDEDEC] focus:border-[#4f46e5] dark:focus:border-[#6366f1] focus:outline-none transition text-sm @error('subject') border-red-500 @enderror"
                             >
-                                <option value="">Select a subject</option>
-                                <option value="General Inquiry" @selected(old('subject') == 'General Inquiry')>General Inquiry</option>
-                                <option value="Premium Package" @selected(old('subject') == 'Premium Package')>Premium Package Interest</option>
-                                <option value="Bug Report" @selected(old('subject') == 'Bug Report')>Bug Report</option>
-                                <option value="Custom Development" @selected(old('subject') == 'Custom Development')>Custom Development</option>
-                                <option value="Deployment Support" @selected(old('subject') == 'Deployment Support')>Deployment Support</option>
+                                <option value="">اختر موضوعا</option>
+                                <option value="General Inquiry" @selected(old('subject') == 'General Inquiry')>استفسار عام</option>
+                                <option value="Premium Package" @selected(old('subject') == 'Premium Package')>الاهتمام بالحزم المميزة</option>
+                                <option value="Bug Report" @selected(old('subject') == 'Bug Report')>تقرير عن خلل</option>
+                                <option value="Custom Development" @selected(old('subject') == 'Custom Development')>تطوير مخصص</option>
+                                <option value="Deployment Support" @selected(old('subject') == 'Deployment Support')>دعم النشر</option>
                             </select>
                             @error('subject')<p class="text-red-600 dark:text-red-400 text-xs mt-1">{{ $message }}</p>@enderror
                         </div>
 
                         <div>
-                            <label for="message" class="block text-xs font-medium text-[#1b1b18] dark:text-[#EDEDEC] mb-2 uppercase tracking-wider">Message</label>
+                            <label for="message" class="block text-xs font-medium text-[#1b1b18] dark:text-[#EDEDEC] mb-2 uppercase tracking-wider">الرسالة</label>
                             <textarea
                                 id="message"
                                 name="message"
                                 rows="4"
                                 required
-                                placeholder="Tell us more about your inquiry..."
+                                placeholder="أخبرنا المزيد عن استفسارك..."
                                 class="w-full px-4 py-2.5 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-sm bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] dark:text-[#EDEDEC] placeholder-[#706f6c] dark:placeholder-[#A1A09A] focus:border-[#4f46e5] dark:focus:border-[#6366f1] focus:outline-none transition text-sm resize-none @error('message') border-red-500 @enderror"
                             >{{ old('message') }}</textarea>
                             @error('message')<p class="text-red-600 dark:text-red-400 text-xs mt-1">{{ $message }}</p>@enderror
@@ -144,7 +144,7 @@
                             type="submit"
                             class="w-full px-5 py-2.5 bg-[#1b1b18] dark:bg-[#EDEDEC] text-[#FDFDFC] dark:text-[#1b1b18] font-medium rounded-sm hover:opacity-90 dark:hover:opacity-90 transition text-sm leading-normal"
                         >
-                            Send Message
+                            إرسال الرسالة
                         </button>
                     </form>
                 </div>
@@ -161,7 +161,7 @@
                         >
                         <h2 class="text-lg font-semibold text-[#1b1b18] dark:text-[#EDEDEC] mb-2">Sandeep Prajapati</h2>
                         <p class="text-xs text-[#706f6c] dark:text-[#A1A09A] mb-4 leading-relaxed">
-                            Full-stack developer crafting comprehensive school management solutions with modern technologies.
+                            مطور شامل يصنع حلولا متكاملة لإدارة المدارس بتقنيات حديثة.
                         </p>
                         <div class="flex flex-col gap-2">
                             <a
@@ -170,7 +170,7 @@
                                 class="inline-flex items-center justify-center lg:justify-start gap-2 px-4 py-2 border border-[#19140035] dark:border-[#3E3E3A] hover:border-[#1915014a] dark:hover:border-[#62605b] text-[#1b1b18] dark:text-[#EDEDEC] rounded-sm text-xs font-medium transition"
                             >
                                 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                                GitHub Profile
+                                حساب GitHub
                             </a>
                             <a
                                 href="https://github.com/sandeeep-prajapati/Vidra"
@@ -178,14 +178,14 @@
                                 class="inline-flex items-center justify-center lg:justify-start gap-2 px-4 py-2 border border-[#19140035] dark:border-[#3E3E3A] hover:border-[#1915014a] dark:hover:border-[#62605b] text-[#1b1b18] dark:text-[#EDEDEC] rounded-sm text-xs font-medium transition"
                             >
                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4m0 6L9 9"/></svg>
-                                Open Source Repo
+                                فتح Source Repo
                             </a>
                         </div>
                     </div>
 
                     <!-- Features -->
                     <div class="space-y-4 bg-white dark:bg-[#161615] border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-lg p-6">
-                        <p class="text-xs font-semibold text-[#1b1b18] dark:text-[#EDEDEC] uppercase tracking-wider">Why contact us?</p>
+                        <p class="text-xs font-semibold text-[#1b1b18] dark:text-[#EDEDEC] uppercase tracking-wider">لماذا تتصل بنا؟</p>
                         <div class="space-y-4 mt-4">
                             <div class="flex gap-4 pb-4 border-b border-[#e3e3e0] dark:border-[#3E3E3A] last:border-b-0 last:pb-0">
                                 <div class="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-[#4f46e5]/20 to-[#6366f1]/20 dark:from-[#4f46e5]/30 dark:to-[#6366f1]/30 flex items-center justify-center">
@@ -193,7 +193,7 @@
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-xs font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">Premium Packages</p>
-                                    <p class="text-[12px] text-[#706f6c] dark:text-[#A1A09A] mt-1">Ask about AI, Blockchain & IoT add-ons coming in 2026</p>
+                                    <p class="text-[12px] text-[#706f6c] dark:text-[#A1A09A] mt-1">اسأل عن إضافات الذكاء الاصطناعي والبلوك تشين وإنترنت الأشياء القادمة في 2026</p>
                                 </div>
                             </div>
                             <div class="flex gap-4 pb-4 border-b border-[#e3e3e0] dark:border-[#3E3E3A] last:border-b-0 last:pb-0">
@@ -201,8 +201,8 @@
                                     <svg class="w-5 h-5 text-[#4f46e5] dark:text-[#6366f1]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4m0 6L9 9"/></svg>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="text-xs font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">Custom Development</p>
-                                    <p class="text-[12px] text-[#706f6c] dark:text-[#A1A09A] mt-1">Request custom features tailored to your school's needs</p>
+                                    <p class="text-xs font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">تطوير مخصص</p>
+                                    <p class="text-[12px] text-[#706f6c] dark:text-[#A1A09A] mt-1">اطلب ميزات مخصصة لمدرستك's needs</p>
                                 </div>
                             </div>
                             <div class="flex gap-4 pb-4 border-b border-[#e3e3e0] dark:border-[#3E3E3A] last:border-b-0 last:pb-0">
@@ -210,8 +210,8 @@
                                     <svg class="w-5 h-5 text-[#4f46e5] dark:text-[#6366f1]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="text-xs font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">Setup & Deployment</p>
-                                    <p class="text-[12px] text-[#706f6c] dark:text-[#A1A09A] mt-1">Expert guidance for installation and deployment assistance</p>
+                                    <p class="text-xs font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">الإعداد والنشر</p>
+                                    <p class="text-[12px] text-[#706f6c] dark:text-[#A1A09A] mt-1">إرشاد خبير للمساعدة في التثبيت والنشر</p>
                                 </div>
                             </div>
                             <div class="flex gap-4 pb-0">
@@ -219,8 +219,8 @@
                                     <svg class="w-5 h-5 text-[#4f46e5] dark:text-[#6366f1]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4v.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="text-xs font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">Report Issues</p>
-                                    <p class="text-[12px] text-[#706f6c] dark:text-[#A1A09A] mt-1">Found a bug? We'd love to hear from you directly</p>
+                                    <p class="text-xs font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">الإبلاغ عن المشاكل</p>
+                                    <p class="text-[12px] text-[#706f6c] dark:text-[#A1A09A] mt-1">وجدت خللا? We'd love to hear from you directly</p>
                                 </div>
                             </div>
                         </div>
@@ -231,14 +231,14 @@
             <!-- FAQs Section -->
             <div class="space-y-6 mt-16">
                 <div>
-                    <h2 class="text-lg font-semibold text-[#1b1b18] dark:text-[#EDEDEC] mb-2">Frequently Asked Questions</h2>
-                    <p class="text-xs text-[#706f6c] dark:text-[#A1A09A]">Everything you need to know about School ERP</p>
+                    <h2 class="text-lg font-semibold text-[#1b1b18] dark:text-[#EDEDEC] mb-2">الأسئلة الشائعة</h2>
+                    <p class="text-xs text-[#706f6c] dark:text-[#A1A09A]">كل ما تحتاج معرفته عن نظام إدارة المدارس</p>
                 </div>
 
                 <div class="space-y-3">
                     <div class="text-[13px] leading-[20px] bg-white dark:bg-[#161615] dark:text-[#EDEDEC] border border-[#e3e3e0] dark:border-[#3E3E3A] hover:border-[#4f46e5] dark:hover:border-[#6366f1] rounded-lg overflow-hidden transition">
                         <button class="faq-toggle w-full text-left px-6 py-4 flex justify-between items-center hover:bg-[#FDFDFC] dark:hover:bg-[#0a0a0a] transition" onclick="toggleFaq(this)">
-                            <span class="font-medium text-[#1b1b18] dark:text-[#EDEDEC]">Is the free version really free forever?</span>
+                            <span class="font-medium text-[#1b1b18] dark:text-[#EDEDEC]">هل النسخة المجانية مجانية حقا للأبد؟</span>
                             <svg class="w-3 h-3 text-[#4f46e5] dark:text-[#6366f1] transform transition flex-shrink-0 ml-2" style="transform: rotate(0deg);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
                         </button>
                         <div class="faq-content hidden px-6 pb-4 border-t border-[#e3e3e0] dark:border-[#3E3E3A] bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#706f6c] dark:text-[#A1A09A] text-sm">
@@ -252,17 +252,17 @@
                             <svg class="w-3 h-3 text-[#4f46e5] dark:text-[#6366f1] transform transition flex-shrink-0 ml-2" style="transform: rotate(0deg);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
                         </button>
                         <div class="faq-content hidden px-6 pb-4 border-t border-[#e3e3e0] dark:border-[#3E3E3A] bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#706f6c] dark:text-[#A1A09A] text-sm">
-                            <p class="pt-4">Premium packages (AI Pack, Blockchain Pack, and IoT Pack) are currently in development. We're aiming for <strong>Q3 2026</strong> launch. Get notified by submitting your interest through the contact form above.</p>
+                            <p class="pt-4">الحزم المميزة (حزمة الذكاء الاصطناعي وحزمة البلوك تشين وحزمة إنترنت الأشياء) قيد التطوير حاليا. نحن're aiming for <strong>الربع الثالث 2026</strong> launch. Get notified by submitting your interest through the contact form above.</p>
                         </div>
                     </div>
 
                     <div class="text-[13px] leading-[20px] bg-white dark:bg-[#161615] dark:text-[#EDEDEC] border border-[#e3e3e0] dark:border-[#3E3E3A] hover:border-[#4f46e5] dark:hover:border-[#6366f1] rounded-lg overflow-hidden transition">
                         <button class="faq-toggle w-full text-left px-6 py-4 flex justify-between items-center hover:bg-[#FDFDFC] dark:hover:bg-[#0a0a0a] transition" onclick="toggleFaq(this)">
-                            <span class="font-medium text-[#1b1b18] dark:text-[#EDEDEC]">Do you offer support for the open source version?</span>
+                            <span class="font-medium text-[#1b1b18] dark:text-[#EDEDEC]">هل تقدمون دعما للنسخة مفتوحة المصدر؟</span>
                             <svg class="w-3 h-3 text-[#4f46e5] dark:text-[#6366f1] transform transition flex-shrink-0 ml-2" style="transform: rotate(0deg);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
                         </button>
                         <div class="faq-content hidden px-6 pb-4 border-t border-[#e3e3e0] dark:border-[#3E3E3A] bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#706f6c] dark:text-[#A1A09A] text-sm">
-                            <p class="pt-4">Yes! Community support is available through <a href="https://github.com/sandeeep-prajapati/Vidra" target="_blank" class="text-[#4f46e5] dark:text-[#6366f1] hover:underline">GitHub issues and discussions</a>. For priority support with guaranteed response times and SLA, check out our premium packages.</p>
+                            <p class="pt-4">نعم! الدعم المجتمعي متاح عبر <a href="https://github.com/sandeeep-prajapati/Vidra" target="_blank" class="text-[#4f46e5] dark:text-[#6366f1] hover:underline">قضايا ومناقشات GitHub</a>. For priority support with guaranteed response times and SLA, check out our premium packages.</p>
                         </div>
                     </div>
                 </div>
@@ -283,42 +283,42 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                             </svg>
                         </div>
-                        <p class="text-sm font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">School ERP</p>
+                        <p class="text-sm font-semibold text-[#1b1b18] dark:text-[#EDEDEC]">نظام إدارة المدارس</p>
                     </div>
                     <p class="text-xs text-[#706f6c] dark:text-[#A1A09A] leading-relaxed">
-                        A comprehensive, open-source school management system built to simplify operations and empower education.
+                        نظام شامل مفتوح المصدر لإدارة المدارس مصمم لتبسيط العمليات وتمكين التعليم.
                     </p>
                 </div>
 
                 <!-- Navigation Column -->
                 <div>
-                    <h3 class="text-xs font-semibold text-[#1b1b18] dark:text-[#EDEDEC] uppercase tracking-wider mb-4">Navigation</h3>
+                    <h3 class="text-xs font-semibold text-[#1b1b18] dark:text-[#EDEDEC] uppercase tracking-wider mb-4">التنقل</h3>
                     <ul class="space-y-3 text-xs">
                         <li>
                             <a href="{{ url('/') }}" class="text-[#706f6c] dark:text-[#A1A09A] hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition inline-flex items-center gap-2">
                                 <span class="w-1 h-1 bg-[#4f46e5] dark:bg-[#6366f1] rounded-full"></span>
-                                Home
+                                الرئيسية
                             </a>
                         </li>
                         @auth
                             <li>
                                 <a href="{{ url('/dashboard') }}" class="text-[#706f6c] dark:text-[#A1A09A] hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition inline-flex items-center gap-2">
                                     <span class="w-1 h-1 bg-[#4f46e5] dark:bg-[#6366f1] rounded-full"></span>
-                                    Dashboard
+                                    لوحة التحكم
                                 </a>
                             </li>
                         @else
                             <li>
                                 <a href="{{ route('login') }}" class="text-[#706f6c] dark:text-[#A1A09A] hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition inline-flex items-center gap-2">
                                     <span class="w-1 h-1 bg-[#4f46e5] dark:bg-[#6366f1] rounded-full"></span>
-                                    Login
+                                    تسجيل الدخول
                                 </a>
                             </li>
                         @endauth
                         <li>
                             <a href="https://github.com/sandeeep-prajapati/Vidra" target="_blank" class="text-[#706f6c] dark:text-[#A1A09A] hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition inline-flex items-center gap-2">
                                 <span class="w-1 h-1 bg-[#4f46e5] dark:bg-[#6366f1] rounded-full"></span>
-                                Repository
+                                المستودع
                             </a>
                         </li>
                     </ul>
@@ -326,18 +326,18 @@
 
                 <!-- Connect Column -->
                 <div>
-                    <h3 class="text-xs font-semibold text-[#1b1b18] dark:text-[#EDEDEC] uppercase tracking-wider mb-4">Connect</h3>
+                    <h3 class="text-xs font-semibold text-[#1b1b18] dark:text-[#EDEDEC] uppercase tracking-wider mb-4">تواصل</h3>
                     <ul class="space-y-3 text-xs">
                         <li>
                             <a href="https://github.com/sandeeep-prajapati" target="_blank" class="text-[#706f6c] dark:text-[#A1A09A] hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition inline-flex items-center gap-2">
                                 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                                GitHub Profile
+                                حساب GitHub
                             </a>
                         </li>
                         <li>
                             <a href="#" onclick="document.querySelector('input[name=email]').focus()" class="text-[#706f6c] dark:text-[#A1A09A] hover:text-[#1b1b18] dark:hover:text-[#EDEDEC] transition inline-flex items-center gap-2">
                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                                Send a Message
+                                إرسال رسالة
                             </a>
                         </li>
                     </ul>
@@ -347,7 +347,7 @@
             <!-- Divider -->
             <div class="border-t border-[#e3e3e0] dark:border-[#3E3E3A] pt-8">
                 <p class="text-center text-[12px] text-[#706f6c] dark:text-[#A1A09A]">
-                    &copy; 2026 <span class="font-medium text-[#1b1b18] dark:text-[#EDEDEC]">School ERP</span>. Built by Sandeep Prajapati. Open source & free forever.
+                    &copy; 2026 <span class="font-medium text-[#1b1b18] dark:text-[#EDEDEC]">نظام إدارة المدارس</span>. Built by Sandeep Prajapati. فتح source & free forever.
                 </p>
             </div>
         </div>

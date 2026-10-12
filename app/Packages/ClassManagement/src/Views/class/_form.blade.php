@@ -14,23 +14,41 @@
         @csrf
         @if($method !== 'POST') @method($method) @endif
 
-        <x-core-package::card title="Class Information">
+        <x-core-package::card title="معلومات القسم">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;">
                 <x-core-package::form.input
-                    name="class_name" label="Class Name" required
+                    name="class_name" label="اسم القسم" required
                     placeholder="e.g. Grade 1, Class 10"
                     value="{{ old('class_name', $schoolClass->class_name ?? '') }}" />
                 <x-core-package::form.input
-                    name="class_code" label="Class Code"
-                    placeholder="Optional unique code"
+                    name="class_code" label="رمز القسم"
+                    placeholder="رمز فريد اختياري"
                     value="{{ old('class_code', $schoolClass->class_code ?? '') }}" />
-                <x-core-package::form.select name="academic_year_id" label="Academic Year" placeholder="Select Academic Year">
-                    <option value="">— None —</option>
+                <x-core-package::form.select name="academic_year_id" label="السنة الدراسية" placeholder="اختر السنة الدراسية">
+                    <option value="">— بدون —</option>
                     @foreach($academicYears as $year)
                     <option value="{{ $year->academic_year_id }}"
                         @selected((string) old('academic_year_id', $schoolClass->academic_year_id ?? '') === (string) $year->academic_year_id)>
                         {{ $year->year_range }}
-                        @if($year->is_current) (Current) @endif
+                        @if($year->is_current) (الحالي) @endif
+                    </option>
+                    @endforeach
+                </x-core-package::form.select>
+                <x-core-package::form.select name="level" label="الطور" placeholder="اختر الطور">
+                    <option value="">— بدون —</option>
+                    @foreach($levels as $code => $label)
+                    <option value="{{ $code }}"
+                        @selected(old('level', $schoolClass->level ?? '') === $code)>
+                        {{ $label }}
+                    </option>
+                    @endforeach
+                </x-core-package::form.select>
+                <x-core-package::form.select name="stream" label="الشعبة (للثانوي فقط)" placeholder="اختر الشعبة">
+                    <option value="">— بدون —</option>
+                    @foreach($streams as $code => $label)
+                    <option value="{{ $code }}"
+                        @selected(old('stream', $schoolClass->stream ?? '') === $code)>
+                        {{ $label }}
                     </option>
                     @endforeach
                 </x-core-package::form.select>
@@ -39,22 +57,22 @@
                         <input type="checkbox" name="is_active" value="1"
                                style="width:1rem;height:1rem;accent-color:#4f46e5;"
                                {{ old('is_active', $schoolClass->is_active ?? true) ? 'checked' : '' }}>
-                        <span style="font-size:.875rem;font-weight:500;color:#374151;">Active</span>
+                        <span style="font-size:.875rem;font-weight:500;color:#374151;">نشط</span>
                     </label>
                 </div>
                 <div style="grid-column:1/-1;">
                     <x-core-package::form.textarea
-                        name="description" label="Description" rows="3"
-                        placeholder="Optional additional information">{{ old('description', $schoolClass->description ?? '') }}</x-core-package::form.textarea>
+                        name="description" label="الوصف" rows="3"
+                        placeholder="معلومات إضافية اختيارية">{{ old('description', $schoolClass->description ?? '') }}</x-core-package::form.textarea>
                 </div>
             </div>
         </x-core-package::card>
 
         <div style="display:flex;gap:.75rem;">
             <x-core-package::btn type="submit" color="primary">
-                {{ isset($schoolClass) ? 'Update Class' : 'Create Class' }}
+                {{ isset($schoolClass) ? 'تحديث القسم' : 'إنشاء قسم' }}
             </x-core-package::btn>
-            <x-core-package::btn :href="route('classes.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn :href="route('classes.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
 
     </form>

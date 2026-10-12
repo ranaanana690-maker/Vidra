@@ -2,9 +2,9 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('library.issues.index') }}" style="color:#64748b;text-decoration:none;">Issues</a>
+    <a href="{{ route('library.issues.index') }}" style="color:#64748b;text-decoration:none;">الإعارات</a>
     <span style="margin:0 .375rem;">›</span>
-    <span style="color:#374151;font-weight:500;">Issue Book</span>
+    <span style="color:#374151;font-weight:500;">إعارة كتاب</span>
 </nav>
 @endsection
 
@@ -12,8 +12,8 @@
 <div style="max-width:560px;">
 
 <div style="margin-bottom:1.5rem;">
-    <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Issue a Book</h1>
-    <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">Assign a book to a member</p>
+    <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">إعارة كتاب</h1>
+    <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">إسناد كتاب إلى عضو</p>
 </div>
 
 @if($errors->any())
@@ -29,17 +29,17 @@
         @csrf
         <div style="display:flex;flex-direction:column;gap:1rem;">
 
-            <x-core-package::form.select name="book_id" label="Book" required>
-                <option value="">— Select Available Book —</option>
+            <x-core-package::form.select name="book_id" label="الكتاب" required>
+                <option value="">— اختر كتابًا متوفرًا —</option>
                 @foreach($books as $book)
                 <option value="{{ $book->id }}" @selected(old('book_id') == $book->id)>
-                    {{ $book->title }} — {{ $book->author }} ({{ $book->available_copies }} available)
+                    {{ $book->title }} — {{ $book->author }} ({{ $book->available_copies }} متوفر)
                 </option>
                 @endforeach
             </x-core-package::form.select>
 
-            <x-core-package::form.select name="member_id" label="Member" required>
-                <option value="">— Select Active Member —</option>
+            <x-core-package::form.select name="member_id" label="العضو" required>
+                <option value="">— اختر عضوًا نشطًا —</option>
                 @foreach($members as $member)
                 <option value="{{ $member->id }}" @selected(old('member_id') == $member->id)>
                     {{ $member->name }} ({{ $member->membership_number }})
@@ -48,8 +48,8 @@
             </x-core-package::form.select>
 
             <div style="display:flex;gap:.75rem;padding-top:.5rem;">
-                <x-core-package::btn type="submit" color="primary">Issue Book</x-core-package::btn>
-                <x-core-package::btn :href="route('library.issues.index')" color="secondary">Cancel</x-core-package::btn>
+                <x-core-package::btn type="submit" color="primary">إعارة كتاب</x-core-package::btn>
+                <x-core-package::btn :href="route('library.issues.index')" color="secondary">إلغاء</x-core-package::btn>
             </div>
         </div>
     </form>

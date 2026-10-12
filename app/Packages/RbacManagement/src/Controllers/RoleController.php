@@ -38,7 +38,7 @@ class RoleController extends Controller
 
         Role::create(['name' => $validated['name'], 'guard_name' => 'web', 'description' => $validated['description'] ?? null]);
 
-        return redirect()->route('roles.index')->with('success', 'Role created successfully.');
+        return redirect()->route('roles.index')->with('success', 'تم إنشاء الدور بنجاح.');
     }
 
     public function show(Role $role): View
@@ -63,14 +63,14 @@ class RoleController extends Controller
 
         $role->update(['name' => $validated['name'], 'description' => $validated['description'] ?? null]);
 
-        return redirect()->route('roles.index')->with('success', 'Role updated successfully.');
+        return redirect()->route('roles.index')->with('success', 'تم تحديث الدور بنجاح.');
     }
 
     public function destroy(Role $role): RedirectResponse
     {
         $role->delete();
 
-        return redirect()->route('roles.index')->with('success', 'Role deleted.');
+        return redirect()->route('roles.index')->with('success', 'تم حذف الدور.');
     }
 
     public function syncPermissions(Request $request, Role $role): RedirectResponse
@@ -84,6 +84,6 @@ class RoleController extends Controller
         $permissions   = Permission::whereIn('id', $permissionIds)->get();
         $role->syncPermissions($permissions);
 
-        return redirect()->route('roles.show', $role)->with('success', 'Permissions updated successfully.');
+        return redirect()->route('roles.show', $role)->with('success', 'تم تحديث الصلاحيات بنجاح.');
     }
 }

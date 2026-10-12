@@ -2,9 +2,9 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('library.members.index') }}" style="color:#64748b;text-decoration:none;">Members</a>
+    <a href="{{ route('library.members.index') }}" style="color:#64748b;text-decoration:none;">الأعضاء</a>
     <span style="margin:0 .375rem;">›</span>
-    <span style="color:#374151;font-weight:500;">Register Member</span>
+    <span style="color:#374151;font-weight:500;">تسجيل عضو</span>
 </nav>
 @endsection
 
@@ -12,8 +12,8 @@
 <div style="max-width:680px;">
 
 <div style="margin-bottom:1.5rem;">
-    <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Register New Member</h1>
-    <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">Add a new library member</p>
+    <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">تسجيل عضو جديد</h1>
+    <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">إضافة عضو جديد إلى المكتبة</p>
 </div>
 
 @if($errors->any())
@@ -29,35 +29,35 @@
         @csrf
         <div style="display:flex;flex-direction:column;gap:1rem;">
 
-            <x-core-package::form.input name="name" label="Full Name" required :value="old('name')" />
+            <x-core-package::form.input name="name" label="الاسم الكامل" required :value="old('name')" />
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-                <x-core-package::form.select name="member_type" label="Member Type" required>
-                    <option value="">— Select Type —</option>
+                <x-core-package::form.select name="member_type" label="نوع العضو" required>
+                    <option value="">— اختر النوع —</option>
                     @foreach(['student','teacher','staff'] as $type)
-                    <option value="{{ $type }}" @selected(old('member_type')===$type)>{{ ucfirst($type) }}</option>
+                    <option value="{{ $type }}" @selected(old('member_type')===$type)>{{ ['student'=>'تلميذ','teacher'=>'أستاذ','staff'=>'موظف'][$type] ?? ucfirst($type) }}</option>
                     @endforeach
                 </x-core-package::form.select>
-                <x-core-package::form.input name="member_id" label="Roll / Staff ID" required :value="old('member_id')" />
+                <x-core-package::form.input name="member_id" label="رقم التلميذ / الموظف" required :value="old('member_id')" />
             </div>
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-                <x-core-package::form.input name="email" label="Email" type="email" :value="old('email')" />
-                <x-core-package::form.input name="phone" label="Phone" :value="old('phone')" />
+                <x-core-package::form.input name="email" label="البريد الإلكتروني" type="email" :value="old('email')" />
+                <x-core-package::form.input name="phone" label="الهاتف" :value="old('phone')" />
             </div>
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-                <x-core-package::form.input name="max_books_allowed" label="Max Books Allowed" type="number" min="1" required :value="old('max_books_allowed', 3)" />
-                <x-core-package::form.select name="status" label="Status" required>
-                    <option value="active" @selected(old('status','active')==='active')>Active</option>
-                    <option value="inactive" @selected(old('status')==='inactive')>Inactive</option>
-                    <option value="suspended" @selected(old('status')==='suspended')>Suspended</option>
+                <x-core-package::form.input name="max_books_allowed" label="الحد الأقصى للكتب المسموح" type="number" min="1" required :value="old('max_books_allowed', 3)" />
+                <x-core-package::form.select name="status" label="الحالة" required>
+                    <option value="active" @selected(old('status','active')==='active')>نشط</option>
+                    <option value="inactive" @selected(old('status')==='inactive')>غير نشط</option>
+                    <option value="suspended" @selected(old('status')==='suspended')>موقوف</option>
                 </x-core-package::form.select>
             </div>
 
             <div style="display:flex;gap:.75rem;padding-top:.5rem;">
-                <x-core-package::btn type="submit" color="primary">Register Member</x-core-package::btn>
-                <x-core-package::btn :href="route('library.members.index')" color="secondary">Cancel</x-core-package::btn>
+                <x-core-package::btn type="submit" color="primary">تسجيل العضو</x-core-package::btn>
+                <x-core-package::btn :href="route('library.members.index')" color="secondary">إلغاء</x-core-package::btn>
             </div>
         </div>
     </form>

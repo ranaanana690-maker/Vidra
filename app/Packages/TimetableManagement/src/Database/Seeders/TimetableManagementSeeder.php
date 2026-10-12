@@ -13,22 +13,22 @@ class TimetableManagementSeeder extends Seeder
 
         // Rooms
         DB::table('rooms')->insert([
-            ['room_name' => 'Room 101', 'room_type' => 'Classroom',  'capacity' => 40, 'description' => 'Standard classroom with smart board', 'created_at' => $now, 'updated_at' => $now],
-            ['room_name' => 'Room 102', 'room_type' => 'Classroom',  'capacity' => 40, 'description' => 'Standard classroom',                   'created_at' => $now, 'updated_at' => $now],
-            ['room_name' => 'Room 103', 'room_type' => 'Classroom',  'capacity' => 35, 'description' => 'Standard classroom',                   'created_at' => $now, 'updated_at' => $now],
-            ['room_name' => 'Science Lab', 'room_type' => 'Lab',     'capacity' => 30, 'description' => 'Fully equipped science laboratory',     'created_at' => $now, 'updated_at' => $now],
-            ['room_name' => 'Computer Lab', 'room_type' => 'Lab',    'capacity' => 25, 'description' => 'Computer lab with 25 workstations',     'created_at' => $now, 'updated_at' => $now],
-            ['room_name' => 'Auditorium', 'room_type' => 'Auditorium','capacity' => 300,'description' => 'Main school auditorium',               'created_at' => $now, 'updated_at' => $now],
+            ['room_name' => 'قاعة 101', 'room_type' => 'Classroom',  'capacity' => 40, 'description' => 'قسم دراسي عادي مع سبورة ذكية', 'created_at' => $now, 'updated_at' => $now],
+            ['room_name' => 'قاعة 102', 'room_type' => 'Classroom',  'capacity' => 40, 'description' => 'قسم دراسي عادي',                   'created_at' => $now, 'updated_at' => $now],
+            ['room_name' => 'قاعة 103', 'room_type' => 'Classroom',  'capacity' => 35, 'description' => 'قسم دراسي عادي',                   'created_at' => $now, 'updated_at' => $now],
+            ['room_name' => 'مخبر العلوم', 'room_type' => 'Lab',     'capacity' => 30, 'description' => 'مخبر علوم مجهز بالكامل',     'created_at' => $now, 'updated_at' => $now],
+            ['room_name' => 'مخبر الإعلام الآلي', 'room_type' => 'Lab',    'capacity' => 25, 'description' => 'مخبر إعلام آلي مع 25 محطة عمل',     'created_at' => $now, 'updated_at' => $now],
+            ['room_name' => 'القاعة الكبرى', 'room_type' => 'Auditorium','capacity' => 300,'description' => 'القاعة الكبرى للمدرسة',               'created_at' => $now, 'updated_at' => $now],
         ]);
 
-        // Days
+        // Days (DZ week: Sunday -> Thursday + Saturday)
         DB::table('days')->insert([
-            ['day_name' => 'Monday',    'created_at' => $now, 'updated_at' => $now],
-            ['day_name' => 'Tuesday',   'created_at' => $now, 'updated_at' => $now],
-            ['day_name' => 'Wednesday', 'created_at' => $now, 'updated_at' => $now],
-            ['day_name' => 'Thursday',  'created_at' => $now, 'updated_at' => $now],
-            ['day_name' => 'Friday',    'created_at' => $now, 'updated_at' => $now],
-            ['day_name' => 'Saturday',  'created_at' => $now, 'updated_at' => $now],
+            ['day_name' => 'الأحد',    'created_at' => $now, 'updated_at' => $now],
+            ['day_name' => 'الاثنين',  'created_at' => $now, 'updated_at' => $now],
+            ['day_name' => 'الثلاثاء', 'created_at' => $now, 'updated_at' => $now],
+            ['day_name' => 'الأربعاء', 'created_at' => $now, 'updated_at' => $now],
+            ['day_name' => 'الخميس',   'created_at' => $now, 'updated_at' => $now],
+            ['day_name' => 'السبت',    'created_at' => $now, 'updated_at' => $now],
         ]);
 
         // Periods
@@ -89,7 +89,7 @@ class TimetableManagementSeeder extends Seeder
                 'event_date'  => '2024-11-15',
                 'start_time'  => '08:00:00',
                 'end_time'    => '17:00:00',
-                'description' => 'Annual inter-class sports competition',
+                'description' => 'مسابقة رياضية سنوية بين الأقسام',
                 'room_id'     => null,
                 'created_at'  => $now,
                 'updated_at'  => $now,
@@ -99,7 +99,7 @@ class TimetableManagementSeeder extends Seeder
                 'event_date'  => '2024-12-20',
                 'start_time'  => '10:00:00',
                 'end_time'    => '14:00:00',
-                'description' => 'Annual school cultural day with performances',
+                'description' => 'اليوم الثقافي السنوي للمدرسة مع عروض',
                 'room_id'     => 6,
                 'created_at'  => $now,
                 'updated_at'  => $now,
@@ -109,7 +109,7 @@ class TimetableManagementSeeder extends Seeder
                 'event_date'  => '2025-01-10',
                 'start_time'  => '09:00:00',
                 'end_time'    => '16:00:00',
-                'description' => 'Student science project exhibition',
+                'description' => 'معرض مشاريع العلوم للتلاميذ',
                 'room_id'     => 4,
                 'created_at'  => $now,
                 'updated_at'  => $now,

@@ -25,6 +25,7 @@ class RbacManagementSeeder extends Seeder
             'communication'   => ['view', 'create', 'edit', 'delete'],
             'hostel'          => ['view', 'create', 'edit', 'delete'],
             'transport'       => ['view', 'create', 'edit', 'delete'],
+            'courses'         => ['view', 'create', 'edit', 'delete'],
             'reports'         => ['view'],
             'rbac'            => ['view', 'create', 'edit', 'delete'],
         ];
@@ -59,6 +60,7 @@ class RbacManagementSeeder extends Seeder
                     'view-exams', 'create-exams', 'edit-exams',
                     'view-timetable', 'view-subjects',
                     'view-communication', 'create-communication',
+                    'view-courses',
                 ],
             ],
             [

@@ -14,43 +14,43 @@
         @csrf
         @if($method !== 'POST') @method($method) @endif
 
-        <x-core-package::card title="Leave Request Details">
+        <x-core-package::card title="تفاصيل طلب الرخصة">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;">
                 <x-core-package::form.input
-                    name="student_id" label="Student ID" required type="number"
-                    placeholder="e.g. 101"
+                    name="student_id" label="معرف التلميذ" required type="number"
+                    placeholder="مثال: 101"
                     value="{{ old('student_id', $record->student_id ?? '') }}" />
                 <x-core-package::form.input
-                    name="applied_on" label="Applied On" required type="date"
+                    name="applied_on" label="تاريخ التقديم" required type="date"
                     value="{{ old('applied_on', isset($record) ? $record->applied_on->format('Y-m-d') : now()->format('Y-m-d')) }}" />
                 <x-core-package::form.input
-                    name="start_date" label="Start Date" required type="date"
+                    name="start_date" label="تاريخ البداية" required type="date"
                     value="{{ old('start_date', isset($record) ? $record->start_date->format('Y-m-d') : '') }}" />
                 <x-core-package::form.input
-                    name="end_date" label="End Date" required type="date"
+                    name="end_date" label="تاريخ النهاية" required type="date"
                     value="{{ old('end_date', isset($record) ? $record->end_date->format('Y-m-d') : '') }}" />
-                <x-core-package::form.select name="status" label="Status" required>
+                <x-core-package::form.select name="status" label="الحالة" required>
                     @foreach(['Pending','Approved','Rejected'] as $s)
-                    <option value="{{ $s }}" @selected(old('status', $record->status ?? 'Pending') === $s)>{{ $s }}</option>
+                    <option value="{{ $s }}" @selected(old('status', $record->status ?? 'Pending') === $s)>{{ $s == 'Pending' ? 'معلق' : ($s == 'Approved' ? 'مقبول' : 'مرفوض') }}</option>
                     @endforeach
                 </x-core-package::form.select>
                 <x-core-package::form.input
-                    name="approved_by" label="Approved By (Staff ID)" type="number"
-                    placeholder="Staff ID"
+                    name="approved_by" label="وافق عليه (معرف الموظف)" type="number"
+                    placeholder="معرف الموظف"
                     value="{{ old('approved_by', $record->approved_by ?? '') }}" />
                 <div style="grid-column:1/-1;">
                     <x-core-package::form.textarea
-                        name="reason" label="Reason" required rows="3"
-                        placeholder="Reason for leave">{{ old('reason', $record->reason ?? '') }}</x-core-package::form.textarea>
+                        name="reason" label="السبب" required rows="3"
+                        placeholder="سبب الرخصة">{{ old('reason', $record->reason ?? '') }}</x-core-package::form.textarea>
                 </div>
             </div>
         </x-core-package::card>
 
         <div style="display:flex;gap:.75rem;">
             <x-core-package::btn type="submit" color="primary">
-                {{ isset($record) ? 'Update Request' : 'Submit Request' }}
+                {{ isset($record) ? 'تحديث الطلب' : 'إرسال الطلب' }}
             </x-core-package::btn>
-            <x-core-package::btn :href="route('studentLeaveRequest.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn :href="route('studentLeaveRequest.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
 
     </form>

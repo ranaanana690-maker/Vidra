@@ -45,7 +45,7 @@ class TransportationController extends Controller
         Transportation::create($validated);
 
         return redirect()->route('transportation.index')
-            ->with('success', 'Transport service created successfully.');
+            ->with('success', 'تم إنشاء خدمة النقل بنجاح.');
     }
 
     public function show(Transportation $transportation): View
@@ -73,7 +73,7 @@ class TransportationController extends Controller
         $transportation->update($validated);
 
         return redirect()->route('transportation.index')
-            ->with('success', 'Transport service updated successfully.');
+            ->with('success', 'تم تحديث خدمة النقل بنجاح.');
     }
 
     public function destroy(Transportation $transportation): RedirectResponse
@@ -81,6 +81,6 @@ class TransportationController extends Controller
         $transportation->delete();
 
         return redirect()->route('transportation.index')
-            ->with('success', 'Transport service deleted.');
+            ->with('success', 'تم حذف خدمة النقل.');
     }
 }

@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('role-permissions.index') }}" style="color:#64748b;text-decoration:none;">Role-Permission Matrix</a>
+    <a href="{{ route('role-permissions.index') }}" style="color:#64748b;text-decoration:none;">مصفوفة صلاحيات الأدوار</a>
     <span style="margin:0 .375rem;">›</span>
     <span style="color:#374151;font-weight:500;">{{ $role->name }}</span>
 </nav>
@@ -33,9 +33,9 @@
     <x-core-package::card>
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;">
             <p style="font-size:.8125rem;color:#64748b;margin:0;">
-                Select permissions for the <strong>{{ $role->name }}</strong> role.
+                اختر الصلاحيات لـ <strong>{{ $role->name }}</strong> دور.
             </p>
-            <button type="button" id="toggle-all" style="font-size:.8125rem;color:#4f46e5;background:none;border:none;cursor:pointer;padding:0;">Select All</button>
+            <button type="button" id="toggle-all" style="font-size:.8125rem;color:#4f46e5;background:none;border:none;cursor:pointer;padding:0;">تحديد الكل</button>
         </div>
 
         @forelse($allPermissions as $module => $perms)
@@ -45,7 +45,7 @@
                     {{ $module ?: 'General' }}
                 </span>
                 <button type="button" class="toggle-module" style="font-size:.75rem;color:#64748b;background:none;border:none;cursor:pointer;padding:0;">
-                    Toggle all
+                    تبديل الكل
                 </button>
             </div>
             <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));gap:.5rem;">
@@ -67,13 +67,13 @@
         </div>
         @empty
         <p style="color:#94a3b8;font-size:.875rem;text-align:center;padding:1.5rem 0;">
-            No permissions defined yet. <a href="{{ route('permissions.create') }}" style="color:#4f46e5;">Create permissions</a>
+            لا يوجد صلاحيات معرفة بعد. <a href="{{ route('permissions.create') }}" style="color:#4f46e5;">إنشاء صلاحيات</a>
         </p>
         @endforelse
 
         <div style="padding-top:1rem;border-top:1px solid #e2e8f0;display:flex;gap:.75rem;">
-            <x-core-package::btn type="submit" color="primary">Save Permissions</x-core-package::btn>
-            <x-core-package::btn :href="route('role-permissions.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn type="submit" color="primary">حفظ الصلاحيات</x-core-package::btn>
+            <x-core-package::btn :href="route('role-permissions.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
     </x-core-package::card>
 </form>

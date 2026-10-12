@@ -70,6 +70,6 @@ class BatchApiController extends Controller
     {
         $batch->delete();
 
-        return response()->json(['message' => 'Batch deleted']);
+        return response()->json(['message' => 'تم حذف الدفعة.']);
     }
 }

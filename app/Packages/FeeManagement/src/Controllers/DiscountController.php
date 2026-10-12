@@ -37,7 +37,7 @@ class DiscountController extends Controller
             'description'     => 'nullable|string',
         ]);
         Discount::create($validated);
-        return redirect()->route('discount.index')->with('success', 'Discount created successfully.');
+        return redirect()->route('discount.index')->with('success', 'تم إنشاء التخفيض بنجاح.');
     }
 
     public function show(Discount $discount): View
@@ -60,12 +60,12 @@ class DiscountController extends Controller
             'description'     => 'nullable|string',
         ]);
         $discount->update($validated);
-        return redirect()->route('discount.index')->with('success', 'Discount updated successfully.');
+        return redirect()->route('discount.index')->with('success', 'تم تحديث التخفيض بنجاح.');
     }
 
     public function destroy(Discount $discount): RedirectResponse
     {
         $discount->delete();
-        return redirect()->route('discount.index')->with('success', 'Discount deleted.');
+        return redirect()->route('discount.index')->with('success', 'تم حذف التخفيض.');
     }
 }

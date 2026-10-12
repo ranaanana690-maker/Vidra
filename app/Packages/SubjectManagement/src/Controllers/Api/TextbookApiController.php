@@ -50,6 +50,6 @@ class TextbookApiController extends Controller
     {
         $textbook->delete();
 
-        return response()->json(['message' => 'Textbook deleted']);
+        return response()->json(['message' => 'تم حذف الكتاب المدرسي.']);
     }
 }

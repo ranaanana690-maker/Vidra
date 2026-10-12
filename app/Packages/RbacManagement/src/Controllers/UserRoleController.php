@@ -44,6 +44,6 @@ class UserRoleController extends Controller
         $roles   = Role::whereIn('id', $roleIds)->get();
         $user->syncRoles($roles);
 
-        return redirect()->route('user-roles.index')->with('success', 'Roles updated for '.$user->name.'.');
+        return redirect()->route('user-roles.index')->with('success', 'تم تحديث الأدوار لـ '.$user->name.'.');
     }
 }

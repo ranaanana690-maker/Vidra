@@ -13,11 +13,11 @@
         @csrf
         @if($method !== 'POST') @method($method) @endif
 
-        <x-core-package::card title="Textbook Information">
+        <x-core-package::card title="معلومات الكتاب المدرسي">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;">
                 <div style="grid-column:1/-1;">
-                    <x-core-package::form.select name="subject_id" label="Subject" required>
-                        <option value="">— Select Subject —</option>
+                    <x-core-package::form.select name="subject_id" label="المادة" required>
+                        <option value="">— اختر المادة —</option>
                         @foreach($subjects as $subject)
                         <option value="{{ $subject->subject_id }}"
                             @selected((string) old('subject_id', $textbook->subject_id ?? request('subject_id')) === (string) $subject->subject_id)>
@@ -28,20 +28,20 @@
                 </div>
                 <div style="grid-column:1/-1;">
                     <x-core-package::form.input
-                        name="title" label="Title" required
+                        name="title" label="العنوان" required
                         placeholder="e.g. Mathematics for Class 10"
                         value="{{ old('title', $textbook->title ?? '') }}" />
                 </div>
                 <x-core-package::form.input
-                    name="author" label="Author"
+                    name="author" label="المؤلف"
                     placeholder="e.g. R.D. Sharma"
                     value="{{ old('author', $textbook->author ?? '') }}" />
                 <x-core-package::form.input
-                    name="publisher" label="Publisher"
+                    name="publisher" label="الناشر"
                     placeholder="e.g. NCERT"
                     value="{{ old('publisher', $textbook->publisher ?? '') }}" />
                 <x-core-package::form.input
-                    name="edition" label="Edition"
+                    name="edition" label="الطبعة"
                     placeholder="e.g. 2024 Edition"
                     value="{{ old('edition', $textbook->edition ?? '') }}" />
                 <x-core-package::form.input
@@ -50,7 +50,7 @@
                     value="{{ old('isbn', $textbook->isbn ?? '') }}" />
                 <div style="grid-column:1/-1;">
                     <x-core-package::form.input
-                        name="textbook_file_path" label="Digital Copy Path"
+                        name="textbook_file_path" label="مسار النسخة الرقمية"
                         placeholder="e.g. /uploads/textbooks/math10.pdf"
                         value="{{ old('textbook_file_path', $textbook->textbook_file_path ?? '') }}" />
                 </div>
@@ -59,9 +59,9 @@
 
         <div style="display:flex;gap:.75rem;">
             <x-core-package::btn type="submit" color="primary">
-                {{ isset($textbook) ? 'Update Textbook' : 'Add Textbook' }}
+                {{ isset($textbook) ? 'تحديث الكتاب المدرسي' : 'إضافة كتاب مدرسي' }}
             </x-core-package::btn>
-            <x-core-package::btn :href="route('textbooks.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn :href="route('textbooks.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
     </form>
 </div>

@@ -2,9 +2,9 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('alumni.directory') }}" style="color:#64748b;text-decoration:none;">Alumni</a>
+    <a href="{{ route('alumni.directory') }}" style="color:#64748b;text-decoration:none;">الخريجون</a>
     <span style="margin:0 .375rem;">›</span>
-    <span style="color:#374151;font-weight:500;">Add Alumni</span>
+    <span style="color:#374151;font-weight:500;">إضافة خريج</span>
 </nav>
 @endsection
 
@@ -13,8 +13,8 @@
 <div style="max-width:720px;margin:0 auto;">
 
 <div style="margin-bottom:1.5rem;">
-    <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Add Alumni Profile</h1>
-    <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">Create a new alumni record</p>
+    <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">إضافة ملف خريج</h1>
+    <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">إنشاء سجل خريج جديد</p>
 </div>
 
 <x-core-package::card>
@@ -23,19 +23,19 @@
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
             <div>
-                <x-core-package::form.input name="full_name" label="Full Name" :value="old('full_name')" required />
+                <x-core-package::form.input name="full_name" label="الاسم الكامل" :value="old('full_name')" required />
                 @error('full_name')<div style="color:#dc2626;font-size:.75rem;margin-top:.25rem;">{{ $message }}</div>@enderror
             </div>
             <div>
-                <x-core-package::form.input name="email" label="Email" type="email" :value="old('email')" required />
+                <x-core-package::form.input name="email" label="البريد الإلكتروني" type="email" :value="old('email')" required />
                 @error('email')<div style="color:#dc2626;font-size:.75rem;margin-top:.25rem;">{{ $message }}</div>@enderror
             </div>
             <div>
-                <x-core-package::form.input name="phone" label="Phone" type="tel" :value="old('phone')" />
+                <x-core-package::form.input name="phone" label="الهاتف" type="tel" :value="old('phone')" />
             </div>
             <div>
-                <x-core-package::form.select name="graduation_year" label="Graduation Year" required>
-                    <option value="">Select Year</option>
+                <x-core-package::form.select name="graduation_year" label="سنة التخرج" required>
+                    <option value="">اختر السنة</option>
                     @foreach($years as $year)
                     <option value="{{ $year }}" {{ old('graduation_year') == $year ? 'selected' : '' }}>{{ $year }}</option>
                     @endforeach
@@ -43,36 +43,36 @@
                 @error('graduation_year')<div style="color:#dc2626;font-size:.75rem;margin-top:.25rem;">{{ $message }}</div>@enderror
             </div>
             <div>
-                <x-core-package::form.input name="graduation_class" label="Class / Section" :value="old('graduation_class')" placeholder="e.g. 12-A" />
+                <x-core-package::form.input name="graduation_class" label="القسم / الفوج" :value="old('graduation_class')" placeholder="مثال: 12-أ" />
             </div>
             <div>
-                <x-core-package::form.select name="status" label="Status" required>
-                    <option value="active" {{ old('status') === 'active' ? 'selected' : '' }}>Active</option>
-                    <option value="inactive" {{ old('status') === 'inactive' ? 'selected' : '' }}>Inactive</option>
-                    <option value="deceased" {{ old('status') === 'deceased' ? 'selected' : '' }}>Deceased</option>
+                <x-core-package::form.select name="status" label="الحالة" required>
+                    <option value="active" {{ old('status') === 'active' ? 'selected' : '' }}>نشط</option>
+                    <option value="inactive" {{ old('status') === 'inactive' ? 'selected' : '' }}>غير نشط</option>
+                    <option value="deceased" {{ old('status') === 'deceased' ? 'selected' : '' }}>متوفى</option>
                 </x-core-package::form.select>
             </div>
             <div>
-                <x-core-package::form.input name="current_city" label="Current City" :value="old('current_city')" />
+                <x-core-package::form.input name="current_city" label="المدينة الحالية" :value="old('current_city')" />
             </div>
             <div>
-                <x-core-package::form.input name="current_country" label="Current Country" :value="old('current_country')" />
+                <x-core-package::form.input name="current_country" label="البلد الحالي" :value="old('current_country')" />
             </div>
             <div>
-                <x-core-package::form.input name="linkedin_url" label="LinkedIn URL" type="url" :value="old('linkedin_url')" />
+                <x-core-package::form.input name="linkedin_url" label="رابط لينكدإن" type="url" :value="old('linkedin_url')" />
             </div>
             <div>
-                <x-core-package::form.input name="website_url" label="Website URL" type="url" :value="old('website_url')" />
+                <x-core-package::form.input name="website_url" label="رابط الموقع" type="url" :value="old('website_url')" />
             </div>
         </div>
 
         <div style="margin-bottom:1.25rem;">
-            <x-core-package::form.textarea name="bio" label="Bio" rows="3" :value="old('bio')" placeholder="Brief introduction..." />
+            <x-core-package::form.textarea name="bio" label="نبذة" rows="3" :value="old('bio')" placeholder="نبذة تعريفية..." />
         </div>
 
         <div style="display:flex;gap:.75rem;justify-content:flex-end;">
-            <x-core-package::btn :href="route('alumni.directory')" color="secondary">Cancel</x-core-package::btn>
-            <x-core-package::btn type="submit" color="primary">Create Profile</x-core-package::btn>
+            <x-core-package::btn :href="route('alumni.directory')" color="secondary">إلغاء</x-core-package::btn>
+            <x-core-package::btn type="submit" color="primary">إنشاء الملف</x-core-package::btn>
         </div>
     </form>
 </x-core-package::card>

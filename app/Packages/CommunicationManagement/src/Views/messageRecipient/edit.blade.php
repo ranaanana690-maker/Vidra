@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('messageRecipient.index') }}" style="color:#64748b;text-decoration:none;">Recipients</a>
+    <a href="{{ route('messageRecipient.index') }}" style="color:#64748b;text-decoration:none;">المستلمون</a>
     <span style="margin:0 .375rem;">/</span>
     <span style="color:#374151;font-weight:500;">Edit Recipient #{{ $messageRecipient->recipient_id }}</span>
 </nav>
@@ -12,7 +12,7 @@
 
 <div style="max-width:600px;">
     <div style="margin-bottom:1.5rem;">
-        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Edit Recipient</h1>
+        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">تعديل المستلم</h1>
     </div>
 
     @if($errors->any())
@@ -28,8 +28,8 @@
             @csrf @method('PUT')
 
             <div style="margin-bottom:1rem;">
-                <x-core-package::form.select name="message_id" label="Message" required>
-                    <option value="">Select message…</option>
+                <x-core-package::form.select name="message_id" label="رسالة" required>
+                    <option value="">اختر الرسالة...</option>
                     @foreach($messages as $msg)
                     <option value="{{ $msg->message_id }}" @selected(old('message_id', $messageRecipient->message_id) == $msg->message_id)>
                         #{{ $msg->message_id }} — {{ Str::limit($msg->title ?: $msg->content, 60) }}
@@ -39,8 +39,8 @@
             </div>
 
             <div style="margin-bottom:1rem;">
-                <x-core-package::form.select name="user_id" label="Recipient User" required>
-                    <option value="">Select user…</option>
+                <x-core-package::form.select name="user_id" label="المستلم" required>
+                    <option value="">اختر المستخدم...</option>
                     @foreach($users as $user)
                     <option value="{{ $user->id }}" @selected(old('user_id', $messageRecipient->user_id) == $user->id)>{{ $user->name }} ({{ $user->email }})</option>
                     @endforeach
@@ -48,23 +48,23 @@
             </div>
 
             <div style="margin-bottom:1rem;">
-                <x-core-package::form.select name="status" label="Delivery Status" required>
+                <x-core-package::form.select name="status" label="حالة التسليم" required>
                     @foreach(['Pending','Sent','Failed','Read'] as $s)
-                    <option value="{{ $s }}" @selected(old('status', $messageRecipient->status) === $s)>{{ $s }}</option>
+                    <option value="{{ $s }}" @selected(old('status', $messageRecipient->status) === $s)>{{ $s == 'Pending' ? 'معلق' : ($s == 'Sent' ? 'مرسل' : ($s == 'Failed' ? 'فشل' : 'مقروء')) }}</option>
                     @endforeach
                 </x-core-package::form.select>
             </div>
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
-                <x-core-package::form.input name="delivered_at" label="Delivered At" type="datetime-local"
+                <x-core-package::form.input name="delivered_at" label="وقت التسليم" type="datetime-local"
                     value="{{ old('delivered_at', $messageRecipient->delivered_at?->format('Y-m-d\TH:i')) }}" />
-                <x-core-package::form.input name="read_at" label="Read At" type="datetime-local"
+                <x-core-package::form.input name="read_at" label="وقت القراءة" type="datetime-local"
                     value="{{ old('read_at', $messageRecipient->read_at?->format('Y-m-d\TH:i')) }}" />
             </div>
 
             <div style="display:flex;gap:.75rem;">
-                <x-core-package::btn type="submit" color="primary">Update Recipient</x-core-package::btn>
-                <x-core-package::btn :href="route('messageRecipient.index')" color="secondary">Cancel</x-core-package::btn>
+                <x-core-package::btn type="submit" color="primary">تحديث المستلم</x-core-package::btn>
+                <x-core-package::btn :href="route('messageRecipient.index')" color="secondary">إلغاء</x-core-package::btn>
             </div>
         </form>
     </x-core-package::card>

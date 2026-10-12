@@ -11,18 +11,24 @@ class SubjectManagementSeeder extends Seeder
     {
         $now = now()->toDateTimeString();
 
-        // Subjects
+        // DZ subjects: [arabic name, code, type, optional]
         $subjects = [
-            ['Mathematics',      'MATH-01', 'Theory',    false],
-            ['English',          'ENG-01',  'Theory',    false],
-            ['Science',          'SCI-01',  'Theory',    false],
-            ['Hindi',            'HIN-01',  'Theory',    false],
-            ['Social Studies',   'SS-01',   'Theory',    false],
-            ['Computer Science', 'CS-01',   'Practical', false],
-            ['Physical Education','PE-01',  'Practical', false],
-            ['Art & Craft',      'ART-01',  'Practical', true],
-            ['Music',            'MUS-01',  'Practical', true],
-            ['General Knowledge','GK-01',   'Theory',    false],
+            ['الرياضيات',              'MATH-01',   'Theory',    false],
+            ['اللغة العربية',          'AR-01',     'Theory',    false],
+            ['اللغة الفرنسية',         'FR-01',     'Theory',    false],
+            ['اللغة الإنجليزية',       'EN-01',     'Theory',    false],
+            ['التربية الإسلامية',      'ISLAM-01',  'Theory',    false],
+            ['التربية المدنية',        'CIV-01',    'Theory',    false],
+            ['التاريخ والجغرافيا',     'HISTGEO-01', 'Theory',    false],
+            ['العلوم والتكنولوجيا',    'SCITECH-01', 'Theory',    false],
+            ['العلوم الفيزيائية',      'PHYS-01',   'Theory',    false],
+            ['العلوم الطبيعية',        'SVT-01',    'Theory',    false],
+            ['الفلسفة',                'PHILO-01',  'Theory',    false],
+            ['التسيير المحاسبي والمالي', 'GEST-01',  'Theory',    false],
+            ['الإعلام الآلي',          'INFO-01',   'Practical', false],
+            ['لغة أجنبية ثالثة',       'LANG3-01',  'Theory',    true],
+            ['اللغة الأمازيغية',       'TAM-01',    'Theory',    true],
+            ['التربية الفنية',         'ARTS-01',   'Practical', true],
         ];
 
         foreach ($subjects as [$name, $code, $type, $optional]) {
@@ -30,57 +36,81 @@ class SubjectManagementSeeder extends Seeder
                 'subject_name' => $name,
                 'subject_code' => $code,
                 'subject_type' => $type,
-                'description'  => "Standard {$name} curriculum",
-                'is_optional'  => $optional,
-                'created_at'   => $now,
-                'updated_at'   => $now,
+                'description' => "مادة الدعم {$code}",
+                'is_optional' => $optional,
+                'created_at' => $now,
+                'updated_at' => $now,
             ]);
         }
 
-        // Class Subjects — assign subjects 1-7 to each class (mandatory), 8-9 optional
-        $mandatorySubjects = [1, 2, 3, 4, 5, 6, 7];
-        $optionalSubjects  = [8, 9, 10];
+        // Class Subjects per DZ level/stream (subject ids as seeded above).
+        // Classes 1-5: primary | 6-9: middle | 10: TC-ST | 11: TC-L |
+        // 12-17: 2AS streams | 18-23: 3AS streams.
+        $map = [
+            1 => [[1, 2, 3, 4, 5, 6, 7, 8], [13]],
+            2 => [[1, 2, 3, 4, 5, 6, 7, 8], [13]],
+            3 => [[1, 2, 3, 4, 5, 6, 7, 8], [13]],
+            4 => [[1, 2, 3, 4, 5, 6, 7, 8], [13]],
+            5 => [[1, 2, 3, 4, 5, 6, 7, 8], [13]],
+            6 => [[1, 2, 3, 4, 5, 6, 7, 9, 10, 13], [14, 15]],
+            7 => [[1, 2, 3, 4, 5, 6, 7, 9, 10, 13], [14, 15]],
+            8 => [[1, 2, 3, 4, 5, 6, 7, 9, 10, 13], [14, 15]],
+            9 => [[1, 2, 3, 4, 5, 6, 7, 9, 10, 13], [14, 15]],
+            10 => [[1, 2, 3, 4, 5, 7, 9, 10, 13], [14]],
+            11 => [[2, 3, 4, 5, 7, 1, 13], [14, 15]],
+            12 => [[1, 9, 10, 2, 3, 4, 5, 7, 11], []],
+            13 => [[1, 9, 2, 3, 4, 5, 7], [13]],
+            14 => [[1, 9, 10, 2, 3, 4, 5, 7, 13], []],
+            15 => [[12, 1, 2, 3, 4, 7, 5], [13]],
+            16 => [[11, 2, 3, 4, 5, 7, 1], [14]],
+            17 => [[2, 3, 4, 14, 5, 7], [15]],
+            18 => [[1, 9, 10, 2, 3, 4, 5, 7, 11], []],
+            19 => [[1, 9, 2, 3, 4, 5, 7], [13]],
+            20 => [[1, 9, 10, 2, 3, 4, 5, 7, 13], []],
+            21 => [[12, 1, 2, 3, 4, 7, 5], [13]],
+            22 => [[11, 2, 3, 4, 5, 7, 1], [14]],
+            23 => [[2, 3, 4, 14, 5, 7], [15]],
+        ];
 
-        foreach (range(1, 5) as $classId) {
-            foreach ($mandatorySubjects as $subjectId) {
+        foreach ($map as $classId => [$mandatory, $optional]) {
+            foreach ($mandatory as $subjectId) {
                 DB::table('class_subjects')->insert([
-                    'class_id'     => $classId,
-                    'subject_id'   => $subjectId,
+                    'class_id' => $classId,
+                    'subject_id' => $subjectId,
                     'is_mandatory' => true,
-                    'created_at'   => $now,
-                    'updated_at'   => $now,
+                    'created_at' => $now,
+                    'updated_at' => $now,
                 ]);
             }
-            foreach ($optionalSubjects as $subjectId) {
+            foreach ($optional as $subjectId) {
                 DB::table('class_subjects')->insert([
-                    'class_id'     => $classId,
-                    'subject_id'   => $subjectId,
+                    'class_id' => $classId,
+                    'subject_id' => $subjectId,
                     'is_mandatory' => false,
-                    'created_at'   => $now,
-                    'updated_at'   => $now,
+                    'created_at' => $now,
+                    'updated_at' => $now,
                 ]);
             }
         }
 
-        // Teacher Subject Mappings
-        // staff_id 1-8 assigned to classes 1-5 with subjects
+        // Teacher Subject Mappings (staff 1-8, classes/sections/subjects exist)
         $mappings = [
-            [1, 1, 1, 1],  // Rajesh  → Class 1, Section 1, Math
-            [2, 1, 3, 1],  // Priya   → Class 1, Section 1, Science
-            [3, 1, 2, 1],  // Anjali  → Class 1, Section 1, English
-            [4, 2, 4, 3],  // Vikas   → Class 2, Section 3, Hindi
-            [5, 2, 3, 3],  // Sunita  → Class 2, Section 3, Science
-            [6, 3, 7, 5],  // Mohan   → Class 3, Section 5, PE
-            [7, 3, 5, 5],  // Kavita  → Class 3, Section 5, Social Studies
-            [8, 4, 6, 7],  // Arjun   → Class 4, Section 7, Computer
-            [1, 5, 1, 9],  // Rajesh  → Class 5, Section 9, Math
-            [3, 4, 2, 7],  // Anjali  → Class 4, Section 7, English
+            [1, 1, 1, 1],
+            [2, 2, 9, 3],
+            [3, 3, 4, 5],
+            [4, 6, 9, 11],
+            [5, 6, 10, 11],
+            [6, 7, 1, 13],
+            [7, 9, 11, 17],
+            [8, 10, 13, 19],
+            [1, 12, 1, 21],
+            [3, 16, 11, 25],
         ];
 
         foreach ($mappings as [$teacherId, $classId, $subjectId, $sectionId]) {
             DB::table('teacher_subject_mappings')->insertOrIgnore([
                 'teacher_id' => $teacherId,
-                'class_id'   => $classId,
+                'class_id' => $classId,
                 'subject_id' => $subjectId,
                 'section_id' => $sectionId,
                 'created_at' => $now,
@@ -89,66 +119,53 @@ class SubjectManagementSeeder extends Seeder
         }
 
         // Curriculums (one per subject-academic year)
-        foreach (range(1, 10) as $subjectId) {
+        foreach (range(1, 16) as $subjectId) {
             DB::table('curriculums')->insertOrIgnore([
-                'subject_id'             => $subjectId,
-                'academic_year_id'       => 1,
-                'description'            => "Curriculum plan for subject {$subjectId} for 2024-25",
+                'subject_id' => $subjectId,
+                'academic_year_id' => 1,
+                'description' => "خطة المنهاج 2026-27 للمادة {$subjectId}",
                 'syllabus_document_path' => 'dummy/dummy-image.jpg',
-                'created_at'             => $now,
-                'updated_at'             => $now,
+                'created_at' => $now,
+                'updated_at' => $now,
             ]);
         }
 
         // Lesson Plans (2 per curriculum)
-        foreach (range(1, 10) as $curriculumId) {
+        foreach (range(1, 16) as $curriculumId) {
             DB::table('lesson_plans')->insert([
                 [
                     'curriculum_id' => $curriculumId,
-                    'topic_name'    => "Unit 1 — Introduction",
-                    'objectives'    => "Students will understand the basic concepts",
-                    'start_date'    => '2024-04-05',
-                    'end_date'      => '2024-04-30',
-                    'created_at'    => $now,
-                    'updated_at'    => $now,
+                    'topic_name' => 'الوحدة 1 — مدخل',
+                    'objectives' => 'تعرف المفاهيم الأساسية',
+                    'start_date' => '2026-09-05',
+                    'end_date' => '2026-09-30',
+                    'created_at' => $now,
+                    'updated_at' => $now,
                 ],
                 [
                     'curriculum_id' => $curriculumId,
-                    'topic_name'    => "Unit 2 — Core Concepts",
-                    'objectives'    => "Students will apply learned concepts",
-                    'start_date'    => '2024-05-01',
-                    'end_date'      => '2024-05-31',
-                    'created_at'    => $now,
-                    'updated_at'    => $now,
+                    'topic_name' => 'الوحدة 2 — المفاهيم الأساسية',
+                    'objectives' => 'توظيف المفاهيم المكتسبة',
+                    'start_date' => '2026-10-01',
+                    'end_date' => '2026-10-31',
+                    'created_at' => $now,
+                    'updated_at' => $now,
                 ],
             ]);
         }
 
         // Textbooks (one per subject)
-        $textbooks = [
-            [1, 'Mathematics Class Book',     'R.D. Sharma',     'S. Chand',      '10th', '978-81-219-0001-1'],
-            [2, 'English Reader',              'NCERT',           'NCERT',         '5th',  '978-81-700-0002-2'],
-            [3, 'Science Textbook',            'NCERT',           'NCERT',         '6th',  '978-81-700-0003-3'],
-            [4, 'Hindi Pathmala',              'Dr. Anita Gupta', 'Bharti Bhawan', '4th',  '978-81-219-0004-4'],
-            [5, 'Social Science Today',        'Oxford Press',    'Oxford',        '3rd',  '978-01-955-0005-5'],
-            [6, 'Computer Science Basics',     'Sumita Arora',    'Dhanpat Rai',   '8th',  '978-81-219-0006-6'],
-            [7, 'Physical Education Manual',   'Sports Authority', 'Govt. Press',  '2nd',  '978-81-700-0007-7'],
-            [8, 'Art & Craft Activities',      'Mrs. K. Sharma',  'Frank Bros',    '1st',  '978-81-219-0008-8'],
-            [9, 'Music Theory & Practice',     'Pt. V. Shastri',  'Sangeet Press', '3rd',  '978-81-700-0009-9'],
-            [10,'General Knowledge Today',     'Manohar Pandey',  'Arihant',       '5th',  '978-93-512-0010-0'],
-        ];
-
-        foreach ($textbooks as [$subjectId, $title, $author, $publisher, $edition, $isbn]) {
+        foreach (range(1, 16) as $subjectId) {
             DB::table('textbooks')->insert([
-                'subject_id'        => $subjectId,
-                'title'             => $title,
-                'author'            => $author,
-                'publisher'         => $publisher,
-                'edition'           => $edition,
-                'isbn'              => $isbn,
-                'textbook_file_path'=> 'dummy/dummy-image.jpg',
-                'created_at'        => $now,
-                'updated_at'        => $now,
+                'subject_id' => $subjectId,
+                'title' => "DZ textbook for subject {$subjectId}",
+                'author' => '—',
+                'publisher' => 'ONPS',
+                'edition' => '2026',
+                'isbn' => '978-9931-00-00'.str_pad((string) $subjectId, 2, '0', STR_PAD_LEFT).'-0',
+                'textbook_file_path' => 'dummy/dummy-image.jpg',
+                'created_at' => $now,
+                'updated_at' => $now,
             ]);
         }
     }

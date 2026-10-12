@@ -30,7 +30,7 @@ class DayController extends Controller
 
         Day::create($validated);
 
-        return redirect()->route('day.index')->with('success', 'Day created successfully.');
+        return redirect()->route('day.index')->with('success', 'تم إنشاء اليوم بنجاح.');
     }
 
     public function show(Day $day): View
@@ -51,13 +51,13 @@ class DayController extends Controller
 
         $day->update($validated);
 
-        return redirect()->route('day.index')->with('success', 'Day updated successfully.');
+        return redirect()->route('day.index')->with('success', 'تم تحديث اليوم بنجاح.');
     }
 
     public function destroy(Day $day): RedirectResponse
     {
         $day->delete();
 
-        return redirect()->route('day.index')->with('success', 'Day deleted.');
+        return redirect()->route('day.index')->with('success', 'تم حذف اليوم.');
     }
 }

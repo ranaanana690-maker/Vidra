@@ -14,33 +14,33 @@
         @csrf
         @if($method !== 'POST') @method($method) @endif
 
-        <x-core-package::card title="Transport Information">
+        <x-core-package::card title="معلومات النقل">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;">
                 <x-core-package::form.input
-                    name="transport_name" label="Transport Name" required
-                    placeholder="e.g. Bus A, Van 1"
+                    name="transport_name" label="اسم النقل" required
+                    placeholder="مثال: حافلة أ، سيارة 1"
                     value="{{ old('transport_name', $transportation->transport_name ?? '') }}" />
 
-                <x-core-package::form.select name="transport_type" label="Transport Type" required>
-                    <option value="">— Select Type —</option>
+                <x-core-package::form.select name="transport_type" label="نوع النقل" required>
+                    <option value="">— اختر النوع —</option>
                     @foreach(['Bus','Van','Shuttle'] as $t)
-                    <option value="{{ $t }}" @selected(old('transport_type', $transportation->transport_type ?? '') === $t)>{{ $t }}</option>
+                    <option value="{{ $t }}" @selected(old('transport_type', $transportation->transport_type ?? '') === $t)>{{ $t == 'Bus' ? 'حافلة' : ($t == 'Van' ? 'سيارة نقل' : 'مكوك') }}</option>
                     @endforeach
                 </x-core-package::form.select>
 
                 <x-core-package::form.input
-                    name="capacity" label="Capacity" type="number" required
-                    placeholder="Number of seats"
+                    name="capacity" label="السعة" type="number" required
+                    placeholder="عدد المقاعد"
                     value="{{ old('capacity', $transportation->capacity ?? '') }}" />
 
                 <x-core-package::form.input
-                    name="departure_time" label="Departure Time" type="time"
+                    name="departure_time" label="وقت المغادرة" type="time"
                     value="{{ old('departure_time', $transportation->departure_time ?? '') }}" />
 
                 <div style="grid-column:1/-1;">
                     <x-core-package::form.input
-                        name="route" label="Route"
-                        placeholder="e.g. Hostel to Campus via Main Gate"
+                        name="route" label="مسار"
+                        placeholder="مثال: من المرقد إلى المؤسسة عبر الباب الرئيسي"
                         value="{{ old('route', $transportation->route ?? '') }}" />
                 </div>
             </div>
@@ -48,9 +48,9 @@
 
         <div style="display:flex;gap:.75rem;">
             <x-core-package::btn type="submit" color="primary">
-                {{ isset($transportation) ? 'Update Transport' : 'Create Transport' }}
+                {{ isset($transportation) ? 'تحديث النقل' : 'إنشاء نقل' }}
             </x-core-package::btn>
-            <x-core-package::btn :href="route('transportation.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn :href="route('transportation.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
     </form>
 </div>

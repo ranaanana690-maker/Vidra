@@ -13,12 +13,12 @@ class FeeManagementSeeder extends Seeder
 
         // Fee Categories
         DB::table('fee_categories')->insert([
-            ['category_name' => 'Tuition Fee',       'description' => 'Monthly tuition charges',         'created_at' => $now, 'updated_at' => $now],
-            ['category_name' => 'Examination Fee',   'description' => 'Fee for conducting examinations', 'created_at' => $now, 'updated_at' => $now],
-            ['category_name' => 'Library Fee',       'description' => 'Annual library access fee',       'created_at' => $now, 'updated_at' => $now],
-            ['category_name' => 'Sports Fee',        'description' => 'Sports and PE activities fee',    'created_at' => $now, 'updated_at' => $now],
-            ['category_name' => 'Computer Lab Fee',  'description' => 'Computer lab usage charges',      'created_at' => $now, 'updated_at' => $now],
-            ['category_name' => 'Transport Fee',     'description' => 'School bus/transport charges',    'created_at' => $now, 'updated_at' => $now],
+            ['category_name' => 'Tuition Fee',       'description' => 'رسوم الدراسة الشهرية',         'created_at' => $now, 'updated_at' => $now],
+            ['category_name' => 'Examination Fee',   'description' => 'رسم إجراء الامتحانات', 'created_at' => $now, 'updated_at' => $now],
+            ['category_name' => 'Library Fee',       'description' => 'رسم سنوي للوصول إلى المكتبة',       'created_at' => $now, 'updated_at' => $now],
+            ['category_name' => 'Sports Fee',        'description' => 'رسم الرياضة والأنشطة البدنية',    'created_at' => $now, 'updated_at' => $now],
+            ['category_name' => 'Computer Lab Fee',  'description' => 'رسوم استخدام مخبر الإعلام الآلي',      'created_at' => $now, 'updated_at' => $now],
+            ['category_name' => 'Transport Fee',     'description' => 'رسوم النقل المدرسي',    'created_at' => $now, 'updated_at' => $now],
         ]);
 
         // Fee Structures — per class (1-5), per category
@@ -79,12 +79,12 @@ class FeeManagementSeeder extends Seeder
 
         // Fee Payments (for Paid student fees: student_fee_ids 1,2,3,4,5,9)
         $payments = [
-            [1, '2024-04-30', 3500.00, 'UPI',           'TXN-2024-0001'],
-            [2, '2024-09-01', 500.00,  'Card',          'TXN-2024-0002'],
+            [1, '2024-04-30', 3500.00, 'CCP',           'TXN-2024-0001'],
+            [2, '2024-09-01', 500.00,  'BaridiMob',     'TXN-2024-0002'],
             [3, '2024-04-30', 300.00,  'Cash',          null],
             [4, '2024-04-30', 400.00,  'Cash',          null],
             [5, '2024-04-30', 3500.00, 'Bank Transfer', 'TXN-2024-0005'],
-            [7, '2024-04-30', 3300.00, 'UPI',           'TXN-2024-0007'],
+            [7, '2024-04-30', 3300.00, 'CCP',           'TXN-2024-0007'],
             [9, '2024-04-30', 3500.00, 'Cash',          null],
         ];
 
@@ -100,13 +100,88 @@ class FeeManagementSeeder extends Seeder
             ]);
         }
 
+        // Centre model demo: monthly class subscription + one-time course fee.
+        // Monthly subscription: class 1 (1AP), Tuition category, Oct 2026.
+        DB::table('fee_structures')->insert([
+            'class_id'         => 1,
+            'subject_id'       => null,
+            'course_id'        => null,
+            'frequency'        => 'monthly',
+            'billing_month'    => '2026-10',
+            'fee_category_id'  => 1,
+            'amount'           => 2000.00,
+            'due_date'         => '2026-10-10',
+            'academic_year_id' => 1,
+            'created_at'       => $now,
+            'updated_at'       => $now,
+        ]);
+
+        // One-time course fee: English course (course_id 2 from CourseManagementSeeder).
+        DB::table('fee_structures')->insert([
+            'class_id'         => null,
+            'subject_id'       => null,
+            'course_id'        => 2,
+            'frequency'        => 'once',
+            'billing_month'    => null,
+            'fee_category_id'  => 1,
+            'amount'           => 3000.00,
+            'due_date'         => '2026-11-10',
+            'academic_year_id' => 1,
+            'created_at'       => $now,
+            'updated_at'       => $now,
+        ]);
+
+        // Monthly obligations (student_fee ids 11-12) + course obligation (id 13).
+        // Fee 12 is overdue + unpaid -> appears in the arrears report.
+        $extraFees = [
+            [1, 11, 2000.00, 'Paid',           '2026-10-10', '2026-10'],
+            [2, 11, 2000.00, 'Pending',        '2026-10-10', '2026-10'],
+            [1, 12, 3000.00, 'Partially Paid', '2026-11-10', null],
+        ];
+
+        foreach ($extraFees as [$studentId, $feeStructureId, $total, $status, $dueDate, $period]) {
+            DB::table('student_fees')->insert([
+                'student_id'       => $studentId,
+                'fee_structure_id' => $feeStructureId,
+                'amount_due'       => $total,
+                'discount_amount'  => 0,
+                'penalty_amount'   => 0,
+                'total_payable'    => $total,
+                'payment_status'   => $status,
+                'due_date'         => $dueDate,
+                'billing_period'   => $period,
+                'created_at'       => $now,
+                'updated_at'       => $now,
+            ]);
+        }
+
+        DB::table('fee_payments')->insert([
+            [
+                'student_fee_id'        => 11,
+                'payment_date'          => '2026-10-05',
+                'amount_paid'           => 2000.00,
+                'payment_mode'          => 'Cash',
+                'transaction_reference' => null,
+                'created_at'            => $now,
+                'updated_at'            => $now,
+            ],
+            [
+                'student_fee_id'        => 13,
+                'payment_date'          => '2026-10-08',
+                'amount_paid'           => 1000.00,
+                'payment_mode'          => 'BaridiMob',
+                'transaction_reference' => 'BAR-2026-0001',
+                'created_at'            => $now,
+                'updated_at'            => $now,
+            ],
+        ]);
         // Discounts
         DB::table('discounts')->insert([
             [
                 'discount_name'   => 'Sibling Discount',
                 'discount_amount' => 10.00,
                 'discount_type'   => 'Percentage',
-                'description'     => '10% discount for siblings studying in the same school',
+                'description'     => 'تخفيض 10% للإخوة المتمدرسين في نفس المدرسة',
                 'created_at'      => $now,
                 'updated_at'      => $now,
             ],
@@ -114,7 +189,7 @@ class FeeManagementSeeder extends Seeder
                 'discount_name'   => 'Merit Scholarship',
                 'discount_amount' => 500.00,
                 'discount_type'   => 'Fixed',
-                'description'     => 'Fixed Rs 500 discount for top performers',
+                'description'     => 'تخفيض ثابت 500 دج للمتفوقين',
                 'created_at'      => $now,
                 'updated_at'      => $now,
             ],
@@ -122,7 +197,7 @@ class FeeManagementSeeder extends Seeder
                 'discount_name'   => 'Staff Ward Discount',
                 'discount_amount' => 50.00,
                 'discount_type'   => 'Percentage',
-                'description'     => '50% discount for wards of teaching staff',
+                'description'     => 'تخفيض 50% لأبناء طاقم التدريس',
                 'created_at'      => $now,
                 'updated_at'      => $now,
             ],
@@ -136,12 +211,12 @@ class FeeManagementSeeder extends Seeder
 
         // Expenses
         $expenses = [
-            ['2024-04-15', 25000.00, 'Maintenance',    'Annual maintenance of classrooms and furniture'],
-            ['2024-05-05', 12000.00, 'Utilities',      'Electricity and water bills for April'],
-            ['2024-05-20', 8500.00,  'Stationery',     'Purchase of stationery for staff and students'],
-            ['2024-06-10', 45000.00, 'Infrastructure', 'New projector installation in classrooms'],
-            ['2024-07-01', 6000.00,  'Events',         'Annual day celebration expenses'],
-            ['2024-08-15', 3500.00,  'Utilities',      'Electricity and water bills for July'],
+            ['2024-04-15', 25000.00, 'Maintenance',    'الصيانة السنوية للأقسام والأثاث'],
+            ['2024-05-05', 12000.00, 'Utilities',      'فواتير الكهرباء والماء لشهر أفريل'],
+            ['2024-05-20', 8500.00,  'Stationery',     'شراء الأدوات المدرسية للموظفين والتلاميذ'],
+            ['2024-06-10', 45000.00, 'Infrastructure', 'تركيب جهاز عرض جديد في الأقسام'],
+            ['2024-07-01', 6000.00,  'Events',         'مصاريف الاحتفال باليوم السنوي'],
+            ['2024-08-15', 3500.00,  'Utilities',      'فواتير الكهرباء والماء لشهر جويلية'],
         ];
 
         foreach ($expenses as [$date, $amount, $category, $description]) {

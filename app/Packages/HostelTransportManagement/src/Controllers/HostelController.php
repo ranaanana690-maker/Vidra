@@ -44,7 +44,7 @@ class HostelController extends Controller
         Hostel::create($validated);
 
         return redirect()->route('hostels.index')
-            ->with('success', 'Hostel created successfully.');
+            ->with('success', 'تم إنشاء المرقد بنجاح.');
     }
 
     public function show(Hostel $hostel): View
@@ -72,7 +72,7 @@ class HostelController extends Controller
         $hostel->update($validated);
 
         return redirect()->route('hostels.index')
-            ->with('success', 'Hostel updated successfully.');
+            ->with('success', 'تم تحديث المرقد بنجاح.');
     }
 
     public function destroy(Hostel $hostel): RedirectResponse
@@ -80,6 +80,6 @@ class HostelController extends Controller
         $hostel->delete();
 
         return redirect()->route('hostels.index')
-            ->with('success', 'Hostel deleted.');
+            ->with('success', 'تم حذف المرقد.');
     }
 }

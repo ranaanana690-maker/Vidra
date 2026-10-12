@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <span style="color:#374151;font-weight:500;">Subjects</span>
+    <span style="color:#374151;font-weight:500;">المواد</span>
 </nav>
 @endsection
 
@@ -10,12 +10,12 @@
 
 <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;">
     <div>
-        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Subjects</h1>
-        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">Manage subjects and curriculum</p>
+        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">المواد</h1>
+        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">تسيير المواد والمنهاج</p>
     </div>
     <x-core-package::btn :href="route('subjects.create')" color="primary">
         <svg style="width:.875rem;height:.875rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-        Add Subject
+        إضافة مادة
     </x-core-package::btn>
 </div>
 
@@ -26,21 +26,21 @@
 <x-core-package::card style="margin-bottom:1.25rem;">
     <form method="GET" action="{{ route('subjects.index') }}"
           style="display:grid;grid-template-columns:1fr 180px 160px auto auto;gap:.75rem;align-items:end;">
-        <x-core-package::form.input name="search" label="Search" placeholder="Subject name or code"
+        <x-core-package::form.input name="search" label="بحث" placeholder="اسم المادة أو رمزها"
             value="{{ request('search') }}" />
-        <x-core-package::form.select name="type" label="Type">
-            <option value="" @selected(!request('type'))>All Types</option>
+        <x-core-package::form.select name="type" label="النوع">
+            <option value="" @selected(!request('type'))>كل الأنواع</option>
             @foreach(['Theory','Practical','Lab'] as $type)
-            <option value="{{ $type }}" @selected(request('type') === $type)>{{ $type }}</option>
+            <option value="{{ $type }}" @selected(request('type') === $type)>{{ $type == 'Theory' ? 'نظري' : ($type == 'Practical' ? 'تطبيقي' : 'مخبري') }}</option>
             @endforeach
         </x-core-package::form.select>
-        <x-core-package::form.select name="optional" label="Optional">
-            <option value="" @selected(!request()->has('optional'))>All</option>
-            <option value="1" @selected(request('optional') === '1')>Optional</option>
-            <option value="0" @selected(request('optional') === '0')>Required</option>
+        <x-core-package::form.select name="optional" label="اختياري">
+            <option value="" @selected(!request()->has('optional'))>الكل</option>
+            <option value="1" @selected(request('optional') === '1')>اختياري</option>
+            <option value="0" @selected(request('optional') === '0')>إجباري</option>
         </x-core-package::form.select>
-        <div style="padding-top:1.375rem;"><x-core-package::btn type="submit" color="primary">Filter</x-core-package::btn></div>
-        <div style="padding-top:1.375rem;"><x-core-package::btn :href="route('subjects.index')" color="secondary">Reset</x-core-package::btn></div>
+        <div style="padding-top:1.375rem;"><x-core-package::btn type="submit" color="primary">تصفية</x-core-package::btn></div>
+        <div style="padding-top:1.375rem;"><x-core-package::btn :href="route('subjects.index')" color="secondary">إعادة تعيين</x-core-package::btn></div>
     </form>
 </x-core-package::card>
 
@@ -49,12 +49,12 @@
         <table style="width:100%;border-collapse:collapse;font-size:.8125rem;">
             <thead>
                 <tr style="background:#f8fafc;">
-                    <th style="padding:.625rem 1.25rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Subject</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Type</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Classes</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Textbooks</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Status</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Actions</th>
+                    <th style="padding:.625rem 1.25rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">المادة</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">النوع</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">الأقسام</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">الكتب المدرسية</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">الحالة</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">إجراءات</th>
                 </tr>
             </thead>
             <tbody>
@@ -67,7 +67,7 @@
                         </div>
                         <div>
                             <p style="font-size:.875rem;font-weight:600;color:#1e293b;margin:0;">{{ $item->subject_name }}</p>
-                            <p style="font-size:.7rem;color:#94a3b8;margin:.125rem 0 0;">Code: {{ $item->subject_code }}</p>
+                            <p style="font-size:.7rem;color:#94a3b8;margin:.125rem 0 0;">الرمز: {{ $item->subject_code }}</p>
                         </div>
                     </div>
                 </td>
@@ -85,19 +85,19 @@
                 </td>
                 <td style="padding:.75rem 1rem;">
                     <div style="display:flex;gap:.5rem;align-items:center;">
-                        <x-core-package::btn :href="route('subjects.show', $item)" color="primary" size="sm">View</x-core-package::btn>
-                        <x-core-package::btn :href="route('subjects.edit', $item)" color="secondary" size="sm">Edit</x-core-package::btn>
+                        <x-core-package::btn :href="route('subjects.show', $item)" color="primary" size="sm">عرض</x-core-package::btn>
+                        <x-core-package::btn :href="route('subjects.edit', $item)" color="secondary" size="sm">تعديل</x-core-package::btn>
                         <form method="POST" action="{{ route('subjects.destroy', $item) }}"
-                              onsubmit="return confirm('Delete {{ $item->subject_name }}?')">
+                              onsubmit="return confirm('حذف {{ $item->subject_name }}؟')">
                             @csrf @method('DELETE')
-                            <x-core-package::btn type="submit" color="danger" size="sm">Delete</x-core-package::btn>
+                            <x-core-package::btn type="submit" color="danger" size="sm">حذف</x-core-package::btn>
                         </form>
                     </div>
                 </td>
             </tr>
             @empty
             <tr>
-                <td colspan="6" style="padding:2.5rem;text-align:center;color:#94a3b8;font-size:.875rem;">No subjects found.</td>
+                <td colspan="6" style="padding:2.5rem;text-align:center;color:#94a3b8;font-size:.875rem;">لا توجد مواد.</td>
             </tr>
             @endforelse
             </tbody>

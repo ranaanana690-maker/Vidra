@@ -2,11 +2,11 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('library.members.index') }}" style="color:#64748b;text-decoration:none;">Members</a>
+    <a href="{{ route('library.members.index') }}" style="color:#64748b;text-decoration:none;">الأعضاء</a>
     <span style="margin:0 .375rem;">›</span>
     <a href="{{ route('library.members.show', $member) }}" style="color:#64748b;text-decoration:none;">{{ $member->name }}</a>
     <span style="margin:0 .375rem;">›</span>
-    <span style="color:#374151;font-weight:500;">Edit</span>
+    <span style="color:#374151;font-weight:500;">تعديل</span>
 </nav>
 @endsection
 
@@ -14,7 +14,7 @@
 <div style="max-width:680px;">
 
 <div style="margin-bottom:1.5rem;">
-    <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Edit Member</h1>
+    <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">تعديل العضو</h1>
     <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">{{ $member->membership_number }}</p>
 </div>
 
@@ -31,25 +31,25 @@
         @csrf @method('PUT')
         <div style="display:flex;flex-direction:column;gap:1rem;">
 
-            <x-core-package::form.input name="name" label="Full Name" required :value="old('name', $member->name)" />
+            <x-core-package::form.input name="name" label="الاسم الكامل" required :value="old('name', $member->name)" />
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-                <x-core-package::form.input name="email" label="Email" type="email" :value="old('email', $member->email)" />
-                <x-core-package::form.input name="phone" label="Phone" :value="old('phone', $member->phone)" />
+                <x-core-package::form.input name="email" label="البريد الإلكتروني" type="email" :value="old('email', $member->email)" />
+                <x-core-package::form.input name="phone" label="الهاتف" :value="old('phone', $member->phone)" />
             </div>
 
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-                <x-core-package::form.input name="max_books_allowed" label="Max Books Allowed" type="number" min="1" required :value="old('max_books_allowed', $member->max_books_allowed)" />
-                <x-core-package::form.select name="status" label="Status" required>
-                    <option value="active" @selected(old('status', $member->status)==='active')>Active</option>
-                    <option value="inactive" @selected(old('status', $member->status)==='inactive')>Inactive</option>
-                    <option value="suspended" @selected(old('status', $member->status)==='suspended')>Suspended</option>
+                <x-core-package::form.input name="max_books_allowed" label="الحد الأقصى للكتب المسموح" type="number" min="1" required :value="old('max_books_allowed', $member->max_books_allowed)" />
+                <x-core-package::form.select name="status" label="الحالة" required>
+                    <option value="active" @selected(old('status', $member->status)==='active')>نشط</option>
+                    <option value="inactive" @selected(old('status', $member->status)==='inactive')>غير نشط</option>
+                    <option value="suspended" @selected(old('status', $member->status)==='suspended')>موقوف</option>
                 </x-core-package::form.select>
             </div>
 
             <div style="display:flex;gap:.75rem;padding-top:.5rem;">
-                <x-core-package::btn type="submit" color="primary">Update Member</x-core-package::btn>
-                <x-core-package::btn :href="route('library.members.show', $member)" color="secondary">Cancel</x-core-package::btn>
+                <x-core-package::btn type="submit" color="primary">تحديث العضو</x-core-package::btn>
+                <x-core-package::btn :href="route('library.members.show', $member)" color="secondary">إلغاء</x-core-package::btn>
             </div>
         </div>
     </form>
