@@ -59,6 +59,9 @@ class DatabaseSeeder extends Seeder
 
             // 11. Hostel & Transport — hostels, rooms, student assignments, transport, facility management
             \App\Packages\HostelTransportManagement\Database\Seeders\HostelTransportManagementSeeder::class,
+
+            // 12. Courses — support courses (Quran, languages, Soroban), levels, enrollments
+            \App\Packages\CourseManagement\Database\Seeders\CourseManagementSeeder::class,
         ]);
     }
 }
