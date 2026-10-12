@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>School Management App — Installation</title>
+    <title>تطبيق إدارة المدرسة — التثبيت</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Segoe UI', sans-serif; }
@@ -24,18 +24,18 @@
     <aside class="hidden md:flex flex-col justify-center min-w-[220px]">
         <div class="mb-8">
             <h1 class="text-2xl font-bold text-indigo-700">🏫 SchoolMS</h1>
-            <p class="text-sm text-gray-500 mt-1">Installation Wizard</p>
+            <p class="text-sm text-gray-500 mt-1">معالج التثبيت</p>
         </div>
 
         <ol id="step-list" class="space-y-4">
             @php
                 $steps = [
-                    'welcome'        => 'Welcome',
-                    'requirements'   => 'Server Requirements',
-                    'database'       => 'Database Setup',
-                    'install'        => 'Install',
-                    'admin'          => 'Admin Account',
-                    'done'           => 'Finish',
+                    'welcome'        => 'مرحبًا',
+                    'requirements'   => 'متطلبات الخادم',
+                    'database'       => 'إعداد قاعدة البيانات',
+                    'install'        => 'التثبيت',
+                    'admin'          => 'حساب المدير',
+                    'done'           => 'النهاية',
                 ];
             @endphp
             @foreach ($steps as $key => $label)
@@ -54,25 +54,25 @@
 
         {{-- STEP: Welcome --}}
         <div id="step-welcome" class="step-panel bg-white rounded-2xl shadow p-8 fade">
-            <h2 class="text-xl font-bold text-gray-800 mb-2">Welcome to School Management App</h2>
+            <h2 class="text-xl font-bold text-gray-800 mb-2">مرحبًا بك في تطبيق إدارة المدرسة</h2>
             <p class="text-gray-500 text-sm mb-6">
-                This wizard will guide you through the installation. Make sure your server meets the requirements before proceeding.
+                سيرشدك هذا المعالج خلال التثبيت. تأكد من استيفاء الخادم للمتطلبات قبل المتابعة.
             </p>
             <ul class="text-sm text-gray-600 space-y-2 mb-8">
                 <li>✅ PHP {{ $phpVersion['minimum'] }}+</li>
-                <li>✅ MySQL / PostgreSQL database</li>
-                <li>✅ Composer dependencies installed</li>
-                <li>✅ Write permissions on <code class="bg-gray-100 px-1 rounded">storage/</code> and <code class="bg-gray-100 px-1 rounded">.env</code></li>
+                <li>✅ قاعدة بيانات MySQL / PostgreSQL</li>
+                <li>✅ تبعيات Composer مثبتة</li>
+                <li>✅ صلاحيات الكتابة على <code class="bg-gray-100 px-1 rounded">storage/</code> و <code class="bg-gray-100 px-1 rounded">.env</code></li>
             </ul>
             <div class="flex justify-end">
-                <button onclick="goTo('requirements')" class="btn-primary">Get Started →</button>
+                <button onclick="goTo('requirements')" class="btn-primary">ابدأ →</button>
             </div>
         </div>
 
         {{-- STEP: Requirements --}}
         <div id="step-requirements" class="step-panel hidden bg-white rounded-2xl shadow p-8 fade">
-            <h2 class="text-xl font-bold text-gray-800 mb-1">Server Requirements</h2>
-            <p class="text-sm text-gray-500 mb-5">Ensure all requirements are met before continuing.</p>
+            <h2 class="text-xl font-bold text-gray-800 mb-1">متطلبات الخادم</h2>
+            <p class="text-sm text-gray-500 mb-5">تأكد من استيفاء جميع المتطلبات قبل المتابعة.</p>
 
             {{-- PHP version --}}
             <div class="flex items-center gap-2 mb-3">
@@ -83,7 +83,7 @@
                 @endif
                 <span class="text-sm font-semibold text-gray-700">
                     PHP {{ $phpVersion['current'] }}
-                    <span class="font-normal text-gray-400">(minimum {{ $phpVersion['minimum'] }})</span>
+                    <span class="font-normal text-gray-400">(الأدنى {{ $phpVersion['minimum'] }})</span>
                 </span>
             </div>
 
@@ -103,26 +103,26 @@
 
             @if($hasErrors)
             <p class="mt-4 text-sm text-red-600 bg-red-50 rounded p-3">
-                Some requirements are not met. Please enable the missing PHP extensions and refresh.
+                بعض المتطلبات غير مستوفاة. فعّل إضافات PHP الناقصة وحدّث الصفحة.
             </p>
             @endif
 
             <div class="flex justify-between mt-6">
-                <button onclick="goTo('welcome')" class="btn-secondary">← Back</button>
-                <button onclick="goTo('database')" class="btn-primary" {{ $hasErrors ? 'disabled' : '' }}>Continue →</button>
+                <button onclick="goTo('welcome')" class="btn-secondary">← رجوع</button>
+                <button onclick="goTo('database')" class="btn-primary" {{ $hasErrors ? 'disabled' : '' }}>متابعة →</button>
             </div>
         </div>
 
         {{-- STEP: Database --}}
         <div id="step-database" class="step-panel hidden bg-white rounded-2xl shadow p-8 fade">
-            <h2 class="text-xl font-bold text-gray-800 mb-1">Database Configuration</h2>
-            <p class="text-sm text-gray-500 mb-5">Enter your database connection details.</p>
+            <h2 class="text-xl font-bold text-gray-800 mb-1">إعداد قاعدة البيانات</h2>
+            <p class="text-sm text-gray-500 mb-5">أدخل بيانات الاتصال بقاعدة البيانات.</p>
 
             <div id="db-error" class="hidden mb-4 text-sm text-red-600 bg-red-50 rounded p-3"></div>
 
             <div class="space-y-4">
                 <div>
-                    <label class="form-label">Connection</label>
+                    <label class="form-label">الاتصال</label>
                     <select id="db_connection" class="form-input">
                         <option value="mysql">MySQL</option>
                         <option value="pgsql">PostgreSQL</option>
@@ -130,51 +130,51 @@
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="form-label">Host</label>
+                        <label class="form-label">المضيف</label>
                         <input id="db_hostname" type="text" class="form-input" value="127.0.0.1">
                     </div>
                     <div>
-                        <label class="form-label">Port</label>
+                        <label class="form-label">المنفذ</label>
                         <input id="db_port" type="text" class="form-input" value="3306">
                     </div>
                 </div>
                 <div>
-                    <label class="form-label">Database Name</label>
+                    <label class="form-label">اسم قاعدة البيانات</label>
                     <input id="db_name" type="text" class="form-input" placeholder="school_db">
                 </div>
                 <div>
-                    <label class="form-label">Username</label>
+                    <label class="form-label">اسم المستخدم</label>
                     <input id="db_username" type="text" class="form-input" placeholder="root">
                 </div>
                 <div>
-                    <label class="form-label">Password</label>
-                    <input id="db_password" type="password" class="form-input" placeholder="(leave blank if none)">
+                    <label class="form-label">كلمة المرور</label>
+                    <input id="db_password" type="password" class="form-input" placeholder="(اتركه فارغًا إن لم يوجد)">
                 </div>
                 <div>
-                    <label class="form-label">Table Prefix <span class="text-gray-400 font-normal">(optional)</span></label>
+                    <label class="form-label">بادئة الجداول <span class="text-gray-400 font-normal">(اختياري)</span></label>
                     <input id="db_prefix" type="text" class="form-input" placeholder="sms_">
                 </div>
             </div>
 
             <div class="flex justify-between mt-6">
-                <button onclick="goTo('requirements')" class="btn-secondary">← Back</button>
-                <button onclick="submitDatabase()" id="btn-db-continue" class="btn-primary">Continue →</button>
+                <button onclick="goTo('requirements')" class="btn-secondary">← رجوع</button>
+                <button onclick="submitDatabase()" id="btn-db-continue" class="btn-primary">متابعة →</button>
             </div>
         </div>
 
         {{-- STEP: Install --}}
         <div id="step-install" class="step-panel hidden bg-white rounded-2xl shadow p-8 fade">
-            <h2 class="text-xl font-bold text-gray-800 mb-1">Installing</h2>
-            <p class="text-sm text-gray-500 mb-6">Running migrations and seeding default data. This may take a moment…</p>
+            <h2 class="text-xl font-bold text-gray-800 mb-1">جارٍ التثبيت</h2>
+            <p class="text-sm text-gray-500 mb-6">تشغيل الترحيلات وإضافة البيانات الافتراضية. قد يستغرق هذا بعض الوقت…</p>
 
             <div class="space-y-3" id="install-progress">
                 <div class="flex items-center gap-3" id="prog-migrate">
                     <span class="spinner text-indigo-500" id="spin-migrate">⏳</span>
-                    <span class="text-sm text-gray-600">Running database migrations…</span>
+                    <span class="text-sm text-gray-600">جارٍ تشغيل ترحيلات قاعدة البيانات…</span>
                 </div>
                 <div class="flex items-center gap-3 opacity-40" id="prog-seed">
                     <span id="spin-seed">⏳</span>
-                    <span class="text-sm text-gray-600">Seeding default data…</span>
+                    <span class="text-sm text-gray-600">جارٍ إضافة البيانات الافتراضية…</span>
                 </div>
             </div>
 
@@ -183,43 +183,43 @@
 
         {{-- STEP: Admin --}}
         <div id="step-admin" class="step-panel hidden bg-white rounded-2xl shadow p-8 fade">
-            <h2 class="text-xl font-bold text-gray-800 mb-1">Create Administrator Account</h2>
-            <p class="text-sm text-gray-500 mb-5">This account will have full access to the system.</p>
+            <h2 class="text-xl font-bold text-gray-800 mb-1">إنشاء حساب المدير</h2>
+            <p class="text-sm text-gray-500 mb-5">سيكون لهذا الحساب صلاحية كاملة على النظام.</p>
 
             <div id="admin-error" class="hidden mb-4 text-sm text-red-600 bg-red-50 rounded p-3"></div>
 
             <div class="space-y-4">
                 <div>
-                    <label class="form-label">Full Name</label>
-                    <input id="admin_name" type="text" class="form-input" value="Admin" placeholder="Super Admin">
+                    <label class="form-label">الاسم الكامل</label>
+                    <input id="admin_name" type="text" class="form-input" value="Admin" placeholder="المدير العام">
                 </div>
                 <div>
-                    <label class="form-label">Email Address</label>
+                    <label class="form-label">البريد الإلكتروني</label>
                     <input id="admin_email" type="email" class="form-input" value="admin@school.com">
                 </div>
                 <div>
-                    <label class="form-label">Password <span class="text-gray-400 font-normal">(min 6 characters)</span></label>
+                    <label class="form-label">كلمة المرور <span class="text-gray-400 font-normal">(6 أحرف على الأقل)</span></label>
                     <input id="admin_password" type="password" class="form-input">
                 </div>
                 <div>
-                    <label class="form-label">Confirm Password</label>
+                    <label class="form-label">تأكيد كلمة المرور</label>
                     <input id="admin_password_confirm" type="password" class="form-input">
                 </div>
             </div>
 
             <div class="flex justify-end mt-6">
-                <button onclick="submitAdmin()" id="btn-admin" class="btn-primary">Finish Installation →</button>
+                <button onclick="submitAdmin()" id="btn-admin" class="btn-primary">إنهاء التثبيت →</button>
             </div>
         </div>
 
         {{-- STEP: Done --}}
         <div id="step-done" class="step-panel hidden bg-white rounded-2xl shadow p-8 text-center fade">
             <div class="text-5xl mb-4">🎉</div>
-            <h2 class="text-2xl font-bold text-gray-800 mb-2">Installation Complete!</h2>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">اكتمل التثبيت!</h2>
             <p class="text-gray-500 text-sm mb-8">
-                School Management App is ready. Log in with the admin account you just created.
+                تطبيق إدارة المدرسة جاهز. سجّل الدخول بحساب المدير الذي أنشأته.
             </p>
-            <a href="{{ url('/login') }}" class="btn-primary inline-block">Go to Login →</a>
+            <a href="{{ url('/login') }}" class="btn-primary inline-block">الذهاب إلى تسجيل الدخول →</a>
         </div>
 
     </main>
@@ -289,7 +289,7 @@
         const errBox = document.getElementById('db-error');
         errBox.classList.add('hidden');
         btn.disabled = true;
-        btn.textContent = 'Saving…';
+        btn.textContent = 'جارٍ الحفظ…';
 
         const payload = {
             db_connection: document.getElementById('db_connection').value,
@@ -307,10 +307,10 @@
             goTo('install');
             runInstallation();
         } else {
-            errBox.textContent = res.data.error || 'Failed to save configuration.';
+            errBox.textContent = res.data.error || 'فشل حفظ الإعدادات.';
             errBox.classList.remove('hidden');
             btn.disabled = false;
-            btn.textContent = 'Continue →';
+            btn.textContent = 'متابعة →';
         }
     }
 
@@ -322,7 +322,7 @@
         const migrate = await post('{{ route("installer.run_migration") }}', {});
         if (!migrate.ok) {
             document.getElementById('spin-migrate').textContent = '❌';
-            errBox.textContent = migrate.data.error || 'Migration failed.';
+            errBox.textContent = migrate.data.error || 'فشل الترحيل.';
             errBox.classList.remove('hidden');
             return;
         }
@@ -333,7 +333,7 @@
         const seed = await post('{{ route("installer.run_seeder") }}', {});
         if (!seed.ok) {
             document.getElementById('spin-seed').textContent = '❌';
-            errBox.textContent = seed.data.error || 'Seeding failed.';
+            errBox.textContent = seed.data.error || 'فشل إضافة البيانات.';
             errBox.classList.remove('hidden');
             return;
         }
@@ -353,34 +353,34 @@
         const confirm  = document.getElementById('admin_password_confirm').value;
 
         if (!name || !email || !password) {
-            errBox.textContent = 'All fields are required.';
+            errBox.textContent = 'جميع الحقول مطلوبة.';
             errBox.classList.remove('hidden');
             return;
         }
         if (password !== confirm) {
-            errBox.textContent = 'Passwords do not match.';
+            errBox.textContent = 'كلمتا المرور غير متطابقتين.';
             errBox.classList.remove('hidden');
             return;
         }
         if (password.length < 6) {
-            errBox.textContent = 'Password must be at least 6 characters.';
+            errBox.textContent = 'يجب أن تكون كلمة المرور 6 أحرف على الأقل.';
             errBox.classList.remove('hidden');
             return;
         }
 
         btn.disabled = true;
-        btn.textContent = 'Creating…';
+        btn.textContent = 'جارٍ الإنشاء…';
 
         const res = await post('{{ route("installer.admin_config_setup") }}', { name, email, password });
 
         if (res.ok) {
             goTo('done');
         } else {
-            const msg = res.data.error || Object.values(res.data.errors || {})[0]?.[0] || 'Failed to create admin.';
+            const msg = res.data.error || Object.values(res.data.errors || {})[0]?.[0] || 'فشل إنشاء المدير.';
             errBox.textContent = msg;
             errBox.classList.remove('hidden');
             btn.disabled = false;
-            btn.textContent = 'Finish Installation →';
+            btn.textContent = 'إنهاء التثبيت →';
         }
     }
 

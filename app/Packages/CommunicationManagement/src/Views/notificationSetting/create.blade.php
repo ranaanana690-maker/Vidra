@@ -2,9 +2,9 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('notificationSetting.index') }}" style="color:#64748b;text-decoration:none;">Notification Preferences</a>
+    <a href="{{ route('notificationSetting.index') }}" style="color:#64748b;text-decoration:none;">إعدادات الإشعارات</a>
     <span style="margin:0 .375rem;">/</span>
-    <span style="color:#374151;font-weight:500;">Add Preferences</span>
+    <span style="color:#374151;font-weight:500;">إضافة الإعدادات</span>
 </nav>
 @endsection
 
@@ -12,8 +12,8 @@
 
 <div style="max-width:560px;">
     <div style="margin-bottom:1.5rem;">
-        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Add Notification Preferences</h1>
-        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">Set communication channel preferences for a user</p>
+        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">إضافة إعدادات الإشعارات</h1>
+        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">ضبط تفضيلات قنوات التواصل لمستخدم</p>
     </div>
 
     @if($errors->any())
@@ -29,18 +29,18 @@
             @csrf
 
             <div style="margin-bottom:1.5rem;">
-                <x-core-package::form.select name="user_id" label="User" required>
-                    <option value="">Select user…</option>
+                <x-core-package::form.select name="user_id" label="المستخدم" required>
+                    <option value="">اختر المستخدم...</option>
                     @foreach($users as $user)
                     <option value="{{ $user->id }}" @selected(old('user_id') == $user->id)>{{ $user->name }} ({{ $user->email }})</option>
                     @endforeach
                 </x-core-package::form.select>
                 @if($users->isEmpty())
-                <p style="font-size:.75rem;color:#f59e0b;margin:.5rem 0 0;">All users already have preferences configured.</p>
+                <p style="font-size:.75rem;color:#f59e0b;margin:.5rem 0 0;">جميع المستخدمين لديهم إعدادات مهيأة.</p>
                 @endif
             </div>
 
-            <p style="font-size:.75rem;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.05em;margin:0 0 .75rem;">Notification Channels</p>
+            <p style="font-size:.75rem;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.05em;margin:0 0 .75rem;">قنوات الإشعارات</p>
 
             @php
                 $prefs = [
@@ -67,8 +67,8 @@
             </div>
 
             <div style="display:flex;gap:.75rem;">
-                <x-core-package::btn type="submit" color="primary">Save Preferences</x-core-package::btn>
-                <x-core-package::btn :href="route('notificationSetting.index')" color="secondary">Cancel</x-core-package::btn>
+                <x-core-package::btn type="submit" color="primary">حفظ الإعدادات</x-core-package::btn>
+                <x-core-package::btn :href="route('notificationSetting.index')" color="secondary">إلغاء</x-core-package::btn>
             </div>
         </form>
     </x-core-package::card>

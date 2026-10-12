@@ -107,13 +107,13 @@ class AttendanceManagementSeeder extends Seeder
 
         // Holidays
         $holidays = [
-            ['Independence Day',   '2024-08-15', 'National holiday — Independence Day of India', true],
-            ['Gandhi Jayanti',     '2024-10-02', 'National holiday — Gandhi Jayanti',           true],
-            ['Diwali',             '2024-11-01', 'Festival of lights',                          true],
-            ['Christmas',          '2024-12-25', 'Christmas Day',                               true],
-            ['Republic Day',       '2025-01-26', 'National holiday — Republic Day of India',   true],
-            ['Holi',               '2025-03-14', 'Festival of colours',                         true],
-            ['School Anniversary', '2024-09-10', 'Annual School Foundation Day',               false],
+            ['Independence Day',   '2024-08-15', 'عطلة وطنية — عيد استقلال الهند', true],
+            ['Gandhi Jayanti',     '2024-10-02', 'عطلة وطنية — ذكرى غاندي',           true],
+            ['Diwali',             '2024-11-01', 'عيد الأضواء',                          true],
+            ['Christmas',          '2024-12-25', 'يوم عيد الميلاد',                               true],
+            ['Republic Day',       '2025-01-26', 'عطلة وطنية — عيد الجمهورية الهندي',   true],
+            ['Holi',               '2025-03-14', 'عيد الألوان',                         true],
+            ['School Anniversary', '2024-09-10', 'اليوم السنوي لتأسيس المدرسة',               false],
         ];
 
         foreach ($holidays as [$title, $date, $description, $recurring]) {

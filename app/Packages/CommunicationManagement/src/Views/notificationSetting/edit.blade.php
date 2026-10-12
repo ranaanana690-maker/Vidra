@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('notificationSetting.index') }}" style="color:#64748b;text-decoration:none;">Notification Preferences</a>
+    <a href="{{ route('notificationSetting.index') }}" style="color:#64748b;text-decoration:none;">إعدادات الإشعارات</a>
     <span style="margin:0 .375rem;">/</span>
     <span style="color:#374151;font-weight:500;">Edit — {{ $notificationSetting->user?->name }}</span>
 </nav>
@@ -12,7 +12,7 @@
 
 <div style="max-width:560px;">
     <div style="margin-bottom:1.5rem;">
-        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Edit Notification Preferences</h1>
+        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">تعديل إعدادات الإشعارات</h1>
         <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">{{ $notificationSetting->user?->name }} · {{ $notificationSetting->user?->email }}</p>
     </div>
 
@@ -28,7 +28,7 @@
         <form method="POST" action="{{ route('notificationSetting.update', $notificationSetting) }}">
             @csrf @method('PUT')
 
-            <p style="font-size:.75rem;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.05em;margin:0 0 .75rem;">Notification Channels</p>
+            <p style="font-size:.75rem;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.05em;margin:0 0 .75rem;">قنوات الإشعارات</p>
 
             @php
                 $prefs = [
@@ -55,8 +55,8 @@
             </div>
 
             <div style="display:flex;gap:.75rem;">
-                <x-core-package::btn type="submit" color="primary">Update Preferences</x-core-package::btn>
-                <x-core-package::btn :href="route('notificationSetting.index')" color="secondary">Cancel</x-core-package::btn>
+                <x-core-package::btn type="submit" color="primary">تحديث الإعدادات</x-core-package::btn>
+                <x-core-package::btn :href="route('notificationSetting.index')" color="secondary">إلغاء</x-core-package::btn>
             </div>
         </form>
     </x-core-package::card>

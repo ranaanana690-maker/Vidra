@@ -2,9 +2,9 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('gradingScheme.index') }}" style="color:#374151;font-weight:500;text-decoration:none;">Grading Schemes</a>
+    <a href="{{ route('gradingScheme.index') }}" style="color:#374151;font-weight:500;text-decoration:none;">سلالم التنقيط</a>
     <span style="margin:0 .375rem;color:#94a3b8;">/</span>
-    <span style="color:#374151;font-weight:500;">View Grade</span>
+    <span style="color:#374151;font-weight:500;">عرض التقدير</span>
 </nav>
 @endsection
 
@@ -13,13 +13,13 @@
 <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;">
     <div>
         <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Grade: {{ $gradingScheme->grade }}</h1>
-        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">Grade details</p>
+        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">تفاصيل التقدير</p>
     </div>
     <div style="display:flex;gap:.5rem;">
-        <x-core-package::btn :href="route('gradingScheme.edit', $gradingScheme)" color="secondary">Edit</x-core-package::btn>
-        <form method="POST" action="{{ route('gradingScheme.destroy', $gradingScheme) }}" onsubmit="return confirm('Delete?')">
+        <x-core-package::btn :href="route('gradingScheme.edit', $gradingScheme)" color="secondary">تعديل</x-core-package::btn>
+        <form method="POST" action="{{ route('gradingScheme.destroy', $gradingScheme) }}" onsubmit="return confirm('حذف؟')">
             @csrf @method('DELETE')
-            <x-core-package::btn type="submit" color="danger">Delete</x-core-package::btn>
+            <x-core-package::btn type="submit" color="danger">حذف</x-core-package::btn>
         </form>
     </div>
 </div>
@@ -27,15 +27,15 @@
 <x-core-package::card>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
         <div>
-            <p style="font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin:0 0 .375rem;">Grade</p>
+            <p style="font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin:0 0 .375rem;">المعدل/التقدير</p>
             <x-core-package::badge color="blue">{{ $gradingScheme->grade }}</x-core-package::badge>
         </div>
         <div>
-            <p style="font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin:0 0 .375rem;">Percentage Range</p>
+            <p style="font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin:0 0 .375rem;">مجال النسبة</p>
             <p style="font-size:.9375rem;color:#1e293b;margin:0;">{{ $gradingScheme->min_percentage }}% - {{ $gradingScheme->max_percentage }}%</p>
         </div>
         <div style="grid-column:span 2;">
-            <p style="font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin:0 0 .375rem;">Remarks</p>
+            <p style="font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin:0 0 .375rem;">ملاحظات</p>
             <p style="font-size:.9375rem;color:#1e293b;margin:0;">{{ $gradingScheme->remarks ?? '—' }}</p>
         </div>
     </div>

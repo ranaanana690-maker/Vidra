@@ -50,6 +50,6 @@ class LessonPlanApiController extends Controller
     {
         $lessonPlan->delete();
 
-        return response()->json(['message' => 'LessonPlan deleted']);
+        return response()->json(['message' => 'تم حذف خطة الدرس.']);
     }
 }

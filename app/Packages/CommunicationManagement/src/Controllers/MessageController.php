@@ -52,7 +52,7 @@ class MessageController extends Controller
 
         Message::create($validated);
 
-        return redirect()->route('message.index')->with('success', 'Message created successfully.');
+        return redirect()->route('message.index')->with('success', 'تم إنشاء الرسالة بنجاح.');
     }
 
     public function show(Message $message): View
@@ -83,12 +83,12 @@ class MessageController extends Controller
 
         $message->update($validated);
 
-        return redirect()->route('message.index')->with('success', 'Message updated successfully.');
+        return redirect()->route('message.index')->with('success', 'تم تحديث الرسالة بنجاح.');
     }
 
     public function destroy(Message $message): RedirectResponse
     {
         $message->delete();
-        return redirect()->route('message.index')->with('success', 'Message deleted.');
+        return redirect()->route('message.index')->with('success', 'تم حذف الرسالة.');
     }
 }

@@ -3,9 +3,9 @@
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
     <a href="{{ route('sections.index') }}" style="color:#94a3b8;text-decoration:none;"
-       onmouseover="this.style.color='#374151'" onmouseout="this.style.color='#94a3b8'">Sections</a>
+       onmouseover="this.style.color='#374151'" onmouseout="this.style.color='#94a3b8'">الأفواج</a>
     <span style="margin:0 .375rem;color:#cbd5e1;">/</span>
-    <span style="color:#374151;font-weight:500;">Section {{ $section->section_name }}</span>
+    <span style="color:#374151;font-weight:500;">الفوج {{ $section->section_name }}</span>
 </nav>
 @endsection
 
@@ -20,11 +20,11 @@
         <div>
             <div style="display:flex;align-items:center;gap:.625rem;">
                 <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">
-                    Section {{ $section->section_name }}
+                    الفوج {{ $section->section_name }}
                     @if($section->schoolClass) — {{ $section->schoolClass->class_name }} @endif
                 </h1>
                 <x-core-package::badge :color="$section->is_active ? 'green' : 'gray'">
-                    {{ $section->is_active ? 'Active' : 'Inactive' }}
+                    {{ $section->is_active ? 'نشط' : 'غير نشط' }}
                 </x-core-package::badge>
             </div>
             <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">
@@ -40,9 +40,9 @@
     <div style="display:flex;gap:.5rem;flex-shrink:0;padding-top:.25rem;">
         <x-core-package::btn :href="route('sections.edit', $section)" color="primary" size="sm">
             <svg style="width:.8rem;height:.8rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-            Edit
+            تعديل
         </x-core-package::btn>
-        <x-core-package::btn :href="route('sections.index')" color="secondary" size="sm">Back</x-core-package::btn>
+        <x-core-package::btn :href="route('sections.index')" color="secondary" size="sm">رجوع</x-core-package::btn>
     </div>
 </div>
 
@@ -54,9 +54,9 @@
         {{-- Batches --}}
         <x-core-package::card :noPadding="true">
             <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid #f1f5f9;">
-                <p style="font-size:.9375rem;font-weight:600;color:#1e293b;margin:0;">Batches</p>
+                <p style="font-size:.9375rem;font-weight:600;color:#1e293b;margin:0;">الدفعات</p>
                 <x-core-package::btn :href="route('batches.create').'?section_id='.$section->section_id" color="primary" size="sm">
-                    + Add Batch
+                    + إضافة دفعة
                 </x-core-package::btn>
             </div>
             @if($section->batches->count())
@@ -64,10 +64,10 @@
                 <table style="width:100%;border-collapse:collapse;font-size:.8125rem;">
                     <thead>
                         <tr style="background:#f8fafc;">
-                            <th style="padding:.5rem 1.25rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Batch</th>
-                            <th style="padding:.5rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Academic Year</th>
-                            <th style="padding:.5rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Dates</th>
-                            <th style="padding:.5rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Status</th>
+                            <th style="padding:.5rem 1.25rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">الدفعة</th>
+                            <th style="padding:.5rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">السنة الدراسية</th>
+                            <th style="padding:.5rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">التواريخ</th>
+                            <th style="padding:.5rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">الحالة</th>
                             <th style="padding:.5rem 1rem;border-bottom:1px solid #e2e8f0;"></th>
                         </tr>
                     </thead>
@@ -81,11 +81,11 @@
                         </td>
                         <td style="padding:.625rem 1rem;">
                             <x-core-package::badge :color="$batch->is_active ? 'green' : 'gray'">
-                                {{ $batch->is_active ? 'Active' : 'Inactive' }}
+                                {{ $batch->is_active ? 'نشط' : 'غير نشط' }}
                             </x-core-package::badge>
                         </td>
                         <td style="padding:.625rem 1rem;">
-                            <x-core-package::btn :href="route('batches.show', $batch)" color="primary" size="sm">View</x-core-package::btn>
+                            <x-core-package::btn :href="route('batches.show', $batch)" color="primary" size="sm">عرض</x-core-package::btn>
                         </td>
                     </tr>
                     @endforeach
@@ -93,7 +93,7 @@
                 </table>
             </div>
             @else
-            <p style="padding:1.5rem;text-align:center;color:#94a3b8;font-size:.875rem;">No batches for this section yet.</p>
+            <p style="padding:1.5rem;text-align:center;color:#94a3b8;font-size:.875rem;">لا توجد دفعات لهذا الفوج بعد.</p>
             @endif
         </x-core-package::card>
 
@@ -102,7 +102,7 @@
     {{-- Right sidebar --}}
     <div style="display:flex;flex-direction:column;gap:1.25rem;">
 
-        <x-core-package::card title="Section Details">
+        <x-core-package::card title="تفاصيل الفوج">
             <div style="display:flex;flex-direction:column;gap:.875rem;">
                 @php
                 function secInfoRow(string $label, $value): void {
@@ -112,38 +112,38 @@
                        . '</div>';
                 }
                 @endphp
-                @php secInfoRow('Section Name', $section->section_name); @endphp
-                @php secInfoRow('Class', $section->schoolClass->class_name ?? null); @endphp
-                @php secInfoRow('Capacity', $section->capacity ? $section->capacity.' students' : null); @endphp
+                @php secInfoRow('اسم الفوج', $section->section_name); @endphp
+                @php secInfoRow('القسم', $section->schoolClass->class_name ?? null); @endphp
+                @php secInfoRow('السعة', $section->capacity ? $section->capacity.' تلميذًا' : null); @endphp
                 @php
                 $teacher = $section->classTeacher ? $section->classTeacher->first_name.' '.$section->classTeacher->last_name : null;
-                secInfoRow('Class Teacher', $teacher);
+                secInfoRow('أستاذ القسم', $teacher);
                 @endphp
                 @if($section->description)
                 <div>
-                    <p style="font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin:0 0 .25rem;">Description</p>
+                    <p style="font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin:0 0 .25rem;">الوصف</p>
                     <p style="font-size:.875rem;color:#475569;margin:0;line-height:1.5;">{{ $section->description }}</p>
                 </div>
                 @endif
             </div>
         </x-core-package::card>
 
-        <x-core-package::card title="Quick Stats">
+        <x-core-package::card title="إحصائيات سريعة">
             <div style="text-align:center;background:#f8fafc;border-radius:.5rem;padding:.875rem;">
                 <p style="font-size:1.5rem;font-weight:700;color:#10b981;margin:0;">{{ $section->batches->count() }}</p>
-                <p style="font-size:.7rem;color:#64748b;margin:.25rem 0 0;">Batches</p>
+                <p style="font-size:.7rem;color:#64748b;margin:.25rem 0 0;">الدفعات</p>
             </div>
         </x-core-package::card>
 
-        <x-core-package::card title="Danger Zone">
+        <x-core-package::card title="منطقة الخطر">
             <form method="POST" action="{{ route('sections.destroy', $section) }}">
                 @csrf @method('DELETE')
                 <p style="font-size:.75rem;color:#64748b;margin:0 0 .875rem;">
                     Permanently delete this section. All linked batches will lose this section reference.
                 </p>
                 <x-core-package::btn type="submit" color="danger"
-                    onclick="return confirm('Delete Section {{ $section->section_name }}? This cannot be undone.')">
-                    Delete Section
+                    onclick="return confirm('حذف الفوج {{ $section->section_name }}؟ لا يمكن التراجع عن هذا الإجراء.')">
+                    حذف الفوج
                 </x-core-package::btn>
             </form>
         </x-core-package::card>

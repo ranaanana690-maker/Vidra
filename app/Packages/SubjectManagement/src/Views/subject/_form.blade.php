@@ -14,19 +14,19 @@
         @csrf
         @if($method !== 'POST') @method($method) @endif
 
-        <x-core-package::card title="Subject Information">
+        <x-core-package::card title="معلومات المادة">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;">
                 <x-core-package::form.input
-                    name="subject_name" label="Subject Name" required
+                    name="subject_name" label="اسم المادة" required
                     placeholder="e.g. Mathematics, Science"
                     value="{{ old('subject_name', $subject->subject_name ?? '') }}" />
                 <x-core-package::form.input
-                    name="subject_code" label="Subject Code" required
+                    name="subject_code" label="رمز المادة" required
                     placeholder="e.g. MATH101"
                     value="{{ old('subject_code', $subject->subject_code ?? '') }}" />
-                <x-core-package::form.select name="subject_type" label="Subject Type">
+                <x-core-package::form.select name="subject_type" label="نوع المادة">
                     @foreach(['Theory', 'Practical', 'Lab'] as $type)
-                    <option value="{{ $type }}" @selected(old('subject_type', $subject->subject_type ?? 'Theory') === $type)>{{ $type }}</option>
+                    <option value="{{ $type }}" @selected(old('subject_type', $subject->subject_type ?? 'Theory') === $type)>{{ $type == 'Theory' ? 'نظري' : ($type == 'Practical' ? 'تطبيقي' : 'مخبري') }}</option>
                     @endforeach
                 </x-core-package::form.select>
                 <div style="display:flex;align-items:center;gap:.625rem;padding-top:1.5rem;">
@@ -34,22 +34,22 @@
                         <input type="checkbox" name="is_optional" value="1"
                                style="width:1rem;height:1rem;accent-color:#4f46e5;"
                                {{ old('is_optional', $subject->is_optional ?? false) ? 'checked' : '' }}>
-                        <span style="font-size:.875rem;font-weight:500;color:#374151;">Optional Subject</span>
+                        <span style="font-size:.875rem;font-weight:500;color:#374151;">مادة اختيارية</span>
                     </label>
                 </div>
                 <div style="grid-column:1/-1;">
                     <x-core-package::form.textarea
-                        name="description" label="Description" rows="3"
-                        placeholder="Brief overview of this subject">{{ old('description', $subject->description ?? '') }}</x-core-package::form.textarea>
+                        name="description" label="الوصف" rows="3"
+                        placeholder="نبذة مختصرة عن هذه المادة">{{ old('description', $subject->description ?? '') }}</x-core-package::form.textarea>
                 </div>
             </div>
         </x-core-package::card>
 
         <div style="display:flex;gap:.75rem;">
             <x-core-package::btn type="submit" color="primary">
-                {{ isset($subject) ? 'Update Subject' : 'Create Subject' }}
+                {{ isset($subject) ? 'تحديث المادة' : 'إنشاء مادة' }}
             </x-core-package::btn>
-            <x-core-package::btn :href="route('subjects.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn :href="route('subjects.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
 
     </form>

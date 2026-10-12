@@ -52,7 +52,7 @@ class SubjectController extends Controller
         Subject::create($validated);
 
         return redirect()->route('subjects.index')
-            ->with('success', 'Subject created successfully.');
+            ->with('success', 'تم إنشاء المادة بنجاح.');
     }
 
     public function show(Subject $subject): View
@@ -82,7 +82,7 @@ class SubjectController extends Controller
         $subject->update($validated);
 
         return redirect()->route('subjects.index')
-            ->with('success', 'Subject updated successfully.');
+            ->with('success', 'تم تحديث المادة بنجاح.');
     }
 
     public function destroy(Subject $subject): RedirectResponse
@@ -90,6 +90,6 @@ class SubjectController extends Controller
         $subject->delete();
 
         return redirect()->route('subjects.index')
-            ->with('success', 'Subject deleted.');
+            ->with('success', 'تم حذف المادة.');
     }
 }

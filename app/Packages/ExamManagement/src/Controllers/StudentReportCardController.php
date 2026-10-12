@@ -53,7 +53,7 @@ class StudentReportCardController extends Controller
         StudentReportCard::create($validated);
 
         return redirect()->route('studentReportCard.index')
-            ->with('success', 'Report card generated successfully.');
+            ->with('success', 'تم إنشاء كشف النقاط بنجاح.');
     }
 
     public function show(StudentReportCard $studentReportCard): View
@@ -86,14 +86,14 @@ class StudentReportCardController extends Controller
         $studentReportCard->update($validated);
 
         return redirect()->route('studentReportCard.index')
-            ->with('success', 'Report card updated successfully.');
+            ->with('success', 'تم تحديث كشف النقاط بنجاح.');
     }
 
     public function destroy(StudentReportCard $studentReportCard): RedirectResponse
     {
         $studentReportCard->delete();
         return redirect()->route('studentReportCard.index')
-            ->with('success', 'Report card deleted successfully.');
+            ->with('success', 'تم حذف كشف النقاط بنجاح.');
     }
 
     private function autoCalculate(array $data): array

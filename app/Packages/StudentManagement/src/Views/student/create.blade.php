@@ -2,22 +2,22 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('students.index') }}" style="color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#374151'" onmouseout="this.style.color='#94a3b8'">Students</a>
+    <a href="{{ route('students.index') }}" style="color:#94a3b8;text-decoration:none;" onmouseover="this.style.color='#374151'" onmouseout="this.style.color='#94a3b8'">التلاميذ</a>
     <span style="margin:0 .375rem;color:#cbd5e1;">/</span>
-    <span style="color:#374151;font-weight:500;">Add Student</span>
+    <span style="color:#374151;font-weight:500;">إضافة تلميذ</span>
 </nav>
 @endsection
 
 @section('content')
 
 <x-core-package::page-header
-    title="Add New Student"
-    subtitle="Fill in all required information to register a new student."
+    title="إضافة تلميذ جديد"
+    subtitle="املأ جميع المعلومات المطلوبة لتسجيل تلميذ جديد."
     :back="route('students.index')"
 />
 
 @if($errors->any())
-<x-core-package::alert type="error" title="Please fix the following errors before saving:">
+<x-core-package::alert type="error" title="يرجى تصحيح الأخطاء التالية قبل الحفظ:">
     <ul style="margin:.375rem 0 0;padding-left:1rem;list-style:disc;">
         @foreach($errors->all() as $error)
         <li style="font-size:.75rem;margin-bottom:.125rem;">{{ $error }}</li>
@@ -31,44 +31,44 @@
 
 {{-- ── 1. Basic Information ── --}}
 <x-core-package::card style="margin-bottom:1.25rem;">
-    <x-core-package::form.section title="Basic Information" description="Student's personal and contact details.">
+    <x-core-package::form.section title="المعلومات الأساسية" description="البيانات الشخصية وبيانات الاتصال بالتلميذ.">
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;">
-            <x-core-package::form.input name="first_name" label="First Name" required :value="old('first_name')" placeholder="e.g. Ravi" />
-            <x-core-package::form.input name="last_name"  label="Last Name"  required :value="old('last_name')"  placeholder="e.g. Kumar" />
+            <x-core-package::form.input name="first_name" label="الاسم" required :value="old('first_name')" placeholder="e.g. Ravi" />
+            <x-core-package::form.input name="last_name"  label="اللقب"  required :value="old('last_name')"  placeholder="e.g. Kumar" />
 
-            <x-core-package::form.input name="date_of_birth" label="Date of Birth" required type="date" :value="old('date_of_birth')" />
+            <x-core-package::form.input name="date_of_birth" label="تاريخ الميلاد" required type="date" :value="old('date_of_birth')" />
 
-            <x-core-package::form.select name="gender" label="Gender" required placeholder="Select Gender">
+            <x-core-package::form.select name="gender" label="الجنس" required placeholder="اختر الجنس">
                 @foreach(['Male','Female','Other'] as $g)
-                <option value="{{ $g }}" {{ old('gender') == $g ? 'selected' : '' }}>{{ $g }}</option>
+                <option value="{{ $g }}" {{ old('gender') == $g ? 'selected' : '' }}>{{ $g == 'Male' ? 'ذكر' : ($g == 'Female' ? 'أنثى' : 'أخرى') }}</option>
                 @endforeach
             </x-core-package::form.select>
 
-            <x-core-package::form.select name="blood_group" label="Blood Group" placeholder="Select Blood Group">
+            <x-core-package::form.select name="blood_group" label="زمرة الدم" placeholder="اختر زمرة الدم">
                 @foreach(['A+','A-','B+','B-','AB+','AB-','O+','O-'] as $bg)
                 <option value="{{ $bg }}" {{ old('blood_group') == $bg ? 'selected' : '' }}>{{ $bg }}</option>
                 @endforeach
             </x-core-package::form.select>
 
-            <x-core-package::form.input name="nationality" label="Nationality" :value="old('nationality')" placeholder="e.g. Indian" />
+            <x-core-package::form.input name="nationality" label="الجنسية" :value="old('nationality')" placeholder="e.g. Indian" />
 
-            <x-core-package::form.input name="religion" label="Religion" :value="old('religion')" placeholder="e.g. Hindu" />
+            <x-core-package::form.input name="religion" label="الديانة" :value="old('religion')" placeholder="e.g. Hindu" />
 
-            <x-core-package::form.input name="phone_number" label="Phone Number" :value="old('phone_number')" placeholder="e.g. +91-9876543210" />
+            <x-core-package::form.input name="phone_number" label="رقم الهاتف" :value="old('phone_number')" placeholder="e.g. +91-9876543210" />
 
-            <x-core-package::form.input name="email" label="Email Address" type="email" :value="old('email')" placeholder="e.g. student@email.com" />
+            <x-core-package::form.input name="email" label="البريد الإلكتروني" type="email" :value="old('email')" placeholder="e.g. student@email.com" />
 
             {{-- Profile Photo --}}
             <x-core-package::form.file-upload
                 name="profile_photo"
-                label="Profile Photo"
+                label="الصورة الشخصية"
                 accept="image/jpeg,image/png,image/gif,image/webp" />
 
             <div style="grid-column:1/-1;">
-                <x-core-package::form.textarea name="current_address" label="Current Address" required rows="2" :value="old('current_address')" placeholder="Full current address" />
+                <x-core-package::form.textarea name="current_address" label="العنوان الحالي" required rows="2" :value="old('current_address')" placeholder="العنوان الحالي الكامل" />
             </div>
             <div style="grid-column:1/-1;">
-                <x-core-package::form.textarea name="permanent_address" label="Permanent Address" required rows="2" :value="old('permanent_address')" placeholder="Permanent address (if same as above, copy above)" />
+                <x-core-package::form.textarea name="permanent_address" label="العنوان الدائم" required rows="2" :value="old('permanent_address')" placeholder="العنوان الدائم (إذا كان نفس العنوان أعلاه، انسخه هنا)" />
             </div>
         </div>
     </x-core-package::form.section>
@@ -76,13 +76,13 @@
 
 {{-- ── 2. Admission Information ── --}}
 <x-core-package::card style="margin-bottom:1.25rem;">
-    <x-core-package::form.section title="Admission Information" description="Enrollment and status details.">
+    <x-core-package::form.section title="معلومات التسجيل" description="تفاصيل التسجيل والحالة.">
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;">
-            <x-core-package::form.input name="date_of_admission" label="Date of Admission" required type="date" :value="old('date_of_admission', date('Y-m-d'))" />
-            <x-core-package::form.input name="admission_number" label="Admission Number" required :value="old('admission_number')" placeholder="e.g. ADM-2026-001" />
-            <x-core-package::form.select name="status" label="Status">
+            <x-core-package::form.input name="date_of_admission" label="تاريخ التسجيل" required type="date" :value="old('date_of_admission', date('Y-m-d'))" />
+            <x-core-package::form.input name="admission_number" label="رقم التسجيل" required :value="old('admission_number')" placeholder="e.g. ADM-2026-001" />
+            <x-core-package::form.select name="status" label="الحالة">
                 @foreach(['Active','Inactive','Graduated','Transferred'] as $s)
-                <option value="{{ $s }}" {{ old('status','Active') == $s ? 'selected' : '' }}>{{ $s }}</option>
+                <option value="{{ $s }}" {{ old('status','Active') == $s ? 'selected' : '' }}>{{ $s == 'Active' ? 'نشط' : ($s == 'Inactive' ? 'غير نشط' : ($s == 'Graduated' ? 'متخرج' : 'محول')) }}</option>
                 @endforeach
             </x-core-package::form.select>
         </div>
@@ -91,23 +91,23 @@
 
 {{-- ── 3. Parent / Guardian ── --}}
 <x-core-package::card style="margin-bottom:1.25rem;">
-    <x-core-package::form.section title="Parent / Guardian Information" description="Father, mother, and emergency guardian contact details.">
+    <x-core-package::form.section title="معلومات الأولياء / الوصي" description="بيانات الاتصال بالأب والأم والوصي للطوارئ.">
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;">
-            <x-core-package::form.input name="father_name"       label="Father Name"       :value="old('father_name')" />
-            <x-core-package::form.input name="father_phone"      label="Father Phone"      :value="old('father_phone')" />
-            <x-core-package::form.input name="father_email"      label="Father Email"      type="email" :value="old('father_email')" />
-            <x-core-package::form.input name="father_occupation" label="Father Occupation" :value="old('father_occupation')" />
-            <x-core-package::form.input name="mother_name"       label="Mother Name"       :value="old('mother_name')" />
-            <x-core-package::form.input name="mother_phone"      label="Mother Phone"      :value="old('mother_phone')" />
-            <x-core-package::form.input name="mother_email"      label="Mother Email"      type="email" :value="old('mother_email')" />
-            <x-core-package::form.input name="mother_occupation" label="Mother Occupation" :value="old('mother_occupation')" />
+            <x-core-package::form.input name="father_name"       label="اسم الأب"       :value="old('father_name')" />
+            <x-core-package::form.input name="father_phone"      label="هاتف الأب"      :value="old('father_phone')" />
+            <x-core-package::form.input name="father_email"      label="بريد الأب"      type="email" :value="old('father_email')" />
+            <x-core-package::form.input name="father_occupation" label="مهنة الأب" :value="old('father_occupation')" />
+            <x-core-package::form.input name="mother_name"       label="اسم الأم"       :value="old('mother_name')" />
+            <x-core-package::form.input name="mother_phone"      label="هاتف الأم"      :value="old('mother_phone')" />
+            <x-core-package::form.input name="mother_email"      label="بريد الأم"      type="email" :value="old('mother_email')" />
+            <x-core-package::form.input name="mother_occupation" label="مهنة الأم" :value="old('mother_occupation')" />
             <div style="grid-column:1/-1;">
-                <x-core-package::form.input name="guardian_name" label="Guardian Name (if parents unavailable)" :value="old('guardian_name')" />
+                <x-core-package::form.input name="guardian_name" label="اسم الوصي (إذا تعذّر حضور الوالدين)" :value="old('guardian_name')" />
             </div>
-            <x-core-package::form.input name="guardian_relationship" label="Guardian Relationship" :value="old('guardian_relationship')" placeholder="e.g. Uncle" />
-            <x-core-package::form.input name="guardian_phone"        label="Guardian Phone"        :value="old('guardian_phone')" />
+            <x-core-package::form.input name="guardian_relationship" label="صلة الوصي" :value="old('guardian_relationship')" placeholder="e.g. Uncle" />
+            <x-core-package::form.input name="guardian_phone"        label="هاتف الوصي"        :value="old('guardian_phone')" />
             <div style="grid-column:1/-1;">
-                <x-core-package::form.textarea name="guardian_address" label="Guardian Address" rows="2" :value="old('guardian_address')" />
+                <x-core-package::form.textarea name="guardian_address" label="عنوان الوصي" rows="2" :value="old('guardian_address')" />
             </div>
         </div>
     </x-core-package::form.section>
@@ -115,11 +115,11 @@
 
 {{-- ── 4. Previous Education ── --}}
 <x-core-package::card style="margin-bottom:1.25rem;">
-    <x-core-package::form.section title="Previous Education" description="Add one or more previous school records.">
+    <x-core-package::form.section title="التعليم السابق" description="أضف سجلًا مدرسيًا سابقًا أو أكثر.">
         <x-slot:action>
             <x-core-package::btn type="button" color="success" size="sm" onclick="addEducation()">
                 <svg style="width:.75rem;height:.75rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
-                Add Row
+                إضافة صف
             </x-core-package::btn>
         </x-slot:action>
 
@@ -127,11 +127,11 @@
             <div class="edu-row" style="border:1px dashed #cbd5e1;border-radius:.625rem;padding:1rem;background:#fafafa;">
                 <input type="hidden" name="previous_educations_index[]" value="0">
                 <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.875rem;">
-                    <x-core-package::form.input name="previous_educations[0][school_name]" label="School Name" placeholder="e.g. ABC High School" />
-                    <x-core-package::form.input name="previous_educations[0][board]"        label="Board"       placeholder="e.g. CBSE, ICSE" />
-                    <x-core-package::form.input name="previous_educations[0][class_completed]" label="Class Completed" placeholder="e.g. 10th" />
-                    <x-core-package::form.input name="previous_educations[0][percentage]"   label="Percentage (%)" type="number" step="0.01" min="0" max="100" placeholder="e.g. 85.5" />
-                    <x-core-package::form.input name="previous_educations[0][year_of_passing]" label="Year of Passing" type="number" min="1990" max="{{ date('Y') }}" placeholder="e.g. 2023" />
+                    <x-core-package::form.input name="previous_educations[0][school_name]" label="اسم المدرسة" placeholder="e.g. ABC High School" />
+                    <x-core-package::form.input name="previous_educations[0][board]"        label="الهيئة"       placeholder="e.g. CBSE, ICSE" />
+                    <x-core-package::form.input name="previous_educations[0][class_completed]" label="القسم المُكمل" placeholder="e.g. 10th" />
+                    <x-core-package::form.input name="previous_educations[0][percentage]"   label="النسبة (%)" type="number" step="0.01" min="0" max="100" placeholder="e.g. 85.5" />
+                    <x-core-package::form.input name="previous_educations[0][year_of_passing]" label="سنة الاجتياز" type="number" min="1990" max="{{ date('Y') }}" placeholder="e.g. 2023" />
                 </div>
             </div>
         </div>
@@ -140,16 +140,16 @@
 
 {{-- ── 5. Health Information ── --}}
 <x-core-package::card style="margin-bottom:1.25rem;">
-    <x-core-package::form.section title="Health Information" description="Medical data and vaccination records.">
+    <x-core-package::form.section title="المعلومات الصحية" description="البيانات الطبية وسجلات التطعيم.">
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;">
-            <x-core-package::form.input name="height_cm" label="Height (cm)" type="number" step="0.1" :value="old('height_cm')" placeholder="e.g. 165.5" />
-            <x-core-package::form.input name="weight_kg" label="Weight (kg)" type="number" step="0.1" :value="old('weight_kg')" placeholder="e.g. 58.0" />
-            <x-core-package::form.input name="allergies" label="Allergies" :value="old('allergies')" placeholder="e.g. Peanuts, Dust" />
+            <x-core-package::form.input name="height_cm" label="الطول (سم)" type="number" step="0.1" :value="old('height_cm')" placeholder="e.g. 165.5" />
+            <x-core-package::form.input name="weight_kg" label="الوزن (كغ)" type="number" step="0.1" :value="old('weight_kg')" placeholder="e.g. 58.0" />
+            <x-core-package::form.input name="allergies" label="الحساسية" :value="old('allergies')" placeholder="e.g. Peanuts, Dust" />
             <div style="grid-column:1/-1;">
-                <x-core-package::form.input name="medical_conditions" label="Medical Conditions" :value="old('medical_conditions')" placeholder="e.g. Asthma, Diabetes" />
+                <x-core-package::form.input name="medical_conditions" label="الحالات المرضية" :value="old('medical_conditions')" placeholder="e.g. Asthma, Diabetes" />
             </div>
             <div style="grid-column:1/-1;">
-                <x-core-package::form.input name="vaccination_status" label="Vaccination Status" :value="old('vaccination_status')" placeholder="e.g. Up to date, Missing MMR" />
+                <x-core-package::form.input name="vaccination_status" label="حالة التطعيم" :value="old('vaccination_status')" placeholder="e.g. Up to date, Missing MMR" />
             </div>
         </div>
     </x-core-package::form.section>
@@ -157,27 +157,27 @@
 
 {{-- ── 6. Additional Contacts ── --}}
 <x-core-package::card style="margin-bottom:1.5rem;">
-    <x-core-package::form.section title="Additional Contacts" description="Extra phone numbers or emergency contacts.">
+    <x-core-package::form.section title="جهات اتصال إضافية" description="أرقام هواتف إضافية أو جهات اتصال للطوارئ.">
         <x-slot:action>
             <x-core-package::btn type="button" color="success" size="sm" onclick="addContact()">
                 <svg style="width:.75rem;height:.75rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
-                Add Contact
+                إضافة جهة اتصال
             </x-core-package::btn>
         </x-slot:action>
 
         <div id="contact-container" style="display:flex;flex-direction:column;gap:.875rem;">
             <div class="contact-row" style="border:1px dashed #cbd5e1;border-radius:.625rem;padding:1rem;background:#fafafa;">
                 <div style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:.875rem;align-items:end;">
-                    <x-core-package::form.select name="contacts[0][contact_type]" label="Type">
+                    <x-core-package::form.select name="contacts[0][contact_type]" label="النوع">
                         @foreach(['phone','mobile','emergency','work','fax','other'] as $t)
-                        <option value="{{ $t }}">{{ ucfirst($t) }}</option>
+                        <option value="{{ $t }}">{{ $t == 'phone' ? 'الهاتف' : ($t == 'mobile' ? 'المحمول' : ($t == 'emergency' ? 'الطوارئ' : ($t == 'work' ? 'العمل' : ($t == 'fax' ? 'الفاكس' : 'أخرى')))) }}</option>
                         @endforeach
                     </x-core-package::form.select>
-                    <x-core-package::form.input name="contacts[0][contact_value]" label="Number / Value" placeholder="e.g. +91-9876543210" />
-                    <x-core-package::form.input name="contacts[0][label]" label="Label" placeholder="e.g. Home, Emergency" />
+                    <x-core-package::form.input name="contacts[0][contact_value]" label="الرقم / القيمة" placeholder="e.g. +91-9876543210" />
+                    <x-core-package::form.input name="contacts[0][label]" label="التسمية" placeholder="e.g. Home, Emergency" />
                     <label style="display:flex;align-items:center;gap:.375rem;font-size:.8125rem;color:#374151;padding-bottom:.5rem;cursor:pointer;">
                         <input type="checkbox" name="contacts[0][is_primary]" value="1" style="width:1rem;height:1rem;accent-color:#4f46e5;">
-                        Primary
+                        رئيسي
                     </label>
                 </div>
             </div>
@@ -189,9 +189,9 @@
 <div style="display:flex;gap:.75rem;padding:.25rem 0 1rem;">
     <x-core-package::btn type="submit" color="primary">
         <svg style="width:.875rem;height:.875rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-        Save Student
+        حفظ التلميذ
     </x-core-package::btn>
-    <x-core-package::btn href="{{ route('students.index') }}" color="secondary">Cancel</x-core-package::btn>
+    <x-core-package::btn href="{{ route('students.index') }}" color="secondary">إلغاء</x-core-package::btn>
 </div>
 
 </form>
@@ -216,15 +216,15 @@ function addEducation() {
         </button>
         <input type="hidden" name="previous_educations_index[]" value="${i}">
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:.875rem;">
-            <div><label style="display:block;font-size:.8125rem;font-weight:500;color:#374151;margin-bottom:.375rem;">School Name</label>
+            <div><label style="display:block;font-size:.8125rem;font-weight:500;color:#374151;margin-bottom:.375rem;">اسم المدرسة</label>
             <input type="text" name="previous_educations[${i}][school_name]" placeholder="e.g. ABC High School" style="display:block;width:100%;border:1px solid #d1d5db;border-radius:.5rem;padding:.5rem .75rem;font-size:.8125rem;background:#fff;outline:none;box-sizing:border-box;"></div>
-            <div><label style="display:block;font-size:.8125rem;font-weight:500;color:#374151;margin-bottom:.375rem;">Board</label>
+            <div><label style="display:block;font-size:.8125rem;font-weight:500;color:#374151;margin-bottom:.375rem;">الهيئة</label>
             <input type="text" name="previous_educations[${i}][board]" placeholder="e.g. CBSE" style="display:block;width:100%;border:1px solid #d1d5db;border-radius:.5rem;padding:.5rem .75rem;font-size:.8125rem;background:#fff;outline:none;box-sizing:border-box;"></div>
-            <div><label style="display:block;font-size:.8125rem;font-weight:500;color:#374151;margin-bottom:.375rem;">Class Completed</label>
+            <div><label style="display:block;font-size:.8125rem;font-weight:500;color:#374151;margin-bottom:.375rem;">القسم المُكمل</label>
             <input type="text" name="previous_educations[${i}][class_completed]" placeholder="e.g. 10th" style="display:block;width:100%;border:1px solid #d1d5db;border-radius:.5rem;padding:.5rem .75rem;font-size:.8125rem;background:#fff;outline:none;box-sizing:border-box;"></div>
-            <div><label style="display:block;font-size:.8125rem;font-weight:500;color:#374151;margin-bottom:.375rem;">Percentage (%)</label>
+            <div><label style="display:block;font-size:.8125rem;font-weight:500;color:#374151;margin-bottom:.375rem;">النسبة (%)</label>
             <input type="number" step="0.01" name="previous_educations[${i}][percentage]" placeholder="e.g. 85.5" style="display:block;width:100%;border:1px solid #d1d5db;border-radius:.5rem;padding:.5rem .75rem;font-size:.8125rem;background:#fff;outline:none;box-sizing:border-box;"></div>
-            <div><label style="display:block;font-size:.8125rem;font-weight:500;color:#374151;margin-bottom:.375rem;">Year of Passing</label>
+            <div><label style="display:block;font-size:.8125rem;font-weight:500;color:#374151;margin-bottom:.375rem;">سنة الاجتياز</label>
             <input type="number" name="previous_educations[${i}][year_of_passing]" placeholder="e.g. 2023" style="display:block;width:100%;border:1px solid #d1d5db;border-radius:.5rem;padding:.5rem .75rem;font-size:.8125rem;background:#fff;outline:none;box-sizing:border-box;"></div>
         </div>`;
     c.appendChild(d);
@@ -243,16 +243,16 @@ function addContact() {
             <svg style="width:1rem;height:1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:.875rem;align-items:end;">
-            <div><label style="display:block;font-size:.8125rem;font-weight:500;color:#374151;margin-bottom:.375rem;">Type</label>
+            <div><label style="display:block;font-size:.8125rem;font-weight:500;color:#374151;margin-bottom:.375rem;">النوع</label>
             <select name="contacts[${i}][contact_type]" style="display:block;width:100%;border:1px solid #d1d5db;border-radius:.5rem;padding:.5rem .75rem;font-size:.8125rem;background:#fff;outline:none;box-sizing:border-box;">
-                <option value="phone">Phone</option><option value="mobile">Mobile</option><option value="emergency">Emergency</option><option value="work">Work</option><option value="fax">Fax</option><option value="other">Other</option>
+                <option value="phone">الهاتف</option><option value="mobile">المحمول</option><option value="emergency">الطوارئ</option><option value="work">العمل</option><option value="fax">الفاكس</option><option value="other">أخرى</option>
             </select></div>
-            <div><label style="display:block;font-size:.8125rem;font-weight:500;color:#374151;margin-bottom:.375rem;">Number / Value</label>
+            <div><label style="display:block;font-size:.8125rem;font-weight:500;color:#374151;margin-bottom:.375rem;">الرقم / القيمة</label>
             <input type="text" name="contacts[${i}][contact_value]" placeholder="e.g. +91-9876543210" style="display:block;width:100%;border:1px solid #d1d5db;border-radius:.5rem;padding:.5rem .75rem;font-size:.8125rem;background:#fff;outline:none;box-sizing:border-box;"></div>
-            <div><label style="display:block;font-size:.8125rem;font-weight:500;color:#374151;margin-bottom:.375rem;">Label</label>
+            <div><label style="display:block;font-size:.8125rem;font-weight:500;color:#374151;margin-bottom:.375rem;">التسمية</label>
             <input type="text" name="contacts[${i}][label]" placeholder="e.g. Home" style="display:block;width:100%;border:1px solid #d1d5db;border-radius:.5rem;padding:.5rem .75rem;font-size:.8125rem;background:#fff;outline:none;box-sizing:border-box;"></div>
             <label style="display:flex;align-items:center;gap:.375rem;font-size:.8125rem;color:#374151;padding-bottom:.5rem;cursor:pointer;">
-                <input type="checkbox" name="contacts[${i}][is_primary]" value="1" style="width:1rem;height:1rem;accent-color:#4f46e5;"> Primary
+                <input type="checkbox" name="contacts[${i}][is_primary]" value="1" style="width:1rem;height:1rem;accent-color:#4f46e5;"> رئيسي
             </label>
         </div>`;
     c.appendChild(d);

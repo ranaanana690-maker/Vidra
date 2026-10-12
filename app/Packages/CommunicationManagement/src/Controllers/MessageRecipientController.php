@@ -48,7 +48,7 @@ class MessageRecipientController extends Controller
 
         MessageRecipient::create($validated);
 
-        return redirect()->route('messageRecipient.index')->with('success', 'Recipient added successfully.');
+        return redirect()->route('messageRecipient.index')->with('success', 'تمت إضافة المستلم بنجاح.');
     }
 
     public function show(MessageRecipient $messageRecipient): View
@@ -76,12 +76,12 @@ class MessageRecipientController extends Controller
 
         $messageRecipient->update($validated);
 
-        return redirect()->route('messageRecipient.index')->with('success', 'Recipient updated successfully.');
+        return redirect()->route('messageRecipient.index')->with('success', 'تم تحديث المستلم بنجاح.');
     }
 
     public function destroy(MessageRecipient $messageRecipient): RedirectResponse
     {
         $messageRecipient->delete();
-        return redirect()->route('messageRecipient.index')->with('success', 'Recipient deleted.');
+        return redirect()->route('messageRecipient.index')->with('success', 'تم حذف المستلم.');
     }
 }

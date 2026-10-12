@@ -61,7 +61,7 @@ class StudentMarkController extends Controller
         ]]);
 
         return redirect()->route('studentMark.index')
-            ->with('success', 'Marks saved successfully.');
+            ->with('success', 'تم حفظ النقاط بنجاح.');
     }
 
     public function show(StudentMark $studentMark): View
@@ -93,14 +93,14 @@ class StudentMarkController extends Controller
         $studentMark->update($validated);
 
         return redirect()->route('studentMark.index')
-            ->with('success', 'Marks updated successfully.');
+            ->with('success', 'تم تحديث النقاط بنجاح.');
     }
 
     public function destroy(StudentMark $studentMark): RedirectResponse
     {
         $studentMark->delete();
         return redirect()->route('studentMark.index')
-            ->with('success', 'Marks deleted successfully.');
+            ->with('success', 'تم حذف النقاط بنجاح.');
     }
 
     private function calculateGrade(int $scheduleId, float $marksObtained): ?string

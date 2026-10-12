@@ -2,9 +2,9 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('library.fines.index') }}" style="color:#64748b;text-decoration:none;">Fines</a>
+    <a href="{{ route('library.fines.index') }}" style="color:#64748b;text-decoration:none;">الغرامات</a>
     <span style="margin:0 .375rem;">›</span>
-    <span style="color:#374151;font-weight:500;">Pending</span>
+    <span style="color:#374151;font-weight:500;">قيد الانتظار</span>
 </nav>
 @endsection
 
@@ -12,10 +12,10 @@
 
 <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;">
     <div>
-        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Pending Fines</h1>
-        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">All pending and partial payments</p>
+        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">الغرامات المعلقة</h1>
+        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">جميع المدفوعات المعلقة والجزئية</p>
     </div>
-    <x-core-package::btn :href="route('library.fines.index')" color="secondary">All Fines</x-core-package::btn>
+    <x-core-package::btn :href="route('library.fines.index')" color="secondary">كل الغرامات</x-core-package::btn>
 </div>
 
 <x-core-package::card :noPadding="true">
@@ -23,11 +23,11 @@
         <table style="width:100%;border-collapse:collapse;font-size:.8125rem;">
             <thead>
                 <tr style="background:#f8fafc;">
-                    <th style="padding:.625rem 1.25rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Member</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Book</th>
-                    <th style="padding:.625rem 1rem;text-align:right;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Amount</th>
-                    <th style="padding:.625rem 1rem;text-align:right;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Paid</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Status</th>
+                    <th style="padding:.625rem 1.25rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">العضو</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">الكتاب</th>
+                    <th style="padding:.625rem 1rem;text-align:right;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">المبلغ</th>
+                    <th style="padding:.625rem 1rem;text-align:right;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">المدفوع</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">الحالة</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +45,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="5" style="padding:2.5rem;text-align:center;color:#94a3b8;font-size:.875rem;">No pending fines.</td>
+                <td colspan="5" style="padding:2.5rem;text-align:center;color:#94a3b8;font-size:.875rem;">لا يوجد غرامات معلقة.</td>
             </tr>
             @endforelse
             </tbody>

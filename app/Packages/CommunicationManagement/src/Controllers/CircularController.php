@@ -54,7 +54,7 @@ class CircularController extends Controller
 
         Circular::create($validated);
 
-        return redirect()->route('circular.index')->with('success', 'Circular created successfully.');
+        return redirect()->route('circular.index')->with('success', 'تم إنشاء المنشور بنجاح.');
     }
 
     public function show(Circular $circular): View
@@ -96,7 +96,7 @@ class CircularController extends Controller
 
         $circular->update($validated);
 
-        return redirect()->route('circular.index')->with('success', 'Circular updated successfully.');
+        return redirect()->route('circular.index')->with('success', 'تم تحديث المنشور بنجاح.');
     }
 
     public function destroy(Circular $circular): RedirectResponse
@@ -105,6 +105,6 @@ class CircularController extends Controller
             Storage::disk('public')->delete(ltrim($circular->attachment_url, '/storage/'));
         }
         $circular->delete();
-        return redirect()->route('circular.index')->with('success', 'Circular deleted.');
+        return redirect()->route('circular.index')->with('success', 'تم حذف المنشور.');
     }
 }

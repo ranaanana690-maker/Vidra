@@ -56,7 +56,7 @@ class SectionController extends Controller
         Section::create($validated);
 
         return redirect()->route('sections.index')
-            ->with('success', 'Section created successfully.');
+            ->with('success', 'تم إنشاء الفوج بنجاح.');
     }
 
     public function show(Section $section): View
@@ -90,7 +90,7 @@ class SectionController extends Controller
         $section->update($validated);
 
         return redirect()->route('sections.index')
-            ->with('success', 'Section updated successfully.');
+            ->with('success', 'تم تحديث الفوج بنجاح.');
     }
 
     public function destroy(Section $section): RedirectResponse
@@ -98,6 +98,6 @@ class SectionController extends Controller
         $section->delete();
 
         return redirect()->route('sections.index')
-            ->with('success', 'Section deleted.');
+            ->with('success', 'تم حذف الفوج.');
     }
 }

@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <span style="color:#374151;font-weight:500;">Academic Years</span>
+    <span style="color:#374151;font-weight:500;">السنوات الدراسية</span>
 </nav>
 @endsection
 
@@ -10,27 +10,27 @@
 
 <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;">
     <div>
-        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Academic Years</h1>
-        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">Define and manage school academic years</p>
+        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">السنوات الدراسية</h1>
+        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">تحديد وتسيير السنوات الدراسية للمدرسة</p>
     </div>
     <x-core-package::btn :href="route('academic-years.create')" color="primary">
         <svg style="width:.875rem;height:.875rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-        Add Academic Year
+        إضافة سنة دراسية
     </x-core-package::btn>
 </div>
 
 <x-core-package::card style="margin-bottom:1.25rem;">
     <form method="GET" action="{{ route('academic-years.index') }}"
           style="display:grid;grid-template-columns:1fr 180px auto auto;gap:.75rem;align-items:end;">
-        <x-core-package::form.input name="search" label="Search" placeholder="Year range (e.g. 2024-2025)"
+        <x-core-package::form.input name="search" label="بحث" placeholder="الفترة السنوية (مثال: 2024-2025)"
             value="{{ request('search') }}" />
-        <x-core-package::form.select name="is_current" label="Status">
-            <option value="" @selected(!request()->filled('is_current'))>All</option>
-            <option value="1" @selected(request('is_current') === '1')>Current</option>
-            <option value="0" @selected(request('is_current') === '0')>Past</option>
+        <x-core-package::form.select name="is_current" label="الحالة">
+            <option value="" @selected(!request()->filled('is_current'))>الكل</option>
+            <option value="1" @selected(request('is_current') === '1')>الحالي</option>
+            <option value="0" @selected(request('is_current') === '0')>السابق</option>
         </x-core-package::form.select>
-        <div style="padding-top:1.375rem;"><x-core-package::btn type="submit" color="primary">Filter</x-core-package::btn></div>
-        <div style="padding-top:1.375rem;"><x-core-package::btn :href="route('academic-years.index')" color="secondary">Reset</x-core-package::btn></div>
+        <div style="padding-top:1.375rem;"><x-core-package::btn type="submit" color="primary">تصفية</x-core-package::btn></div>
+        <div style="padding-top:1.375rem;"><x-core-package::btn :href="route('academic-years.index')" color="secondary">إعادة تعيين</x-core-package::btn></div>
     </form>
 </x-core-package::card>
 
@@ -39,12 +39,12 @@
         <table style="width:100%;border-collapse:collapse;font-size:.8125rem;">
             <thead>
                 <tr style="background:#f8fafc;">
-                    <th style="padding:.625rem 1.25rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Year</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Duration</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Classes</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Batches</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Status</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Actions</th>
+                    <th style="padding:.625rem 1.25rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">السنة</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">المدة</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">الأقسام</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">الدفعات</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">الحالة</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">إجراءات</th>
                 </tr>
             </thead>
             <tbody>
@@ -65,31 +65,31 @@
                 </td>
                 <td style="padding:.75rem 1rem;">
                     <p style="font-size:.8125rem;color:#374151;margin:0;">{{ optional($item->start_date)->format('M d, Y') }}</p>
-                    <p style="font-size:.7rem;color:#94a3b8;margin:.125rem 0 0;">to {{ optional($item->end_date)->format('M d, Y') }}</p>
+                    <p style="font-size:.7rem;color:#94a3b8;margin:.125rem 0 0;">إلى {{ optional($item->end_date)->format('M d, Y') }}</p>
                 </td>
                 <td style="padding:.75rem 1rem;">
                     <span style="font-size:.875rem;font-weight:600;color:#1e293b;">{{ $item->classes->count() }}</span>
-                    <span style="font-size:.75rem;color:#94a3b8;"> classes</span>
+                    <span style="font-size:.75rem;color:#94a3b8;"> الأقسام</span>
                 </td>
                 <td style="padding:.75rem 1rem;">
                     <span style="font-size:.875rem;font-weight:600;color:#1e293b;">{{ $item->batches->count() }}</span>
-                    <span style="font-size:.75rem;color:#94a3b8;"> batches</span>
+                    <span style="font-size:.75rem;color:#94a3b8;"> الدفعات</span>
                 </td>
                 <td style="padding:.75rem 1rem;">
                     @if($item->is_current)
-                    <x-core-package::badge color="green">Current</x-core-package::badge>
+                    <x-core-package::badge color="green">الحالي</x-core-package::badge>
                     @else
-                    <x-core-package::badge color="gray">Past</x-core-package::badge>
+                    <x-core-package::badge color="gray">السابق</x-core-package::badge>
                     @endif
                 </td>
                 <td style="padding:.75rem 1rem;">
                     <div style="display:flex;gap:.5rem;align-items:center;">
-                        <x-core-package::btn :href="route('academic-years.show', $item)" color="primary" size="sm">View</x-core-package::btn>
-                        <x-core-package::btn :href="route('academic-years.edit', $item)" color="secondary" size="sm">Edit</x-core-package::btn>
+                        <x-core-package::btn :href="route('academic-years.show', $item)" color="primary" size="sm">عرض</x-core-package::btn>
+                        <x-core-package::btn :href="route('academic-years.edit', $item)" color="secondary" size="sm">تعديل</x-core-package::btn>
                         <form method="POST" action="{{ route('academic-years.destroy', $item) }}"
-                              onsubmit="return confirm('Delete {{ $item->year_range }}?')">
+                              onsubmit="return confirm('حذف {{ $item->year_range }}؟')">
                             @csrf @method('DELETE')
-                            <x-core-package::btn type="submit" color="danger" size="sm">Delete</x-core-package::btn>
+                            <x-core-package::btn type="submit" color="danger" size="sm">حذف</x-core-package::btn>
                         </form>
                     </div>
                 </td>
@@ -97,7 +97,7 @@
             @empty
             <tr>
                 <td colspan="6" style="padding:2.5rem;text-align:center;color:#94a3b8;font-size:.875rem;">
-                    No academic years found.
+                    لا توجد سنوات دراسية.
                 </td>
             </tr>
             @endforelse

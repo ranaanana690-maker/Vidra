@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <span style="color:#374151;font-weight:500;">Role-Permission Matrix</span>
+    <span style="color:#374151;font-weight:500;">مصفوفة صلاحيات الأدوار</span>
 </nav>
 @endsection
 
@@ -10,12 +10,12 @@
 
 <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;">
     <div>
-        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Role-Permission Matrix</h1>
-        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">Overview of all roles and their assigned permissions</p>
+        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">مصفوفة صلاحيات الأدوار</h1>
+        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">نظرة عامة على كل الأدوار وصلاحياتها المسندة</p>
     </div>
     <div style="display:flex;gap:.75rem;">
-        <x-core-package::btn :href="route('roles.index')" color="secondary">Manage Roles</x-core-package::btn>
-        <x-core-package::btn :href="route('permissions.index')" color="secondary">Manage Permissions</x-core-package::btn>
+        <x-core-package::btn :href="route('roles.index')" color="secondary">إدارة الأدوار</x-core-package::btn>
+        <x-core-package::btn :href="route('permissions.index')" color="secondary">إدارة الصلاحيات</x-core-package::btn>
     </div>
 </div>
 
@@ -26,7 +26,7 @@
 @forelse($roles as $role)
 <x-core-package::card style="margin-bottom:1.25rem;">
     <div slot="action">
-        <x-core-package::btn :href="route('role-permissions.edit', $role)" color="secondary" size="sm">Edit Permissions</x-core-package::btn>
+        <x-core-package::btn :href="route('role-permissions.edit', $role)" color="secondary" size="sm">تعديل الصلاحيات</x-core-package::btn>
     </div>
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;">
         <div>
@@ -35,11 +35,11 @@
             <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">{{ $role->description }}</p>
             @endif
         </div>
-        <x-core-package::btn :href="route('role-permissions.edit', $role)" color="secondary" size="sm">Edit Permissions</x-core-package::btn>
+        <x-core-package::btn :href="route('role-permissions.edit', $role)" color="secondary" size="sm">تعديل الصلاحيات</x-core-package::btn>
     </div>
 
     @if($role->permissions->isEmpty())
-    <p style="color:#94a3b8;font-size:.8125rem;margin:0;">No permissions assigned.</p>
+    <p style="color:#94a3b8;font-size:.8125rem;margin:0;">لا يوجد صلاحيات مسندة.</p>
     @else
     <div style="display:flex;flex-wrap:wrap;gap:.375rem;">
         @foreach($role->permissions->sortBy('module_name') as $perm)
@@ -56,7 +56,7 @@
 </x-core-package::card>
 @empty
 <x-core-package::card>
-    <p style="text-align:center;color:#94a3b8;padding:2rem 0;margin:0;">No roles defined. <a href="{{ route('roles.create') }}" style="color:#4f46e5;">Create a role</a></p>
+    <p style="text-align:center;color:#94a3b8;padding:2rem 0;margin:0;">لا يوجد أدوار معرفة. <a href="{{ route('roles.create') }}" style="color:#4f46e5;">إنشاء دور</a></p>
 </x-core-package::card>
 @endforelse
 

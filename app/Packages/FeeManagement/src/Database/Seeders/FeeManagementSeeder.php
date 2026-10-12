@@ -13,12 +13,12 @@ class FeeManagementSeeder extends Seeder
 
         // Fee Categories
         DB::table('fee_categories')->insert([
-            ['category_name' => 'Tuition Fee',       'description' => 'Monthly tuition charges',         'created_at' => $now, 'updated_at' => $now],
-            ['category_name' => 'Examination Fee',   'description' => 'Fee for conducting examinations', 'created_at' => $now, 'updated_at' => $now],
-            ['category_name' => 'Library Fee',       'description' => 'Annual library access fee',       'created_at' => $now, 'updated_at' => $now],
-            ['category_name' => 'Sports Fee',        'description' => 'Sports and PE activities fee',    'created_at' => $now, 'updated_at' => $now],
-            ['category_name' => 'Computer Lab Fee',  'description' => 'Computer lab usage charges',      'created_at' => $now, 'updated_at' => $now],
-            ['category_name' => 'Transport Fee',     'description' => 'School bus/transport charges',    'created_at' => $now, 'updated_at' => $now],
+            ['category_name' => 'Tuition Fee',       'description' => 'رسوم الدراسة الشهرية',         'created_at' => $now, 'updated_at' => $now],
+            ['category_name' => 'Examination Fee',   'description' => 'رسم إجراء الامتحانات', 'created_at' => $now, 'updated_at' => $now],
+            ['category_name' => 'Library Fee',       'description' => 'رسم سنوي للوصول إلى المكتبة',       'created_at' => $now, 'updated_at' => $now],
+            ['category_name' => 'Sports Fee',        'description' => 'رسم الرياضة والأنشطة البدنية',    'created_at' => $now, 'updated_at' => $now],
+            ['category_name' => 'Computer Lab Fee',  'description' => 'رسوم استخدام مخبر الإعلام الآلي',      'created_at' => $now, 'updated_at' => $now],
+            ['category_name' => 'Transport Fee',     'description' => 'رسوم النقل المدرسي',    'created_at' => $now, 'updated_at' => $now],
         ]);
 
         // Fee Structures — per class (1-5), per category
@@ -181,7 +181,7 @@ class FeeManagementSeeder extends Seeder
                 'discount_name'   => 'Sibling Discount',
                 'discount_amount' => 10.00,
                 'discount_type'   => 'Percentage',
-                'description'     => '10% discount for siblings studying in the same school',
+                'description'     => 'تخفيض 10% للإخوة المتمدرسين في نفس المدرسة',
                 'created_at'      => $now,
                 'updated_at'      => $now,
             ],
@@ -189,7 +189,7 @@ class FeeManagementSeeder extends Seeder
                 'discount_name'   => 'Merit Scholarship',
                 'discount_amount' => 500.00,
                 'discount_type'   => 'Fixed',
-                'description'     => 'Fixed Rs 500 discount for top performers',
+                'description'     => 'تخفيض ثابت 500 دج للمتفوقين',
                 'created_at'      => $now,
                 'updated_at'      => $now,
             ],
@@ -197,7 +197,7 @@ class FeeManagementSeeder extends Seeder
                 'discount_name'   => 'Staff Ward Discount',
                 'discount_amount' => 50.00,
                 'discount_type'   => 'Percentage',
-                'description'     => '50% discount for wards of teaching staff',
+                'description'     => 'تخفيض 50% لأبناء طاقم التدريس',
                 'created_at'      => $now,
                 'updated_at'      => $now,
             ],
@@ -211,12 +211,12 @@ class FeeManagementSeeder extends Seeder
 
         // Expenses
         $expenses = [
-            ['2024-04-15', 25000.00, 'Maintenance',    'Annual maintenance of classrooms and furniture'],
-            ['2024-05-05', 12000.00, 'Utilities',      'Electricity and water bills for April'],
-            ['2024-05-20', 8500.00,  'Stationery',     'Purchase of stationery for staff and students'],
-            ['2024-06-10', 45000.00, 'Infrastructure', 'New projector installation in classrooms'],
-            ['2024-07-01', 6000.00,  'Events',         'Annual day celebration expenses'],
-            ['2024-08-15', 3500.00,  'Utilities',      'Electricity and water bills for July'],
+            ['2024-04-15', 25000.00, 'Maintenance',    'الصيانة السنوية للأقسام والأثاث'],
+            ['2024-05-05', 12000.00, 'Utilities',      'فواتير الكهرباء والماء لشهر أفريل'],
+            ['2024-05-20', 8500.00,  'Stationery',     'شراء الأدوات المدرسية للموظفين والتلاميذ'],
+            ['2024-06-10', 45000.00, 'Infrastructure', 'تركيب جهاز عرض جديد في الأقسام'],
+            ['2024-07-01', 6000.00,  'Events',         'مصاريف الاحتفال باليوم السنوي'],
+            ['2024-08-15', 3500.00,  'Utilities',      'فواتير الكهرباء والماء لشهر جويلية'],
         ];
 
         foreach ($expenses as [$date, $amount, $category, $description]) {

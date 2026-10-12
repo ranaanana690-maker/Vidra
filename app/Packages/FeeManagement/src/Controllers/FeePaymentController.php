@@ -60,7 +60,7 @@ class FeePaymentController extends Controller
             'payment_date'   => $payment->payment_date,
         ]]);
 
-        return redirect()->route('feePayment.index')->with('success', 'Payment recorded successfully.');
+        return redirect()->route('feePayment.index')->with('success', 'تم تسجيل الدفعة بنجاح.');
     }
 
     public function show(FeePayment $feePayment): View
@@ -93,7 +93,7 @@ class FeePaymentController extends Controller
             StudentFee::find($oldStudentFeeId)?->syncPaymentStatus();
         }
 
-        return redirect()->route('feePayment.index')->with('success', 'Payment updated successfully.');
+        return redirect()->route('feePayment.index')->with('success', 'تم تحديث الدفعة بنجاح.');
     }
 
     public function destroy(FeePayment $feePayment): RedirectResponse
@@ -101,6 +101,6 @@ class FeePaymentController extends Controller
         $studentFee = $feePayment->studentFee;
         $feePayment->delete();
         $studentFee?->syncPaymentStatus();
-        return redirect()->route('feePayment.index')->with('success', 'Payment deleted.');
+        return redirect()->route('feePayment.index')->with('success', 'تم حذف الدفعة.');
     }
 }

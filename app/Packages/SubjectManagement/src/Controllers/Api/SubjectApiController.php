@@ -50,6 +50,6 @@ class SubjectApiController extends Controller
     {
         $subject->delete();
 
-        return response()->json(['message' => 'Subject deleted']);
+        return response()->json(['message' => 'تم حذف المادة.']);
     }
 }

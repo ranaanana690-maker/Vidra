@@ -46,7 +46,7 @@ class StudentLeaveRequestController extends Controller
         StudentLeaveRequest::create($validated);
 
         return redirect()->route('studentLeaveRequest.index')
-            ->with('success', 'Leave request submitted successfully.');
+            ->with('success', 'تم إرسال طلب الرخصة بنجاح.');
     }
 
     public function show(StudentLeaveRequest $studentLeaveRequest): View
@@ -76,7 +76,7 @@ class StudentLeaveRequestController extends Controller
         $studentLeaveRequest->update($validated);
 
         return redirect()->route('studentLeaveRequest.index')
-            ->with('success', 'Leave request updated successfully.');
+            ->with('success', 'تم تحديث طلب الرخصة بنجاح.');
     }
 
     public function destroy(StudentLeaveRequest $studentLeaveRequest): RedirectResponse
@@ -84,6 +84,6 @@ class StudentLeaveRequestController extends Controller
         $studentLeaveRequest->delete();
 
         return redirect()->route('studentLeaveRequest.index')
-            ->with('success', 'Leave request deleted.');
+            ->with('success', 'تم حذف طلب الرخصة.');
     }
 }

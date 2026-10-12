@@ -40,7 +40,7 @@ class RoomController extends Controller
 
         Room::create($validated);
 
-        return redirect()->route('room.index')->with('success', 'Room created successfully.');
+        return redirect()->route('room.index')->with('success', 'تم إنشاء القاعة بنجاح.');
     }
 
     public function show(Room $room): View
@@ -66,13 +66,13 @@ class RoomController extends Controller
 
         $room->update($validated);
 
-        return redirect()->route('room.index')->with('success', 'Room updated successfully.');
+        return redirect()->route('room.index')->with('success', 'تم تحديث القاعة بنجاح.');
     }
 
     public function destroy(Room $room): RedirectResponse
     {
         $room->delete();
 
-        return redirect()->route('room.index')->with('success', 'Room deleted.');
+        return redirect()->route('room.index')->with('success', 'تم حذف القاعة.');
     }
 }

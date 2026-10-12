@@ -36,7 +36,7 @@ class SubjectManagementSeeder extends Seeder
                 'subject_name' => $name,
                 'subject_code' => $code,
                 'subject_type' => $type,
-                'description' => "DZ tutoring subject {$code}",
+                'description' => "مادة الدعم {$code}",
                 'is_optional' => $optional,
                 'created_at' => $now,
                 'updated_at' => $now,
@@ -123,7 +123,7 @@ class SubjectManagementSeeder extends Seeder
             DB::table('curriculums')->insertOrIgnore([
                 'subject_id' => $subjectId,
                 'academic_year_id' => 1,
-                'description' => "DZ curriculum plan 2026-27 for subject {$subjectId}",
+                'description' => "خطة المنهاج 2026-27 للمادة {$subjectId}",
                 'syllabus_document_path' => 'dummy/dummy-image.jpg',
                 'created_at' => $now,
                 'updated_at' => $now,

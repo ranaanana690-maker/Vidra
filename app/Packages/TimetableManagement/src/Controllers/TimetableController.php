@@ -97,7 +97,7 @@ class TimetableController extends Controller
 
         Timetable::create($validated);
 
-        return redirect()->route('timetable.index')->with('success', 'Timetable entry created successfully.');
+        return redirect()->route('timetable.index')->with('success', 'تم إنشاء مدخل جدول الحصص بنجاح.');
     }
 
     public function show(Timetable $timetable): View
@@ -150,13 +150,13 @@ class TimetableController extends Controller
 
         $timetable->update($validated);
 
-        return redirect()->route('timetable.index')->with('success', 'Timetable entry updated successfully.');
+        return redirect()->route('timetable.index')->with('success', 'تم تحديث مدخل جدول الحصص بنجاح.');
     }
 
     public function destroy(Timetable $timetable): RedirectResponse
     {
         $timetable->delete();
 
-        return redirect()->route('timetable.index')->with('success', 'Timetable entry deleted.');
+        return redirect()->route('timetable.index')->with('success', 'تم حذف مدخل جدول الحصص.');
     }
 }

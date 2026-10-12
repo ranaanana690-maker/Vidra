@@ -28,7 +28,7 @@ class QuranProgressController extends Controller
 
         $enrollment->quranProgress()->create($validated);
 
-        return back()->with('success', 'Progress recorded successfully.');
+        return back()->with('success', 'تم تسجيل التقدم بنجاح.');
     }
 
     public function update(Request $request, CourseEnrollment $enrollment, QuranProgress $progress): RedirectResponse
@@ -47,7 +47,7 @@ class QuranProgressController extends Controller
 
         $progress->update($validated);
 
-        return back()->with('success', 'Progress updated successfully.');
+        return back()->with('success', 'تم تحديث التقدم بنجاح.');
     }
 
     public function destroy(CourseEnrollment $enrollment, QuranProgress $progress): RedirectResponse
@@ -56,6 +56,6 @@ class QuranProgressController extends Controller
 
         $progress->delete();
 
-        return back()->with('success', 'Progress entry deleted.');
+        return back()->with('success', 'تم حذف مدخل التقدم.');
     }
 }

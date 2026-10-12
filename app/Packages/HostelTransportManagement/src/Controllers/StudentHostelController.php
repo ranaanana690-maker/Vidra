@@ -54,7 +54,7 @@ class StudentHostelController extends Controller
         StudentHostel::create($validated);
 
         return redirect()->route('student-hostels.index')
-            ->with('success', 'Student assigned to hostel successfully.');
+            ->with('success', 'تم إسكان التلميذ بنجاح.');
     }
 
     public function show(StudentHostel $studentHostel): View
@@ -85,7 +85,7 @@ class StudentHostelController extends Controller
         $studentHostel->update($validated);
 
         return redirect()->route('student-hostels.index')
-            ->with('success', 'Hostel assignment updated successfully.');
+            ->with('success', 'تم تحديث إسكان التلميذ بنجاح.');
     }
 
     public function destroy(StudentHostel $studentHostel): RedirectResponse
@@ -93,6 +93,6 @@ class StudentHostelController extends Controller
         $studentHostel->delete();
 
         return redirect()->route('student-hostels.index')
-            ->with('success', 'Hostel assignment removed.');
+            ->with('success', 'تمت إزالة إسكان التلميذ.');
     }
 }

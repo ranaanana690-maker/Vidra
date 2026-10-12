@@ -14,15 +14,15 @@
         @csrf
         @if($method !== 'POST') @method($method) @endif
 
-        <x-core-package::card title="Transport Assignment">
+        <x-core-package::card title="إسناد النقل">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;">
                 <x-core-package::form.input
-                    name="student_id" label="Student ID" type="number" required
-                    placeholder="Enter student ID"
+                    name="student_id" label="معرف التلميذ" type="number" required
+                    placeholder="أدخل معرف التلميذ"
                     value="{{ old('student_id', $studentTransport->student_id ?? '') }}" />
 
-                <x-core-package::form.select name="transport_id" label="Transport Service" required>
-                    <option value="">— Select Service —</option>
+                <x-core-package::form.select name="transport_id" label="خدمة النقل" required>
+                    <option value="">— اختر الخدمة —</option>
                     @foreach($transports as $t)
                     <option value="{{ $t->transport_id }}"
                         @selected((string) old('transport_id', $studentTransport->transport_id ?? '') === (string) $t->transport_id)>
@@ -32,21 +32,21 @@
                 </x-core-package::form.select>
 
                 <x-core-package::form.input
-                    name="pickup_location" label="Pickup Location"
-                    placeholder="e.g. Main Gate"
+                    name="pickup_location" label="مكان الصعود"
+                    placeholder="مثال: الباب الرئيسي"
                     value="{{ old('pickup_location', $studentTransport->pickup_location ?? '') }}" />
 
                 <x-core-package::form.input
-                    name="drop_location" label="Drop Location"
-                    placeholder="e.g. Academic Block"
+                    name="drop_location" label="مكان النزول"
+                    placeholder="مثال: الجناح الدراسي"
                     value="{{ old('drop_location', $studentTransport->drop_location ?? '') }}" />
 
                 <x-core-package::form.input
-                    name="assigned_date" label="Assigned Date" type="date" required
+                    name="assigned_date" label="تاريخ الإسناد" type="date" required
                     value="{{ old('assigned_date', isset($studentTransport) ? $studentTransport->assigned_date?->format('Y-m-d') : '') }}" />
 
                 <x-core-package::form.input
-                    name="leave_date" label="Leave Date" type="date"
+                    name="leave_date" label="تاريخ المغادرة" type="date"
                     hint="Leave empty if still using the service"
                     value="{{ old('leave_date', isset($studentTransport) ? $studentTransport->leave_date?->format('Y-m-d') : '') }}" />
             </div>
@@ -54,9 +54,9 @@
 
         <div style="display:flex;gap:.75rem;">
             <x-core-package::btn type="submit" color="primary">
-                {{ isset($studentTransport) ? 'Update Assignment' : 'Create Assignment' }}
+                {{ isset($studentTransport) ? 'تحديث الإسناد' : 'إنشاء الإسناد' }}
             </x-core-package::btn>
-            <x-core-package::btn :href="route('student-transport.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn :href="route('student-transport.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
     </form>
 </div>

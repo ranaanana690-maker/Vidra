@@ -2,19 +2,19 @@
 
 return [
     'student' => [
-        'title'    => 'Students',
+        'title'    => 'التلاميذ',
         'exporter' => \App\Packages\DataTransfer\Helpers\Exporters\Student\Exporter::class,
     ],
     'staff' => [
-        'title'    => 'Staff',
+        'title'    => 'الطاقم',
         'exporter' => \App\Packages\DataTransfer\Helpers\Exporters\Staff\Exporter::class,
     ],
     'salary' => [
-        'title'    => 'Salary Details',
+        'title'    => 'تفاصيل الرواتب',
         'exporter' => \App\Packages\DataTransfer\Helpers\Exporters\Salary\Exporter::class,
     ],
     'student_fee' => [
-        'title'    => 'Student Fees',
+        'title'    => 'رسوم التلاميذ',
         'exporter' => \App\Packages\DataTransfer\Helpers\Exporters\StudentFee\Exporter::class,
     ],
 ];

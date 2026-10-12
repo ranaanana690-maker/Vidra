@@ -32,7 +32,7 @@ class FeeCategoryController extends Controller
             'description'   => 'nullable|string',
         ]);
         FeeCategory::create($validated);
-        return redirect()->route('feeCategory.index')->with('success', 'Fee category created successfully.');
+        return redirect()->route('feeCategory.index')->with('success', 'تم إنشاء صنف الرسوم بنجاح.');
     }
 
     public function show(FeeCategory $feeCategory): View
@@ -53,12 +53,12 @@ class FeeCategoryController extends Controller
             'description'   => 'nullable|string',
         ]);
         $feeCategory->update($validated);
-        return redirect()->route('feeCategory.index')->with('success', 'Fee category updated successfully.');
+        return redirect()->route('feeCategory.index')->with('success', 'تم تحديث صنف الرسوم بنجاح.');
     }
 
     public function destroy(FeeCategory $feeCategory): RedirectResponse
     {
         $feeCategory->delete();
-        return redirect()->route('feeCategory.index')->with('success', 'Fee category deleted.');
+        return redirect()->route('feeCategory.index')->with('success', 'تم حذف صنف الرسوم.');
     }
 }

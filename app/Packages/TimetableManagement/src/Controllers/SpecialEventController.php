@@ -50,7 +50,7 @@ class SpecialEventController extends Controller
 
         SpecialEvent::create($validated);
 
-        return redirect()->route('specialEvent.index')->with('success', 'Special event created successfully.');
+        return redirect()->route('specialEvent.index')->with('success', 'تم إنشاء المناسبة بنجاح.');
     }
 
     public function show(SpecialEvent $specialEvent): View
@@ -80,13 +80,13 @@ class SpecialEventController extends Controller
 
         $specialEvent->update($validated);
 
-        return redirect()->route('specialEvent.index')->with('success', 'Special event updated successfully.');
+        return redirect()->route('specialEvent.index')->with('success', 'تم تحديث المناسبة بنجاح.');
     }
 
     public function destroy(SpecialEvent $specialEvent): RedirectResponse
     {
         $specialEvent->delete();
 
-        return redirect()->route('specialEvent.index')->with('success', 'Special event deleted.');
+        return redirect()->route('specialEvent.index')->with('success', 'تم حذف المناسبة.');
     }
 }

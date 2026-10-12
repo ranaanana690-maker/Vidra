@@ -45,7 +45,7 @@ class HolidayController extends Controller
         Holiday::create($validated);
 
         return redirect()->route('holiday.index')
-            ->with('success', 'Holiday added successfully.');
+            ->with('success', 'تمت إضافة العطلة بنجاح.');
     }
 
     public function show(Holiday $holiday): View
@@ -72,7 +72,7 @@ class HolidayController extends Controller
         $holiday->update($validated);
 
         return redirect()->route('holiday.index')
-            ->with('success', 'Holiday updated successfully.');
+            ->with('success', 'تم تحديث العطلة بنجاح.');
     }
 
     public function destroy(Holiday $holiday): RedirectResponse
@@ -80,6 +80,6 @@ class HolidayController extends Controller
         $holiday->delete();
 
         return redirect()->route('holiday.index')
-            ->with('success', 'Holiday deleted.');
+            ->with('success', 'تم حذف العطلة.');
     }
 }

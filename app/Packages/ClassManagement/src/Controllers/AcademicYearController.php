@@ -50,7 +50,7 @@ class AcademicYearController extends Controller
         AcademicYear::create($validated);
 
         return redirect()->route('academic-years.index')
-            ->with('success', 'Academic year created successfully.');
+            ->with('success', 'تم إنشاء السنة الدراسية بنجاح.');
     }
 
     public function show(AcademicYear $academicYear): View
@@ -86,7 +86,7 @@ class AcademicYearController extends Controller
         $academicYear->update($validated);
 
         return redirect()->route('academic-years.index')
-            ->with('success', 'Academic year updated successfully.');
+            ->with('success', 'تم تحديث السنة الدراسية بنجاح.');
     }
 
     public function destroy(AcademicYear $academicYear): RedirectResponse
@@ -94,6 +94,6 @@ class AcademicYearController extends Controller
         $academicYear->delete();
 
         return redirect()->route('academic-years.index')
-            ->with('success', 'Academic year deleted.');
+            ->with('success', 'تم حذف السنة الدراسية.');
     }
 }

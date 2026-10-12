@@ -14,41 +14,41 @@
         @csrf
         @if($method !== 'POST') @method($method) @endif
 
-        <x-core-package::card title="Attendance Details">
+        <x-core-package::card title="تفاصيل الحضور">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;">
                 <x-core-package::form.input
-                    name="student_id" label="Student ID" required type="number"
-                    placeholder="e.g. 101"
+                    name="student_id" label="معرف التلميذ" required type="number"
+                    placeholder="مثال: 101"
                     value="{{ old('student_id', $record->student_id ?? '') }}" />
                 <x-core-package::form.input
-                    name="date" label="Date" required type="date"
+                    name="date" label="التاريخ" required type="date"
                     value="{{ old('date', isset($record) ? $record->date->format('Y-m-d') : '') }}" />
-                <x-core-package::form.select name="status" label="Status" required>
+                <x-core-package::form.select name="status" label="الحالة" required>
                     @foreach(['Present','Absent','Leave'] as $s)
-                    <option value="{{ $s }}" @selected(old('status', $record->status ?? 'Present') === $s)>{{ $s }}</option>
+                    <option value="{{ $s }}" @selected(old('status', $record->status ?? 'Present') === $s)>{{ $s == 'Present' ? 'حاضر' : ($s == 'Absent' ? 'غائب' : 'في رخصة') }}</option>
                     @endforeach
                 </x-core-package::form.select>
                 <x-core-package::form.input
-                    name="batch_id" label="Batch ID" type="number"
-                    placeholder="e.g. 5"
+                    name="batch_id" label="معرف الفوج" type="number"
+                    placeholder="مثال: 5"
                     value="{{ old('batch_id', $record->batch_id ?? '') }}" />
                 <x-core-package::form.input
-                    name="marked_by" label="Marked By (Staff ID)" type="number"
-                    placeholder="Staff ID"
+                    name="marked_by" label="سجله (معرف الموظف)" type="number"
+                    placeholder="معرف الموظف"
                     value="{{ old('marked_by', $record->marked_by ?? '') }}" />
                 <div style="grid-column:1/-1;">
                     <x-core-package::form.textarea
-                        name="remarks" label="Remarks" rows="3"
-                        placeholder="Reason for absence or leave (optional)">{{ old('remarks', $record->remarks ?? '') }}</x-core-package::form.textarea>
+                        name="remarks" label="ملاحظات" rows="3"
+                        placeholder="سبب الغياب أو الرخصة (اختياري)">{{ old('remarks', $record->remarks ?? '') }}</x-core-package::form.textarea>
                 </div>
             </div>
         </x-core-package::card>
 
         <div style="display:flex;gap:.75rem;">
             <x-core-package::btn type="submit" color="primary">
-                {{ isset($record) ? 'Update Attendance' : 'Save Attendance' }}
+                {{ isset($record) ? 'تحديث الحضور' : 'حفظ الحضور' }}
             </x-core-package::btn>
-            <x-core-package::btn :href="route('studentAttendance.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn :href="route('studentAttendance.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
 
     </form>

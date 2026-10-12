@@ -13,11 +13,11 @@
         @csrf
         @if($method !== 'POST') @method($method) @endif
 
-        <x-core-package::card title="Lesson Plan Details">
+        <x-core-package::card title="تفاصيل خطة الدرس">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;">
                 <div style="grid-column:1/-1;">
-                    <x-core-package::form.select name="curriculum_id" label="Curriculum" required>
-                        <option value="">— Select Curriculum —</option>
+                    <x-core-package::form.select name="curriculum_id" label="المنهاج" required>
+                        <option value="">— اختر المنهاج —</option>
                         @foreach($curriculums as $curriculum)
                         <option value="{{ $curriculum->curriculum_id }}"
                             @selected((string) old('curriculum_id', $lessonPlan->curriculum_id ?? request('curriculum_id')) === (string) $curriculum->curriculum_id)>
@@ -28,29 +28,29 @@
                 </div>
                 <div style="grid-column:1/-1;">
                     <x-core-package::form.input
-                        name="topic_name" label="Topic / Unit Name" required
+                        name="topic_name" label="اسم الموضوع / الوحدة" required
                         placeholder="e.g. Algebra Basics, Photosynthesis"
                         value="{{ old('topic_name', $lessonPlan->topic_name ?? '') }}" />
                 </div>
                 <x-core-package::form.input
-                    type="date" name="start_date" label="Start Date"
+                    type="date" name="start_date" label="تاريخ البداية"
                     value="{{ old('start_date', isset($lessonPlan->start_date) ? $lessonPlan->start_date->format('Y-m-d') : '') }}" />
                 <x-core-package::form.input
-                    type="date" name="end_date" label="End Date"
+                    type="date" name="end_date" label="تاريخ النهاية"
                     value="{{ old('end_date', isset($lessonPlan->end_date) ? $lessonPlan->end_date->format('Y-m-d') : '') }}" />
                 <div style="grid-column:1/-1;">
                     <x-core-package::form.textarea
-                        name="objectives" label="Learning Objectives" rows="4"
-                        placeholder="List the learning objectives for this topic">{{ old('objectives', $lessonPlan->objectives ?? '') }}</x-core-package::form.textarea>
+                        name="objectives" label="الأهداف التعليمية" rows="4"
+                        placeholder="اذكر الأهداف التعليمية لهذا الموضوع">{{ old('objectives', $lessonPlan->objectives ?? '') }}</x-core-package::form.textarea>
                 </div>
             </div>
         </x-core-package::card>
 
         <div style="display:flex;gap:.75rem;">
             <x-core-package::btn type="submit" color="primary">
-                {{ isset($lessonPlan) ? 'Update Lesson Plan' : 'Create Lesson Plan' }}
+                {{ isset($lessonPlan) ? 'تحديث خطة الدرس' : 'إنشاء خطة درس' }}
             </x-core-package::btn>
-            <x-core-package::btn :href="route('lesson-plans.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn :href="route('lesson-plans.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
     </form>
 </div>

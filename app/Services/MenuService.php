@@ -54,18 +54,18 @@ class MenuService
     private function registerDefaultSections(): void
     {
         $this->sections = [
-            'people' => new MenuSection('People', 's-people'),
-            'academics' => new MenuSection('Academics', 's-academics'),
-            'subjects' => new MenuSection('Subjects & Curriculum', 's-subjects'),
-            'attendance' => new MenuSection('Attendance', 's-attendance'),
-            'finance' => new MenuSection('Finance', 's-finance'),
-            'timetable' => new MenuSection('Timetable', 's-timetable'),
-            'communication' => new MenuSection('Communication', 's-communication'),
-            'hostel' => new MenuSection('Hostel & Transport', 's-hostel'),
-            'exams' => new MenuSection('Examinations', 's-exams'),
-            'datatransfer' => new MenuSection('Data Transfer', 's-datatransfer'),
-            'rbac' => new MenuSection('Administration', 's-rbac'),
-            'system' => new MenuSection('System', 's-system'),
+            'people' => new MenuSection('الأشخاص', 's-people'),
+            'academics' => new MenuSection('الدراسة', 's-academics'),
+            'subjects' => new MenuSection('المواد والمنهاج', 's-subjects'),
+            'attendance' => new MenuSection('الحضور', 's-attendance'),
+            'finance' => new MenuSection('المالية', 's-finance'),
+            'timetable' => new MenuSection('جدول الحصص', 's-timetable'),
+            'communication' => new MenuSection('المراسلات', 's-communication'),
+            'hostel' => new MenuSection('الإيواء والنقل', 's-hostel'),
+            'exams' => new MenuSection('الامتحانات', 's-exams'),
+            'datatransfer' => new MenuSection('استيراد وتصدير', 's-datatransfer'),
+            'rbac' => new MenuSection('الإدارة', 's-rbac'),
+            'system' => new MenuSection('النظام', 's-system'),
         ];
     }
 

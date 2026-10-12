@@ -1,13 +1,13 @@
 @extends('core-package::layouts.app')
 
-@section('title', 'Webhook Settings')
+@section('title', 'إعدادات الويب هوك')
 
 @section('content')
 <div class="max-w-3xl mx-auto px-4 py-8">
 
-    <x-core-package::page-header title="Webhook Settings" subtitle="Configure an external URL to receive real-time school events.">
+    <x-core-package::page-header title="إعدادات الويب هوك" subtitle="اضبط رابطا خارجيا لاستقبال أحداث المدرسة الآنية.">
         <x-slot:actions>
-            <x-core-package::btn id="save-btn" color="primary">Save Settings</x-core-package::btn>
+            <x-core-package::btn id="save-btn" color="primary">حفظ الإعدادات</x-core-package::btn>
         </x-slot:actions>
     </x-core-package::page-header>
 
@@ -23,7 +23,7 @@
         <div class="flex items-center justify-between">
             <div>
                 <p class="text-sm font-semibold text-gray-800">@lang('webhook::app.settings.active')</p>
-                <p class="text-xs text-gray-500 mt-0.5">Pause or resume all webhook dispatches.</p>
+                <p class="text-xs text-gray-500 mt-0.5">أوقف أو استأنف كل إرسالات الويب هوك.</p>
             </div>
             <label class="relative inline-flex items-center cursor-pointer">
                 <input type="checkbox" id="webhook_active" class="sr-only peer"
@@ -37,8 +37,8 @@
 
         <hr class="border-gray-100">
 
-        {{-- Webhook URL --}}
-        <x-core-package::form.section label="Webhook URL" hint="All events will POST JSON to this URL.">
+        {{-- رابط الويب هوك --}}
+        <x-core-package::form.section label="رابط الويب هوك" hint="كل الأحداث سترسل JSON إلى هذا الرابط.">
             <x-core-package::form.input
                 id="webhook_url"
                 type="url"
@@ -47,9 +47,9 @@
             />
         </x-core-package::form.section>
 
-        {{-- Events info --}}
+        {{-- معلومات الأحداث --}}
         <div class="bg-indigo-50 rounded-xl p-4">
-            <p class="text-xs font-semibold text-indigo-700 mb-2">Events fired</p>
+            <p class="text-xs font-semibold text-indigo-700 mb-2">الأحداث المرسلة</p>
             <ul class="text-xs text-indigo-600 space-y-1 list-disc list-inside">
                 <li><code>student.created</code> / <code>student.updated</code></li>
                 <li><code>staff.created</code> / <code>staff.updated</code></li>
@@ -63,7 +63,7 @@
 
     <div class="mt-4 text-right">
         <a href="{{ route('webhook.logs.index') }}" class="text-sm text-indigo-600 hover:underline">
-            View Webhook Logs →
+            عرض سجلات الويب هوك →
         </a>
     </div>
 

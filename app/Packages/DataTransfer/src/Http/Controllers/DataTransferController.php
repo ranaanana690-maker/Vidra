@@ -65,7 +65,7 @@ class DataTransferController extends Controller
         ProcessImportJob::dispatch($track->id);
 
         return redirect()->route('data-transfer.index')
-            ->with('success', 'Import job queued successfully.');
+            ->with('success', 'تمت إضافة مهمة الاستيراد بنجاح.');
     }
 
     public function storeExport(Request $request)
@@ -100,7 +100,7 @@ class DataTransferController extends Controller
         ProcessExportJob::dispatch($track->id, $outputPath);
 
         return redirect()->route('data-transfer.index')
-            ->with('success', 'Export job queued successfully.');
+            ->with('success', 'تمت إضافة مهمة التصدير بنجاح.');
     }
 
     public function download(int $trackId)
@@ -111,7 +111,7 @@ class DataTransferController extends Controller
 
         $fullPath = Storage::disk('local')->path($track->output_file_path);
 
-        abort_if(! file_exists($fullPath), 404, 'File not found.');
+        abort_if(! file_exists($fullPath), 404, 'لم يتم العثور على الملف.');
 
         return response()->download($fullPath);
     }

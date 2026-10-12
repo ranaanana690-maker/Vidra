@@ -51,7 +51,7 @@ class FinancialReportController extends Controller
             'generated_at'        => now(),
         ]);
 
-        return redirect()->route('financialReport.index')->with('success', 'Financial report generated successfully.');
+        return redirect()->route('financialReport.index')->with('success', 'تم إنشاء التقرير المالي بنجاح.');
     }
 
     public function show(FinancialReport $financialReport): View
@@ -72,6 +72,6 @@ class FinancialReportController extends Controller
     public function destroy(FinancialReport $financialReport): RedirectResponse
     {
         $financialReport->delete();
-        return redirect()->route('financialReport.index')->with('success', 'Report deleted.');
+        return redirect()->route('financialReport.index')->with('success', 'تم حذف التقرير.');
     }
 }

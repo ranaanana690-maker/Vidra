@@ -58,7 +58,7 @@ class TeacherSubjectMappingController extends Controller
         TeacherSubjectMapping::create($validated);
 
         return redirect()->route('teacher-subject-mappings.index')
-            ->with('success', 'Teacher assigned to subject successfully.');
+            ->with('success', 'تم إسناد الأستاذ إلى المادة بنجاح.');
     }
 
     public function show(TeacherSubjectMapping $teacherSubjectMapping): View
@@ -90,7 +90,7 @@ class TeacherSubjectMappingController extends Controller
         $teacherSubjectMapping->update($validated);
 
         return redirect()->route('teacher-subject-mappings.index')
-            ->with('success', 'Mapping updated successfully.');
+            ->with('success', 'تم تحديث الإسناد بنجاح.');
     }
 
     public function destroy(TeacherSubjectMapping $teacherSubjectMapping): RedirectResponse
@@ -98,6 +98,6 @@ class TeacherSubjectMappingController extends Controller
         $teacherSubjectMapping->delete();
 
         return redirect()->route('teacher-subject-mappings.index')
-            ->with('success', 'Mapping removed.');
+            ->with('success', 'تمت إزالة الإسناد.');
     }
 }

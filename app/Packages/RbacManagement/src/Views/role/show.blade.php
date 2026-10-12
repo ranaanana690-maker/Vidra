@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('roles.index') }}" style="color:#64748b;text-decoration:none;">Roles</a>
+    <a href="{{ route('roles.index') }}" style="color:#64748b;text-decoration:none;">الأدوار</a>
     <span style="margin:0 .375rem;">›</span>
     <span style="color:#374151;font-weight:500;">{{ $role->name }}</span>
 </nav>
@@ -22,19 +22,19 @@
         @endif
     </div>
     <div style="display:flex;gap:.75rem;">
-        <x-core-package::btn :href="route('roles.edit', $role)" color="secondary">Edit</x-core-package::btn>
-        <form method="POST" action="{{ route('roles.destroy', $role) }}" onsubmit="return confirm('Delete this role?')">
+        <x-core-package::btn :href="route('roles.edit', $role)" color="secondary">تعديل</x-core-package::btn>
+        <form method="POST" action="{{ route('roles.destroy', $role) }}" onsubmit="return confirm('حذف هذا الدور؟')">
             @csrf @method('DELETE')
-            <x-core-package::btn type="submit" color="danger">Delete</x-core-package::btn>
+            <x-core-package::btn type="submit" color="danger">حذف</x-core-package::btn>
         </form>
     </div>
 </div>
 
-<x-core-package::card title="Assign Permissions">
+<x-core-package::card title="إسناد الصلاحيات">
     <form method="POST" action="{{ route('roles.sync-permissions', $role) }}">
         @csrf
         <p style="font-size:.8125rem;color:#64748b;margin:0 0 1.25rem;">
-            Select permissions to assign to the <strong>{{ $role->name }}</strong> role.
+            اختر الصلاحيات لإسنادها لـ <strong>{{ $role->name }}</strong> دور.
         </p>
 
         @forelse($allPermissions as $module => $perms)
@@ -55,11 +55,11 @@
             </div>
         </div>
         @empty
-        <p style="color:#94a3b8;font-size:.875rem;">No permissions defined yet. <a href="{{ route('permissions.create') }}" style="color:#4f46e5;">Create permissions</a></p>
+        <p style="color:#94a3b8;font-size:.875rem;">لا يوجد صلاحيات معرفة بعد. <a href="{{ route('permissions.create') }}" style="color:#4f46e5;">إنشاء صلاحيات</a></p>
         @endforelse
 
         <div style="padding-top:1rem;border-top:1px solid #e2e8f0;margin-top:.5rem;">
-            <x-core-package::btn type="submit" color="primary">Save Permissions</x-core-package::btn>
+            <x-core-package::btn type="submit" color="primary">حفظ الصلاحيات</x-core-package::btn>
         </div>
     </form>
 </x-core-package::card>

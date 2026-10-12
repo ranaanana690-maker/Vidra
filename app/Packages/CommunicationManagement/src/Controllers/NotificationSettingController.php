@@ -50,7 +50,7 @@ class NotificationSettingController extends Controller
 
         NotificationSetting::create($validated);
 
-        return redirect()->route('notificationSetting.index')->with('success', 'Notification preferences saved.');
+        return redirect()->route('notificationSetting.index')->with('success', 'تم حفظ إعدادات الإشعارات.');
     }
 
     public function show(NotificationSetting $notificationSetting): View
@@ -83,12 +83,12 @@ class NotificationSettingController extends Controller
 
         $notificationSetting->update($validated);
 
-        return redirect()->route('notificationSetting.index')->with('success', 'Notification preferences updated.');
+        return redirect()->route('notificationSetting.index')->with('success', 'تم تحديث إعدادات الإشعارات.');
     }
 
     public function destroy(NotificationSetting $notificationSetting): RedirectResponse
     {
         $notificationSetting->delete();
-        return redirect()->route('notificationSetting.index')->with('success', 'Notification settings deleted.');
+        return redirect()->route('notificationSetting.index')->with('success', 'تم حذف إعدادات الإشعارات.');
     }
 }

@@ -140,7 +140,7 @@ class StudentController extends Controller
             return response()->json($student, 201);
         }
 
-        return redirect()->route('students.index')->with('success', 'Student created successfully! Student "'.$student->first_name.' '.$student->last_name.'" has been added.');
+        return redirect()->route('students.index')->with('success', 'تم إنشاء التلميذ بنجاح! التلميذ "'.$student->first_name.' '.$student->last_name.'" تمت إضافته.');
     }
 
     public function show(Student $student): View
@@ -282,7 +282,7 @@ class StudentController extends Controller
             return response()->json(['success' => true, 'student' => $student]);
         }
 
-        return redirect()->route('students.show', $student)->with('success', 'Student "'.$student->first_name.' '.$student->last_name.'" updated successfully!');
+        return redirect()->route('students.show', $student)->with('success', 'التلميذ "'.$student->first_name.' '.$student->last_name.'" تم تحديثه بنجاح!');
     }
 
     public function destroy(Request $request, Student $student): RedirectResponse|JsonResponse
@@ -293,7 +293,7 @@ class StudentController extends Controller
             return response()->json(['success' => true]);
         }
 
-        return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
+        return redirect()->route('students.index')->with('success', 'تم حذف التلميذ بنجاح.');
     }
 
     // Parent Info CRUD
@@ -410,7 +410,7 @@ class StudentController extends Controller
         $healthRecord = HealthRecord::create($validated);
         $this->logActivity($student, 'health_update', 'Health record created', null, $validated);
 
-        return $this->respond($request, ['success' => true, 'health_record' => $healthRecord], 201, 'Health record saved.');
+        return $this->respond($request, ['success' => true, 'health_record' => $healthRecord], 201, 'تم حفظ السجل الصحي.');
     }
 
     public function updateHealthRecord(Request $request, Student $student, HealthRecord $healthRecord): JsonResponse
@@ -463,10 +463,10 @@ class StudentController extends Controller
 
         if ($existing) {
             if (! $request->expectsJson()) {
-                return back()->withInput()->with('error', 'Student already enrolled in this batch.');
+                return back()->withInput()->with('error', 'التلميذ مسجل بالفعل في هذه الدفعة.');
             }
 
-            return response()->json(['error' => 'Student already enrolled in this batch'], 409);
+            return response()->json(['error' => 'التلميذ مسجل بالفعل في هذه الدفعة'], 409);
         }
 
         $validated['student_id'] = $student->student_id;
@@ -475,7 +475,7 @@ class StudentController extends Controller
         // Log activity
         $this->logActivity($student, 'enrollment', 'Student enrolled in batch');
 
-        return $this->respond($request, ['success' => true, 'enrollment' => $enrollment], 201, 'Student enrolled successfully.');
+        return $this->respond($request, ['success' => true, 'enrollment' => $enrollment], 201, 'تم تسجيل التلميذ بنجاح.');
     }
 
     public function updateEnrollment(Request $request, Student $student, StudentEnrollment $enrollment): JsonResponse
@@ -550,7 +550,7 @@ class StudentController extends Controller
             'to_batch_id' => $validated['to_batch_id'],
         ]);
 
-        return $this->respond($request, ['success' => true, 'promotion' => $promotion, 'new_enrollment' => $newEnrollment], 201, 'Student promoted successfully.');
+        return $this->respond($request, ['success' => true, 'promotion' => $promotion, 'new_enrollment' => $newEnrollment], 201, 'تمت ترقية التلميذ بنجاح.');
     }
 
     public function destroyPromotion(Student $student, PromotionHistory $promotion): JsonResponse
@@ -592,7 +592,7 @@ class StudentController extends Controller
         $document = StudentDocument::create($validated);
         $this->logActivity($student, 'document_upload', "Document uploaded: {$document->document_type}");
 
-        return $this->respond($request, ['success' => true, 'document' => $document], 201, 'Document saved.');
+        return $this->respond($request, ['success' => true, 'document' => $document], 201, 'تم حفظ الوثيقة.');
     }
 
     public function updateDocument(Request $request, Student $student, StudentDocument $document): JsonResponse
@@ -664,7 +664,7 @@ class StudentController extends Controller
         // Log activity
         $this->logActivity($student, 'other', "Contact added: {$contact->contact_type}");
 
-        return $this->respond($request, ['success' => true, 'contact' => $contact], 201, 'Contact saved.');
+        return $this->respond($request, ['success' => true, 'contact' => $contact], 201, 'تم حفظ جهة الاتصال.');
     }
 
     public function updateContact(Request $request, Student $student, StudentContact $contact): JsonResponse

@@ -53,7 +53,7 @@ class RoleApiController extends Controller
     {
         $role->delete();
 
-        return response()->json(['message' => 'Role deleted.']);
+        return response()->json(['message' => 'تم حذف الدور.']);
     }
 
     public function syncPermissions(Request $request, Role $role): JsonResponse
