@@ -14,34 +14,34 @@
         @csrf
         @if($method !== 'POST') @method($method) @endif
 
-        <x-core-package::card title="Hostel Information">
+        <x-core-package::card title="معلومات المرقد">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;">
                 <x-core-package::form.input
-                    name="hostel_name" label="Hostel Name" required
-                    placeholder="e.g. Boys Hostel A"
+                    name="hostel_name" label="اسم المرقد" required
+                    placeholder="مثال: مرقد الذكور أ"
                     value="{{ old('hostel_name', $hostel->hostel_name ?? '') }}" />
 
-                <x-core-package::form.select name="hostel_type" label="Hostel Type" required>
-                    <option value="">— Select Type —</option>
+                <x-core-package::form.select name="hostel_type" label="نوع المرقد" required>
+                    <option value="">— اختر النوع —</option>
                     @foreach(['Boys','Girls','Co-ed'] as $t)
-                    <option value="{{ $t }}" @selected(old('hostel_type', $hostel->hostel_type ?? '') === $t)>{{ $t }}</option>
+                    <option value="{{ $t }}" @selected(old('hostel_type', $hostel->hostel_type ?? '') === $t)>{{ $t == 'Boys' ? 'ذكور' : ($t == 'Girls' ? 'إناث' : 'مختلط') }}</option>
                     @endforeach
                 </x-core-package::form.select>
 
                 <x-core-package::form.input
-                    name="total_capacity" label="Total Capacity" type="number" required
-                    placeholder="e.g. 100"
+                    name="total_capacity" label="السعة الكلية" type="number" required
+                    placeholder="مثال: 100"
                     value="{{ old('total_capacity', $hostel->total_capacity ?? '') }}" />
 
                 <x-core-package::form.input
-                    name="available_capacity" label="Available Capacity" type="number" required
-                    placeholder="e.g. 50"
+                    name="available_capacity" label="السعة المتاحة" type="number" required
+                    placeholder="مثال: 50"
                     value="{{ old('available_capacity', $hostel->available_capacity ?? '') }}" />
 
                 <div style="grid-column:1/-1;">
                     <x-core-package::form.input
-                        name="location" label="Location"
-                        placeholder="e.g. North Campus Block A"
+                        name="location" label="الموقع"
+                        placeholder="مثال: الجناح الشمالي أ"
                         value="{{ old('location', $hostel->location ?? '') }}" />
                 </div>
             </div>
@@ -49,9 +49,9 @@
 
         <div style="display:flex;gap:.75rem;">
             <x-core-package::btn type="submit" color="primary">
-                {{ isset($hostel) ? 'Update Hostel' : 'Create Hostel' }}
+                {{ isset($hostel) ? 'تحديث المرقد' : 'إنشاء مرقد' }}
             </x-core-package::btn>
-            <x-core-package::btn :href="route('hostels.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn :href="route('hostels.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
     </form>
 </div>

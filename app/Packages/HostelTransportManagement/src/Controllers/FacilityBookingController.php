@@ -48,7 +48,7 @@ class FacilityBookingController extends Controller
         FacilityBooking::create($validated);
 
         return redirect()->route('facility-bookings.index')
-            ->with('success', 'Booking created successfully.');
+            ->with('success', 'تم إنشاء الحجز بنجاح.');
     }
 
     public function show(FacilityBooking $facilityBooking): View
@@ -78,7 +78,7 @@ class FacilityBookingController extends Controller
         $facilityBooking->update($validated);
 
         return redirect()->route('facility-bookings.index')
-            ->with('success', 'Booking updated successfully.');
+            ->with('success', 'تم تحديث الحجز بنجاح.');
     }
 
     public function destroy(FacilityBooking $facilityBooking): RedirectResponse
@@ -86,6 +86,6 @@ class FacilityBookingController extends Controller
         $facilityBooking->delete();
 
         return redirect()->route('facility-bookings.index')
-            ->with('success', 'Booking deleted.');
+            ->with('success', 'تم حذف الحجز.');
     }
 }

@@ -2,9 +2,9 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('roles.index') }}" style="color:#64748b;text-decoration:none;">Roles</a>
+    <a href="{{ route('roles.index') }}" style="color:#64748b;text-decoration:none;">الأدوار</a>
     <span style="margin:0 .375rem;">›</span>
-    <span style="color:#374151;font-weight:500;">New Role</span>
+    <span style="color:#374151;font-weight:500;">دور جديد</span>
 </nav>
 @endsection
 
@@ -13,8 +13,8 @@
 <div style="max-width:640px;">
 
 <div style="margin-bottom:1.5rem;">
-    <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Create Role</h1>
-    <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">Define a new role in the system</p>
+    <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">إنشاء دور</h1>
+    <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">حدد دورا جديدا في النظام</p>
 </div>
 
 @if($errors->any())
@@ -31,15 +31,15 @@
     <form method="POST" action="{{ route('roles.store') }}">
         @csrf
         <div style="display:flex;flex-direction:column;gap:1rem;">
-            <x-core-package::form.input name="name" label="Role Name" type="text" required
-                :value="old('name')" placeholder="e.g. Admin, Teacher, Accountant" />
+            <x-core-package::form.input name="name" label="اسم الدور" type="text" required
+                :value="old('name')" placeholder="مثال: Admin, Teacher, Accountant" />
 
-            <x-core-package::form.textarea name="description" label="Description" rows="3"
-                hint="Optional description of what this role can do">{{ old('description') }}</x-core-package::form.textarea>
+            <x-core-package::form.textarea name="description" label="الوصف" rows="3"
+                hint="وصف اختياري لما يمكن لهذا الدور فعله">{{ old('description') }}</x-core-package::form.textarea>
 
             <div style="display:flex;gap:.75rem;padding-top:.5rem;">
-                <x-core-package::btn type="submit" color="primary">Create Role</x-core-package::btn>
-                <x-core-package::btn :href="route('roles.index')" color="secondary">Cancel</x-core-package::btn>
+                <x-core-package::btn type="submit" color="primary">إنشاء دور</x-core-package::btn>
+                <x-core-package::btn :href="route('roles.index')" color="secondary">إلغاء</x-core-package::btn>
             </div>
         </div>
     </form>

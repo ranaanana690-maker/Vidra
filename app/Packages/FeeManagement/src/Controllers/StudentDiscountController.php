@@ -44,7 +44,7 @@ class StudentDiscountController extends Controller
             'fee_structure_id' => 'required|integer',
         ]);
         StudentDiscount::create($validated);
-        return redirect()->route('studentDiscount.index')->with('success', 'Discount assigned to student successfully.');
+        return redirect()->route('studentDiscount.index')->with('success', 'تم إسناد التخفيض للتلميذ بنجاح.');
     }
 
     public function show(StudentDiscount $studentDiscount): View
@@ -69,12 +69,12 @@ class StudentDiscountController extends Controller
             'fee_structure_id' => 'required|integer',
         ]);
         $studentDiscount->update($validated);
-        return redirect()->route('studentDiscount.index')->with('success', 'Student discount updated successfully.');
+        return redirect()->route('studentDiscount.index')->with('success', 'تم تحديث تخفيض التلميذ بنجاح.');
     }
 
     public function destroy(StudentDiscount $studentDiscount): RedirectResponse
     {
         $studentDiscount->delete();
-        return redirect()->route('studentDiscount.index')->with('success', 'Student discount removed.');
+        return redirect()->route('studentDiscount.index')->with('success', 'تمت إزالة تخفيض التلميذ.');
     }
 }

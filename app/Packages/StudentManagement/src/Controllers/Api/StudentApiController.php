@@ -240,7 +240,7 @@ class StudentApiController extends BaseController
     {
         $student->delete();
 
-        return response()->json(['message' => 'Student deleted successfully']);
+        return response()->json(['message' => 'تم حذف التلميذ بنجاح.']);
     }
 
     // Parent Info endpoints
@@ -407,7 +407,7 @@ class StudentApiController extends BaseController
             ->first();
 
         if ($existing) {
-            return response()->json(['error' => 'Student already enrolled in this batch'], 409);
+            return response()->json(['error' => 'التلميذ مسجل بالفعل في هذه الدفعة'], 409);
         }
 
         $validated['student_id'] = $student->student_id;

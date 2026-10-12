@@ -77,7 +77,7 @@ class StaffController extends Controller
             return response()->json($staff->load($this->relations()), 201);
         }
 
-        return redirect()->route('staff.show', $staff)->with('success', 'Staff member created successfully.');
+        return redirect()->route('staff.show', $staff)->with('success', 'تم إنشاء عضو الطاقم بنجاح.');
     }
 
     public function show(Staff $staff): View
@@ -134,7 +134,7 @@ class StaffController extends Controller
             return response()->json($staff->load($this->relations()));
         }
 
-        return redirect()->route('staff.show', $staff)->with('success', 'Staff member updated successfully.');
+        return redirect()->route('staff.show', $staff)->with('success', 'تم تحديث عضو الطاقم بنجاح.');
     }
 
     public function destroy(Request $request, Staff $staff): RedirectResponse|JsonResponse
@@ -145,7 +145,7 @@ class StaffController extends Controller
             return response()->json(['success' => true]);
         }
 
-        return redirect()->route('staff.index')->with('success', 'Staff member deleted successfully.');
+        return redirect()->route('staff.index')->with('success', 'تم حذف عضو الطاقم بنجاح.');
     }
 
     public function storeDepartment(Request $request): RedirectResponse|JsonResponse
@@ -157,7 +157,7 @@ class StaffController extends Controller
 
         $department = Department::create($validated);
 
-        return $this->respond($request, ['success' => true, 'department' => $department], 201, 'Department saved.');
+        return $this->respond($request, ['success' => true, 'department' => $department], 201, 'تم حفظ القسم الإداري.');
     }
 
     public function storeQualification(Request $request, Staff $staff): RedirectResponse|JsonResponse
@@ -171,7 +171,7 @@ class StaffController extends Controller
 
         $qualification = $staff->qualifications()->create($validated);
 
-        return $this->respond($request, ['success' => true, 'qualification' => $qualification], 201, 'Qualification saved.');
+        return $this->respond($request, ['success' => true, 'qualification' => $qualification], 201, 'تم حفظ المؤهل.');
     }
 
     public function destroyQualification(Staff $staff, Qualification $qualification): JsonResponse
@@ -191,7 +191,7 @@ class StaffController extends Controller
 
         $assignment = $staff->teacherAssignments()->create($validated);
 
-        return $this->respond($request, ['success' => true, 'assignment' => $assignment], 201, 'Teacher assignment saved.');
+        return $this->respond($request, ['success' => true, 'assignment' => $assignment], 201, 'تم حفظ إسناد الأستاذ.');
     }
 
     public function storeAttendance(Request $request, Staff $staff): RedirectResponse|JsonResponse
@@ -204,7 +204,7 @@ class StaffController extends Controller
 
         $attendance = $staff->attendances()->create($validated);
 
-        return $this->respond($request, ['success' => true, 'attendance' => $attendance], 201, 'Attendance saved.');
+        return $this->respond($request, ['success' => true, 'attendance' => $attendance], 201, 'تم حفظ الحضور.');
     }
 
     public function storeSalary(Request $request, Staff $staff): RedirectResponse|JsonResponse
@@ -222,7 +222,7 @@ class StaffController extends Controller
 
         $salary = $staff->salaries()->create($validated);
 
-        return $this->respond($request, ['success' => true, 'salary' => $salary], 201, 'Salary record saved.');
+        return $this->respond($request, ['success' => true, 'salary' => $salary], 201, 'تم حفظ سجل الراتب.');
     }
 
     public function storeReview(Request $request, Staff $staff): RedirectResponse|JsonResponse
@@ -237,7 +237,7 @@ class StaffController extends Controller
 
         $review = $staff->performanceReviews()->create($validated);
 
-        return $this->respond($request, ['success' => true, 'review' => $review], 201, 'Performance review saved.');
+        return $this->respond($request, ['success' => true, 'review' => $review], 201, 'تم حفظ تقييم الأداء.');
     }
 
     public function storeLeaveRequest(Request $request, Staff $staff): RedirectResponse|JsonResponse
@@ -257,7 +257,7 @@ class StaffController extends Controller
 
         $leaveRequest = $staff->leaveRequests()->create($validated);
 
-        return $this->respond($request, ['success' => true, 'leave_request' => $leaveRequest], 201, 'Leave request saved.');
+        return $this->respond($request, ['success' => true, 'leave_request' => $leaveRequest], 201, 'تم حفظ طلب الإجازة.');
     }
 
     public function storeDepartmentAssignment(Request $request, Staff $staff): RedirectResponse|JsonResponse
@@ -281,7 +281,7 @@ class StaffController extends Controller
             ]
         );
 
-        return $this->respond($request, ['success' => true, 'department_assignment' => $assignment], 201, 'Department assignment saved.');
+        return $this->respond($request, ['success' => true, 'department_assignment' => $assignment], 201, 'تم حفظ إسناد القسم الإداري.');
     }
 
     private function validateStaff(Request $request, bool $creating, ?Staff $staff = null): array

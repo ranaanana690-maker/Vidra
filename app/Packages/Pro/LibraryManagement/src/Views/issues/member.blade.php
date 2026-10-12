@@ -2,18 +2,18 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('library.members.index') }}" style="color:#64748b;text-decoration:none;">Members</a>
+    <a href="{{ route('library.members.index') }}" style="color:#64748b;text-decoration:none;">الأعضاء</a>
     <span style="margin:0 .375rem;">›</span>
     <a href="{{ route('library.members.show', $member) }}" style="color:#64748b;text-decoration:none;">{{ $member->name }}</a>
     <span style="margin:0 .375rem;">›</span>
-    <span style="color:#374151;font-weight:500;">Issue History</span>
+    <span style="color:#374151;font-weight:500;">سجل الإعارات</span>
 </nav>
 @endsection
 
 @section('content')
 
 <div style="margin-bottom:1.5rem;">
-    <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Issue History — {{ $member->name }}</h1>
+    <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">سجل الإعارات — {{ $member->name }}</h1>
     <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">{{ $member->membership_number }}</p>
 </div>
 
@@ -22,11 +22,11 @@
         <table style="width:100%;border-collapse:collapse;font-size:.8125rem;">
             <thead>
                 <tr style="background:#f8fafc;">
-                    <th style="padding:.625rem 1.25rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Book</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Issued</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Due</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Returned</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Status</th>
+                    <th style="padding:.625rem 1.25rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">الكتاب</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">تاريخ الإعارة</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">الاستحقاق</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">تاريخ الإرجاع</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">الحالة</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +45,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="5" style="padding:2.5rem;text-align:center;color:#94a3b8;font-size:.875rem;">No issue history for this member.</td>
+                <td colspan="5" style="padding:2.5rem;text-align:center;color:#94a3b8;font-size:.875rem;">لا يوجد سجل إعارات لهذا العضو.</td>
             </tr>
             @endforelse
             </tbody>

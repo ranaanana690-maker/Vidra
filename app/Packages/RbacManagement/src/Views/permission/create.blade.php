@@ -2,9 +2,9 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <a href="{{ route('permissions.index') }}" style="color:#64748b;text-decoration:none;">Permissions</a>
+    <a href="{{ route('permissions.index') }}" style="color:#64748b;text-decoration:none;">الصلاحيات</a>
     <span style="margin:0 .375rem;">›</span>
-    <span style="color:#374151;font-weight:500;">New Permission</span>
+    <span style="color:#374151;font-weight:500;">صلاحية جديدة</span>
 </nav>
 @endsection
 
@@ -13,8 +13,8 @@
 <div style="max-width:640px;">
 
 <div style="margin-bottom:1.5rem;">
-    <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Create Permission</h1>
-    <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">Define a new granular permission</p>
+    <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">إنشاء صلاحية</h1>
+    <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">حدد صلاحية دقيقة جديدة</p>
 </div>
 
 @if($errors->any())
@@ -31,28 +31,28 @@
     <form method="POST" action="{{ route('permissions.store') }}">
         @csrf
         <div style="display:flex;flex-direction:column;gap:1rem;">
-            <x-core-package::form.input name="name" label="Permission Name" type="text" required
-                :value="old('name')" placeholder="e.g. view students, edit grades, manage fees" />
+            <x-core-package::form.input name="name" label="اسم الصلاحية" type="text" required
+                :value="old('name')" placeholder="مثال: view students, edit grades, manage fees" />
 
-            <x-core-package::form.select name="module_name" label="Module">
-                <option value="">— Select Module —</option>
+            <x-core-package::form.select name="module_name" label="الوحدة">
+                <option value="">— Select الوحدة —</option>
                 @foreach($modules as $mod)
                 <option value="{{ $mod }}" @selected(old('module_name') === $mod)>{{ $mod }}</option>
                 @endforeach
-                <option value="__new__">+ Add new module...</option>
+                <option value="__new__">+ إضافة new module...</option>
             </x-core-package::form.select>
 
             <div id="new-module-field" style="display:none;">
-                <x-core-package::form.input name="module_name_new" label="New Module Name" type="text"
-                    hint="Type a new module name if not listed above" />
+                <x-core-package::form.input name="module_name_new" label="اسم الوحدة الجديدة" type="text"
+                    hint="اكتب اسم وحدة جديدة إذا لم تكن مذكورة أعلاه" />
             </div>
 
-            <x-core-package::form.textarea name="description" label="Description" rows="3"
-                hint="Optional: describe what this permission allows">{{ old('description') }}</x-core-package::form.textarea>
+            <x-core-package::form.textarea name="description" label="الوصف" rows="3"
+                hint="اختياري: صف ما تسمح به هذه الصلاحية">{{ old('description') }}</x-core-package::form.textarea>
 
             <div style="display:flex;gap:.75rem;padding-top:.5rem;">
-                <x-core-package::btn type="submit" color="primary">Create Permission</x-core-package::btn>
-                <x-core-package::btn :href="route('permissions.index')" color="secondary">Cancel</x-core-package::btn>
+                <x-core-package::btn type="submit" color="primary">إنشاء صلاحية</x-core-package::btn>
+                <x-core-package::btn :href="route('permissions.index')" color="secondary">إلغاء</x-core-package::btn>
             </div>
         </div>
     </form>

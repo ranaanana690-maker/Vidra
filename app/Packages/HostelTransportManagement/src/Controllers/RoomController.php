@@ -53,7 +53,7 @@ class RoomController extends Controller
         Room::create($validated);
 
         return redirect()->route('hostel-rooms.index')
-            ->with('success', 'Room created successfully.');
+            ->with('success', 'تم إنشاء القاعة بنجاح.');
     }
 
     public function show(Room $room): View
@@ -83,7 +83,7 @@ class RoomController extends Controller
         $room->update($validated);
 
         return redirect()->route('hostel-rooms.index')
-            ->with('success', 'Room updated successfully.');
+            ->with('success', 'تم تحديث القاعة بنجاح.');
     }
 
     public function destroy(Room $room): RedirectResponse
@@ -91,6 +91,6 @@ class RoomController extends Controller
         $room->delete();
 
         return redirect()->route('hostel-rooms.index')
-            ->with('success', 'Room deleted.');
+            ->with('success', 'تم حذف القاعة.');
     }
 }

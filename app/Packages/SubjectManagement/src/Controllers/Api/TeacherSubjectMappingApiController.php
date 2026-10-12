@@ -50,6 +50,6 @@ class TeacherSubjectMappingApiController extends Controller
     {
         $teacherSubjectMapping->delete();
 
-        return response()->json(['message' => 'TeacherSubjectMapping deleted']);
+        return response()->json(['message' => 'تم حذف إسناد الأستاذ.']);
     }
 }

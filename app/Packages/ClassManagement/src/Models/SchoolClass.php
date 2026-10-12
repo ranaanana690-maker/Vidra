@@ -25,23 +25,23 @@ class SchoolClass extends Model
         'is_active',
     ];
 
-    /** DZ tutoring-center levels (DB values are stable codes; labels are English until the Arabic phase). */
+    /** DZ tutoring-center levels (DB values are stable codes; labels are Arabic). */
     public const LEVELS = [
-        'primary' => 'Primary',
-        'middle' => 'Middle',
-        'secondary' => 'Secondary',
+        'primary' => 'ابتدائي',
+        'middle' => 'متوسط',
+        'secondary' => 'ثانوي',
     ];
 
     /** DZ secondary streams (only meaningful when level = secondary). */
     public const STREAMS = [
-        'tc-st' => 'TC Science & Technology',
-        'tc-l' => 'TC Letters',
-        'se' => 'Experimental Sciences',
-        'math' => 'Mathematics',
-        'tm' => 'Technical Mathematics',
-        'ge' => 'Management & Economics',
-        'philo' => 'Literature & Philosophy',
-        'lang' => 'Foreign Languages',
+        'tc-st' => 'جذع مشترك علوم وتكنولوجيا',
+        'tc-l' => 'جذع مشترك آداب',
+        'se' => 'علوم تجريبية',
+        'math' => 'رياضيات',
+        'tm' => 'تقني رياضي',
+        'ge' => 'تسيير واقتصاد',
+        'philo' => 'آداب وفلسفة',
+        'lang' => 'لغات أجنبية',
     ];
 
     protected $casts = [

@@ -24,6 +24,6 @@ class ContactController extends Controller
 
         ContactInquiry::create($validated);
 
-        return redirect()->route('contact.index')->with('success', 'Thank you! Your message has been received. We will get back to you soon.');
+        return redirect()->route('contact.index')->with('success', 'شكرا لك! تم استلام رسالتك. سنرد عليك قريبا.');
     }
 }

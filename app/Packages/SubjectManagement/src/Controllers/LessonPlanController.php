@@ -48,7 +48,7 @@ class LessonPlanController extends Controller
         LessonPlan::create($validated);
 
         return redirect()->route('lesson-plans.index')
-            ->with('success', 'Lesson plan created successfully.');
+            ->with('success', 'تم إنشاء خطة الدرس بنجاح.');
     }
 
     public function show(LessonPlan $lessonPlan): View
@@ -78,7 +78,7 @@ class LessonPlanController extends Controller
         $lessonPlan->update($validated);
 
         return redirect()->route('lesson-plans.index')
-            ->with('success', 'Lesson plan updated successfully.');
+            ->with('success', 'تم تحديث خطة الدرس بنجاح.');
     }
 
     public function destroy(LessonPlan $lessonPlan): RedirectResponse
@@ -86,6 +86,6 @@ class LessonPlanController extends Controller
         $lessonPlan->delete();
 
         return redirect()->route('lesson-plans.index')
-            ->with('success', 'Lesson plan deleted.');
+            ->with('success', 'تم حذف خطة الدرس.');
     }
 }

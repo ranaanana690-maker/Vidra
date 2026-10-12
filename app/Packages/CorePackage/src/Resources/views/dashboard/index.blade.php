@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <span style="color:#374151;font-weight:500;">Dashboard</span>
+    <span style="color:#374151;font-weight:500;">لوحة التحكم</span>
 </nav>
 @endsection
 
@@ -11,8 +11,8 @@
 <div style="padding:1.5rem;max-width:100%;margin:0 auto;">
     <!-- Header -->
     <div style="margin-bottom:2rem;">
-        <h1 style="font-size:1.875rem;font-weight:700;color:#1e293b;margin:0;">Dashboard</h1>
-        <p style="font-size:.875rem;color:#64748b;margin:.5rem 0 0;">Welcome back! Here's an overview of your school</p>
+        <h1 style="font-size:1.875rem;font-weight:700;color:#1e293b;margin:0;">لوحة التحكم</h1>
+        <p style="font-size:.875rem;color:#64748b;margin:.5rem 0 0;">مرحباً بعودتك! نظرة عامة على مركزك</p>
     </div>
 
     <!-- Stats Cards -->
@@ -21,7 +21,7 @@
         <div style="background:#fff;border:1px solid #e2e8f0;border-radius:.5rem;padding:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
             <div style="display:flex;align-items:center;justify-content:space-between;">
                 <div>
-                    <p style="font-size:.875rem;color:#64748b;margin:0 0 .5rem;">Total Students</p>
+                    <p style="font-size:.875rem;color:#64748b;margin:0 0 .5rem;">مجموع التلاميذ</p>
                     <p style="font-size:2rem;font-weight:700;color:#1e293b;margin:0;">{{ $totalStudents }}</p>
                 </div>
                 <div style="background:#ede9fe;border-radius:.5rem;padding:1rem;color:#7c3aed;">
@@ -34,7 +34,7 @@
         <div style="background:#fff;border:1px solid #e2e8f0;border-radius:.5rem;padding:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
             <div style="display:flex;align-items:center;justify-content:space-between;">
                 <div>
-                    <p style="font-size:.875rem;color:#64748b;margin:0 0 .5rem;">Total Staff</p>
+                    <p style="font-size:.875rem;color:#64748b;margin:0 0 .5rem;">مجموع الطاقم</p>
                     <p style="font-size:2rem;font-weight:700;color:#1e293b;margin:0;">{{ $totalStaff }}</p>
                 </div>
                 <div style="background:#fce7f3;border-radius:.5rem;padding:1rem;color:#ec4899;">
@@ -47,7 +47,7 @@
         <div style="background:#fff;border:1px solid #e2e8f0;border-radius:.5rem;padding:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
             <div style="display:flex;align-items:center;justify-content:space-between;">
                 <div>
-                    <p style="font-size:.875rem;color:#64748b;margin:0 0 .5rem;">Total Classes</p>
+                    <p style="font-size:.875rem;color:#64748b;margin:0 0 .5rem;">مجموع الأقسام</p>
                     <p style="font-size:2rem;font-weight:700;color:#1e293b;margin:0;">{{ $totalClasses }}</p>
                 </div>
                 <div style="background:#dcfce7;border-radius:.5rem;padding:1rem;color:#16a34a;">
@@ -60,8 +60,8 @@
         <div style="background:#fff;border:1px solid #e2e8f0;border-radius:.5rem;padding:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
             <div style="display:flex;align-items:center;justify-content:space-between;">
                 <div>
-                    <p style="font-size:.875rem;color:#64748b;margin:0 0 .5rem;">Total Fees</p>
-                    <p style="font-size:2rem;font-weight:700;color:#1e293b;margin:0;">${{ $totalFees }}</p>
+                    <p style="font-size:.875rem;color:#64748b;margin:0 0 .5rem;">مجموع الرسوم</p>
+                    <p style="font-size:2rem;font-weight:700;color:#1e293b;margin:0;">{{ $totalFees }} دج</p>
                 </div>
                 <div style="background:#fef3c7;border-radius:.5rem;padding:1rem;color:#ca8a04;">
                     <svg style="width:2rem;height:2rem;" fill="currentColor" viewBox="0 0 20 20"><path d="M8.5 5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM12.027 12.857a4 4 0 11-5.054 0"></path></svg>
@@ -74,29 +74,29 @@
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:1.5rem;margin-bottom:2rem;">
         <!-- Student Growth Chart -->
         <div style="background:#fff;border:1px solid #e2e8f0;border-radius:.5rem;padding:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
-            <h3 style="font-size:1rem;font-weight:600;color:#1e293b;margin:0 0 1rem;">Student Growth (Last 6 Months)</h3>
+            <h3 style="font-size:1rem;font-weight:600;color:#1e293b;margin:0 0 1rem;">نمو التلاميذ (آخر 6 أشهر)</h3>
             <canvas id="studentGrowthChart" style="max-height:300px;"></canvas>
         </div>
 
         <!-- Attendance Rate -->
         <div style="background:#fff;border:1px solid #e2e8f0;border-radius:.5rem;padding:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
-            <h3 style="font-size:1rem;font-weight:600;color:#1e293b;margin:0 0 1rem;">Attendance Rate</h3>
+            <h3 style="font-size:1rem;font-weight:600;color:#1e293b;margin:0 0 1rem;">نسبة الحضور</h3>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
                 <div style="text-align:center;">
                     <p style="font-size:1.5rem;font-weight:700;color:#16a34a;margin:0;">{{ $attendanceRate['present'] }}</p>
-                    <p style="font-size:.75rem;color:#64748b;margin:.5rem 0 0;">Present</p>
+                    <p style="font-size:.75rem;color:#64748b;margin:.5rem 0 0;">حاضر</p>
                 </div>
                 <div style="text-align:center;">
                     <p style="font-size:1.5rem;font-weight:700;color:#ef4444;margin:0;">{{ $attendanceRate['absent'] }}</p>
-                    <p style="font-size:.75rem;color:#64748b;margin:.5rem 0 0;">Absent</p>
+                    <p style="font-size:.75rem;color:#64748b;margin:.5rem 0 0;">غائب</p>
                 </div>
                 <div style="text-align:center;">
                     <p style="font-size:1.5rem;font-weight:700;color:#f59e0b;margin:0;">{{ $attendanceRate['late'] }}</p>
-                    <p style="font-size:.75rem;color:#64748b;margin:.5rem 0 0;">Late</p>
+                    <p style="font-size:.75rem;color:#64748b;margin:.5rem 0 0;">متأخر</p>
                 </div>
                 <div style="text-align:center;">
                     <p style="font-size:1.5rem;font-weight:700;color:#0ea5e9;margin:0;">{{ $attendanceRate['total'] }}</p>
-                    <p style="font-size:.75rem;color:#64748b;margin:.5rem 0 0;">Total</p>
+                    <p style="font-size:.75rem;color:#64748b;margin:.5rem 0 0;">المجموع</p>
                 </div>
             </div>
             <div style="width:100%;height:200px;">
@@ -109,13 +109,13 @@
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:1.5rem;margin-bottom:2rem;">
         <!-- Fee Collection -->
         <div style="background:#fff;border:1px solid #e2e8f0;border-radius:.5rem;padding:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
-            <h3 style="font-size:1rem;font-weight:600;color:#1e293b;margin:0 0 1rem;">Fee Collection (Last 6 Months)</h3>
+            <h3 style="font-size:1rem;font-weight:600;color:#1e293b;margin:0 0 1rem;">تحصيل الرسوم (آخر 6 أشهر)</h3>
             <canvas id="feeCollectionChart" style="max-height:300px;"></canvas>
         </div>
 
         <!-- Staff Distribution -->
         <div style="background:#fff;border:1px solid #e2e8f0;border-radius:.5rem;padding:1.5rem;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
-            <h3 style="font-size:1rem;font-weight:600;color:#1e293b;margin:0 0 1rem;">Staff Distribution</h3>
+            <h3 style="font-size:1rem;font-weight:600;color:#1e293b;margin:0 0 1rem;">توزيع الطاقم</h3>
             <canvas id="staffDistributionChart" style="max-height:300px;"></canvas>
         </div>
     </div>
@@ -125,7 +125,7 @@
         <!-- Recent Messages -->
         <div style="background:#fff;border:1px solid #e2e8f0;border-radius:.5rem;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
             <div style="background:#f8fafc;border-bottom:1px solid #e2e8f0;padding:1rem 1.5rem;">
-                <h3 style="font-size:1rem;font-weight:600;color:#1e293b;margin:0;">Recent Messages</h3>
+                <h3 style="font-size:1rem;font-weight:600;color:#1e293b;margin:0;">أحدث الرسائل</h3>
             </div>
             <div style="padding:1.5rem;">
                 @if(count($recentMessages) > 0)
@@ -137,7 +137,7 @@
                     </div>
                     @endforeach
                 @else
-                    <p style="color:#64748b;text-align:center;margin:2rem 0;">No messages yet</p>
+                    <p style="color:#64748b;text-align:center;margin:2rem 0;">لا توجد رسائل بعد</p>
                 @endif
             </div>
         </div>
@@ -145,7 +145,7 @@
         <!-- Upcoming Events -->
         <div style="background:#fff;border:1px solid #e2e8f0;border-radius:.5rem;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
             <div style="background:#f8fafc;border-bottom:1px solid #e2e8f0;padding:1rem 1.5rem;">
-                <h3 style="font-size:1rem;font-weight:600;color:#1e293b;margin:0;">Upcoming Events</h3>
+                <h3 style="font-size:1rem;font-weight:600;color:#1e293b;margin:0;">المناسبات القادمة</h3>
             </div>
             <div style="padding:1.5rem;">
                 @if(count($upcomingEvents) > 0)
@@ -157,7 +157,7 @@
                     </div>
                     @endforeach
                 @else
-                    <p style="color:#64748b;text-align:center;margin:2rem 0;">No upcoming events</p>
+                    <p style="color:#64748b;text-align:center;margin:2rem 0;">لا توجد مناسبات قادمة</p>
                 @endif
             </div>
         </div>
@@ -174,7 +174,7 @@
             data: {
                 labels: {!! json_encode($studentGrowth['labels']) !!},
                 datasets: [{
-                    label: 'New Students',
+                    label: 'تلاميذ جدد',
                     data: {!! json_encode($studentGrowth['data']) !!},
                     borderColor: '#0ea5e9',
                     backgroundColor: 'rgba(14, 165, 233, 0.1)',
@@ -201,7 +201,7 @@
         new Chart(attendanceCtx, {
             type: 'doughnut',
             data: {
-                labels: ['Present', 'Absent', 'Late'],
+                labels: ['حاضر', 'غائب', 'متأخر'],
                 datasets: [{
                     data: [{{ $attendanceRate['present'] }}, {{ $attendanceRate['absent'] }}, {{ $attendanceRate['late'] }}],
                     backgroundColor: ['#16a34a', '#ef4444', '#f59e0b']
@@ -225,7 +225,7 @@
             data: {
                 labels: {!! json_encode($feeCollection['labels']) !!},
                 datasets: [{
-                    label: 'Fee Amount',
+                    label: 'مبلغ الرسوم',
                     data: {!! json_encode($feeCollection['data']) !!},
                     backgroundColor: '#10b981'
                 }]

@@ -20,7 +20,7 @@ class CourseLevelController extends Controller
 
         $course->levels()->create($validated);
 
-        return back()->with('success', 'Level added successfully.');
+        return back()->with('success', 'تمت إضافة الطور بنجاح.');
     }
 
     public function update(Request $request, Course $course, CourseLevel $level): RedirectResponse
@@ -35,7 +35,7 @@ class CourseLevelController extends Controller
 
         $level->update($validated);
 
-        return back()->with('success', 'Level updated successfully.');
+        return back()->with('success', 'تم تحديث الطور بنجاح.');
     }
 
     public function destroy(Course $course, CourseLevel $level): RedirectResponse
@@ -44,6 +44,6 @@ class CourseLevelController extends Controller
 
         $level->delete();
 
-        return back()->with('success', 'Level deleted.');
+        return back()->with('success', 'تم حذف الطور.');
     }
 }

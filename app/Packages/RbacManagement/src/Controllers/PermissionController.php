@@ -49,7 +49,7 @@ class PermissionController extends Controller
             'module_name' => $validated['module_name'] ?? null,
         ]);
 
-        return redirect()->route('permissions.index')->with('success', 'Permission created successfully.');
+        return redirect()->route('permissions.index')->with('success', 'تم إنشاء الصلاحية بنجاح.');
     }
 
     public function show(Permission $permission): View
@@ -80,13 +80,13 @@ class PermissionController extends Controller
             'module_name' => $validated['module_name'] ?? null,
         ]);
 
-        return redirect()->route('permissions.index')->with('success', 'Permission updated successfully.');
+        return redirect()->route('permissions.index')->with('success', 'تم تحديث الصلاحية بنجاح.');
     }
 
     public function destroy(Permission $permission): RedirectResponse
     {
         $permission->delete();
 
-        return redirect()->route('permissions.index')->with('success', 'Permission deleted.');
+        return redirect()->route('permissions.index')->with('success', 'تم حذف الصلاحية.');
     }
 }

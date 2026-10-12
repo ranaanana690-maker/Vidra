@@ -68,7 +68,7 @@ class ClassController extends Controller
         SchoolClass::create($validated);
 
         return redirect()->route('classes.index')
-            ->with('success', 'Class created successfully.');
+            ->with('success', 'تم إنشاء القسم بنجاح.');
     }
 
     public function show(SchoolClass $schoolClass): View
@@ -104,7 +104,7 @@ class ClassController extends Controller
         $schoolClass->update($validated);
 
         return redirect()->route('classes.index')
-            ->with('success', 'Class updated successfully.');
+            ->with('success', 'تم تحديث القسم بنجاح.');
     }
 
     public function destroy(SchoolClass $schoolClass): RedirectResponse
@@ -112,6 +112,6 @@ class ClassController extends Controller
         $schoolClass->delete();
 
         return redirect()->route('classes.index')
-            ->with('success', 'Class deleted.');
+            ->with('success', 'تم حذف القسم.');
     }
 }

@@ -13,10 +13,10 @@
         @csrf
         @if($method !== 'POST') @method($method) @endif
 
-        <x-core-package::card title="Teacher-Subject Assignment">
+        <x-core-package::card title="إسناد الأستاذ للمادة">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;">
-                <x-core-package::form.select name="teacher_id" label="Teacher" required>
-                    <option value="">— Select Teacher —</option>
+                <x-core-package::form.select name="teacher_id" label="الأستاذ" required>
+                    <option value="">— اختر الأستاذ —</option>
                     @foreach($teachers as $teacher)
                     <option value="{{ $teacher->staff_id }}"
                         @selected((string) old('teacher_id', $teacherSubjectMapping->teacher_id ?? request('teacher_id')) === (string) $teacher->staff_id)>
@@ -24,8 +24,8 @@
                     </option>
                     @endforeach
                 </x-core-package::form.select>
-                <x-core-package::form.select name="subject_id" label="Subject" required>
-                    <option value="">— Select Subject —</option>
+                <x-core-package::form.select name="subject_id" label="المادة" required>
+                    <option value="">— اختر المادة —</option>
                     @foreach($subjects as $subject)
                     <option value="{{ $subject->subject_id }}"
                         @selected((string) old('subject_id', $teacherSubjectMapping->subject_id ?? request('subject_id')) === (string) $subject->subject_id)>
@@ -33,8 +33,8 @@
                     </option>
                     @endforeach
                 </x-core-package::form.select>
-                <x-core-package::form.select name="class_id" label="Class" required>
-                    <option value="">— Select Class —</option>
+                <x-core-package::form.select name="class_id" label="القسم" required>
+                    <option value="">— اختر القسم —</option>
                     @foreach($classes as $class)
                     <option value="{{ $class->class_id }}"
                         @selected((string) old('class_id', $teacherSubjectMapping->class_id ?? '') === (string) $class->class_id)>
@@ -42,8 +42,8 @@
                     </option>
                     @endforeach
                 </x-core-package::form.select>
-                <x-core-package::form.select name="section_id" label="Section (Optional)">
-                    <option value="">— All Sections —</option>
+                <x-core-package::form.select name="section_id" label="الفوج (اختياري)">
+                    <option value="">— كل الأفواج —</option>
                     @foreach($sections as $section)
                     <option value="{{ $section->section_id }}"
                         @selected((string) old('section_id', $teacherSubjectMapping->section_id ?? '') === (string) $section->section_id)>
@@ -56,9 +56,9 @@
 
         <div style="display:flex;gap:.75rem;">
             <x-core-package::btn type="submit" color="primary">
-                {{ isset($teacherSubjectMapping) ? 'Update Mapping' : 'Assign Teacher' }}
+                {{ isset($teacherSubjectMapping) ? 'Update Mapping' : 'إسناد أستاذ' }}
             </x-core-package::btn>
-            <x-core-package::btn :href="route('teacher-subject-mappings.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn :href="route('teacher-subject-mappings.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
     </form>
 </div>

@@ -4,7 +4,7 @@ namespace App\Packages\Pro\AlumniManagement\Services;
 
 use App\Packages\Pro\AlumniManagement\Models\AlumniProfile;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 class AlumniService
 {

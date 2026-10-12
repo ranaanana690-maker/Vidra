@@ -14,33 +14,33 @@
         @csrf
         @if($method !== 'POST') @method($method) @endif
 
-        <x-core-package::card title="Attendance Details">
+        <x-core-package::card title="تفاصيل الحضور">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;">
                 <x-core-package::form.input
-                    name="staff_id" label="Staff ID" required type="number"
-                    placeholder="e.g. 10"
+                    name="staff_id" label="معرف الموظف" required type="number"
+                    placeholder="مثال: 10"
                     value="{{ old('staff_id', $record->staff_id ?? '') }}" />
                 <x-core-package::form.input
-                    name="date" label="Date" required type="date"
+                    name="date" label="التاريخ" required type="date"
                     value="{{ old('date', isset($record) ? $record->date->format('Y-m-d') : '') }}" />
-                <x-core-package::form.select name="status" label="Status" required>
+                <x-core-package::form.select name="status" label="الحالة" required>
                     @foreach(['Present','Absent','Leave'] as $s)
-                    <option value="{{ $s }}" @selected(old('status', $record->status ?? 'Present') === $s)>{{ $s }}</option>
+                    <option value="{{ $s }}" @selected(old('status', $record->status ?? 'Present') === $s)>{{ $s == 'Present' ? 'حاضر' : ($s == 'Absent' ? 'غائب' : 'في رخصة') }}</option>
                     @endforeach
                 </x-core-package::form.select>
                 <div style="grid-column:1/-1;">
                     <x-core-package::form.textarea
-                        name="remarks" label="Remarks" rows="3"
-                        placeholder="Reason for absence or leave (optional)">{{ old('remarks', $record->remarks ?? '') }}</x-core-package::form.textarea>
+                        name="remarks" label="ملاحظات" rows="3"
+                        placeholder="سبب الغياب أو الرخصة (اختياري)">{{ old('remarks', $record->remarks ?? '') }}</x-core-package::form.textarea>
                 </div>
             </div>
         </x-core-package::card>
 
         <div style="display:flex;gap:.75rem;">
             <x-core-package::btn type="submit" color="primary">
-                {{ isset($record) ? 'Update Attendance' : 'Save Attendance' }}
+                {{ isset($record) ? 'تحديث الحضور' : 'حفظ الحضور' }}
             </x-core-package::btn>
-            <x-core-package::btn :href="route('teacherAttendance.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn :href="route('teacherAttendance.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
 
     </form>

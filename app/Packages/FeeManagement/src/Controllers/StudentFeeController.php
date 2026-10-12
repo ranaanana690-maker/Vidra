@@ -77,7 +77,7 @@ class StudentFeeController extends Controller
         $validated['payment_status']  = 'Pending';
 
         StudentFee::create($validated);
-        return redirect()->route('studentFee.index')->with('success', 'Student fee record created successfully.');
+        return redirect()->route('studentFee.index')->with('success', 'تم إنشاء سجل رسم التلميذ بنجاح.');
     }
 
     public function show(StudentFee $studentFee): View
@@ -112,12 +112,12 @@ class StudentFeeController extends Controller
         $studentFee->update($validated);
         $studentFee->syncPaymentStatus();
 
-        return redirect()->route('studentFee.index')->with('success', 'Student fee record updated successfully.');
+        return redirect()->route('studentFee.index')->with('success', 'تم تحديث سجل رسم التلميذ بنجاح.');
     }
 
     public function destroy(StudentFee $studentFee): RedirectResponse
     {
         $studentFee->delete();
-        return redirect()->route('studentFee.index')->with('success', 'Student fee record deleted.');
+        return redirect()->route('studentFee.index')->with('success', 'تم حذف سجل رسم التلميذ.');
     }
 }

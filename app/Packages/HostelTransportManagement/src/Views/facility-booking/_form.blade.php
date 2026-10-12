@@ -14,15 +14,15 @@
         @csrf
         @if($method !== 'POST') @method($method) @endif
 
-        <x-core-package::card title="Booking Details">
+        <x-core-package::card title="تفاصيل الحجز">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;">
                 <x-core-package::form.input
-                    name="student_id" label="Student ID" type="number" required
-                    placeholder="Enter student ID"
+                    name="student_id" label="معرف التلميذ" type="number" required
+                    placeholder="أدخل معرف التلميذ"
                     value="{{ old('student_id', $facilityBooking->student_id ?? '') }}" />
 
-                <x-core-package::form.select name="facility_id" label="Facility" required>
-                    <option value="">— Select Facility —</option>
+                <x-core-package::form.select name="facility_id" label="المرفق" required>
+                    <option value="">— اختر المرفق —</option>
                     @foreach($facilities as $f)
                     <option value="{{ $f->facility_id }}"
                         @selected((string) old('facility_id', $facilityBooking->facility_id ?? '') === (string) $f->facility_id)>
@@ -32,26 +32,26 @@
                 </x-core-package::form.select>
 
                 <x-core-package::form.input
-                    name="booking_date" label="Booking Date" type="date" required
+                    name="booking_date" label="تاريخ الحجز" type="date" required
                     value="{{ old('booking_date', isset($facilityBooking) ? $facilityBooking->booking_date?->format('Y-m-d') : '') }}" />
 
                 <div></div>
 
                 <x-core-package::form.input
-                    name="start_time" label="Start Time" type="time" required
+                    name="start_time" label="وقت البداية" type="time" required
                     value="{{ old('start_time', $facilityBooking->start_time ?? '') }}" />
 
                 <x-core-package::form.input
-                    name="end_time" label="End Time" type="time" required
+                    name="end_time" label="وقت النهاية" type="time" required
                     value="{{ old('end_time', $facilityBooking->end_time ?? '') }}" />
             </div>
         </x-core-package::card>
 
         <div style="display:flex;gap:.75rem;">
             <x-core-package::btn type="submit" color="primary">
-                {{ isset($facilityBooking) ? 'Update Booking' : 'Create Booking' }}
+                {{ isset($facilityBooking) ? 'تحديث الحجز' : 'إنشاء حجز' }}
             </x-core-package::btn>
-            <x-core-package::btn :href="route('facility-bookings.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn :href="route('facility-bookings.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
     </form>
 </div>

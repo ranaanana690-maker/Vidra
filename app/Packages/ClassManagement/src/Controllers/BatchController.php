@@ -70,7 +70,7 @@ class BatchController extends Controller
         Batch::create($validated);
 
         return redirect()->route('batches.index')
-            ->with('success', 'Batch created successfully.');
+            ->with('success', 'تم إنشاء الدفعة بنجاح.');
     }
 
     public function show(Batch $batch): View
@@ -110,7 +110,7 @@ class BatchController extends Controller
         $batch->update($validated);
 
         return redirect()->route('batches.index')
-            ->with('success', 'Batch updated successfully.');
+            ->with('success', 'تم تحديث الدفعة بنجاح.');
     }
 
     public function destroy(Batch $batch): RedirectResponse
@@ -118,6 +118,6 @@ class BatchController extends Controller
         $batch->delete();
 
         return redirect()->route('batches.index')
-            ->with('success', 'Batch deleted.');
+            ->with('success', 'تم حذف الدفعة.');
     }
 }

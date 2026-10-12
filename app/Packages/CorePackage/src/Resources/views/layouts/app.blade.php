@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', config('app.name', 'School Management'))</title>
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet"/>
+    <title>@yield('title', config('app.name', 'نظام إدارة مركز الدعم'))</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet"/>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-        body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+        body { font-family: 'Cairo', ui-sans-serif, system-ui, sans-serif; }
 
         /* ── Sidebar links ── */
         .sidebar-link { display:flex; align-items:center; gap:.75rem; padding:.5rem .75rem; border-radius:.5rem; font-size:.875rem; font-weight:500; transition:background .15s,color .15s; color:#475569; text-decoration:none; }
@@ -28,7 +29,7 @@
             display:flex; align-items:center; justify-content:space-between;
             width:100%; background:none; border:none; cursor:pointer;
             padding:.25rem .75rem; margin:.625rem 0 .2rem;
-            border-radius:.375rem; text-align:left;
+            border-radius:.375rem; text-align:right;
         }
         .section-toggle:hover .section-label { color:#64748b; }
         .section-label { font-size:.65rem; font-weight:600; color:#94a3b8; text-transform:uppercase; letter-spacing:.06em; }
@@ -39,15 +40,15 @@
 
         /* ── Full sidebar transitions ── */
         #sidebar {
-            position:fixed; inset-y:0; left:0; width:16rem; height:100vh;
-            background:#fff; border-right:1px solid #e2e8f0;
+            position:fixed; inset-y:0; right:0; width:16rem; height:100vh;
+            background:#fff; border-left:1px solid #e2e8f0;
             display:flex; flex-direction:column; z-index:30; overflow:hidden;
             transition:transform .25s ease;
         }
-        #sidebar.sidebar-hidden { transform:translateX(-100%); }
+        #sidebar.sidebar-hidden { transform:translateX(100%); }
 
-        #main-content { flex:1; display:flex; flex-direction:column; margin-left:16rem; min-width:0; transition:margin-left .25s ease; }
-        #main-content.no-sidebar { margin-left:0; }
+        #main-content { flex:1; display:flex; flex-direction:column; margin-right:16rem; min-width:0; transition:margin-right .25s ease; }
+        #main-content.no-sidebar { margin-right:0; }
 
         /* ── Mobile overlay ── */
         #sidebar-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.25); z-index:29; }
@@ -65,7 +66,7 @@
     <aside id="sidebar">
 
         {{-- Logo + close button --}}
-        <div style="height:4rem;display:flex;align-items:center;gap:.75rem;padding:0 .625rem 0 1.25rem;border-bottom:1px solid #f1f5f9;flex-shrink:0;">
+        <div style="height:4rem;display:flex;align-items:center;gap:.75rem;padding:0 1.25rem 0 .625rem;border-bottom:1px solid #f1f5f9;flex-shrink:0;">
             <div style="width:2.25rem;height:2.25rem;background:linear-gradient(135deg,#4f46e5,#6366f1);border-radius:.625rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 1px 3px rgba(79,70,229,.3);">
                 <svg style="width:1.125rem;height:1.125rem;color:#fff;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
@@ -73,9 +74,9 @@
             </div>
             <div style="min-width:0;flex:1;">
                 <p style="font-size:.875rem;font-weight:700;color:#1e293b;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ config('app.name', 'School Management') }}</p>
-                <p style="font-size:.65rem;color:#94a3b8;margin:0;">Management System</p>
+                <p style="font-size:.65rem;color:#94a3b8;margin:0;">نظام إدارة المراكز</p>
             </div>
-            <button onclick="toggleSidebar()" title="Collapse sidebar"
+            <button onclick="toggleSidebar()" title="طي القائمة"
                 style="width:1.75rem;height:1.75rem;background:none;border:1px solid #e2e8f0;border-radius:.375rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#94a3b8;padding:0;">
                 <svg style="width:.75rem;height:.75rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/>
@@ -143,12 +144,12 @@
                     </svg>
                 </div>
                 <div style="min-width:0;flex:1;">
-                    <p style="font-size:.75rem;font-weight:600;color:#334155;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ auth()->user()?->name ?? 'Administrator' }}</p>
+                    <p style="font-size:.75rem;font-weight:600;color:#334155;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ auth()->user()?->name ?? 'المدير' }}</p>
                     <p style="font-size:.65rem;color:#94a3b8;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ auth()->user()?->email ?? '' }}</p>
                 </div>
                 <form method="POST" action="{{ route('logout') }}" style="flex-shrink:0;">
                     @csrf
-                    <button type="submit" title="Sign out"
+                    <button type="submit" title="تسجيل الخروج"
                         style="width:1.75rem;height:1.75rem;background:none;border:1px solid #e2e8f0;border-radius:.375rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#94a3b8;padding:0;transition:color .15s,border-color .15s;"
                         onmouseover="this.style.color='#ef4444';this.style.borderColor='#fca5a5'"
                         onmouseout="this.style.color='#94a3b8';this.style.borderColor='#e2e8f0'">
@@ -183,21 +184,21 @@
                     <svg style="width:.875rem;height:.875rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
                     </svg>
-                    Install Bundle
+                    تثبيت حزمة
                 </a>
-                <span style="font-size:.75rem;color:#94a3b8;">{{ now()->format('D, M d Y') }}</span>
+                <span style="font-size:.75rem;color:#94a3b8;">{{ now()->locale('ar')->translatedFormat('l، d F Y') }}</span>
             </div>
         </header>
 
         {{-- Toast notifications --}}
-        <div style="position:fixed;top:4.5rem;right:1rem;z-index:50;display:flex;flex-direction:column;gap:.5rem;width:20rem;" id="flash-container">
+        <div style="position:fixed;top:4.5rem;left:1rem;z-index:50;display:flex;flex-direction:column;gap:.5rem;width:20rem;" id="flash-container">
             @if(session('success'))
-            <div class="flash-msg" style="background:#fff;border:1px solid #bbf7d0;border-left:4px solid #16a34a;border-radius:.625rem;padding:.875rem 1rem;box-shadow:0 4px 6px -1px rgba(0,0,0,.1);display:flex;align-items:flex-start;gap:.75rem;">
+            <div class="flash-msg" style="background:#fff;border:1px solid #bbf7d0;border-right:4px solid #16a34a;border-radius:.625rem;padding:.875rem 1rem;box-shadow:0 4px 6px -1px rgba(0,0,0,.1);display:flex;align-items:flex-start;gap:.75rem;">
                 <div style="width:1.25rem;height:1.25rem;background:#dcfce7;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                     <svg style="width:.75rem;height:.75rem;color:#16a34a;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                 </div>
                 <div style="flex:1;min-width:0;">
-                    <p style="font-size:.8125rem;font-weight:600;color:#166534;margin:0;">Success</p>
+                    <p style="font-size:.8125rem;font-weight:600;color:#166534;margin:0;">نجاح</p>
                     <p style="font-size:.75rem;color:#15803d;margin:.125rem 0 0;line-height:1.4;">{{ session('success') }}</p>
                 </div>
                 <button onclick="this.closest('.flash-msg').remove()" style="background:none;border:none;cursor:pointer;color:#86efac;padding:0;line-height:1;margin-top:-.125rem;">
@@ -207,12 +208,12 @@
             @endif
 
             @if(session('error'))
-            <div class="flash-msg" style="background:#fff;border:1px solid #fecaca;border-left:4px solid #dc2626;border-radius:.625rem;padding:.875rem 1rem;box-shadow:0 4px 6px -1px rgba(0,0,0,.1);display:flex;align-items:flex-start;gap:.75rem;">
+            <div class="flash-msg" style="background:#fff;border:1px solid #fecaca;border-right:4px solid #dc2626;border-radius:.625rem;padding:.875rem 1rem;box-shadow:0 4px 6px -1px rgba(0,0,0,.1);display:flex;align-items:flex-start;gap:.75rem;">
                 <div style="width:1.25rem;height:1.25rem;background:#fee2e2;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                     <svg style="width:.75rem;height:.75rem;color:#dc2626;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
                 </div>
                 <div style="flex:1;min-width:0;">
-                    <p style="font-size:.8125rem;font-weight:600;color:#991b1b;margin:0;">Error</p>
+                    <p style="font-size:.8125rem;font-weight:600;color:#991b1b;margin:0;">خطأ</p>
                     <p style="font-size:.75rem;color:#b91c1c;margin:.125rem 0 0;line-height:1.4;">{{ session('error') }}</p>
                 </div>
                 <button onclick="this.closest('.flash-msg').remove()" style="background:none;border:none;cursor:pointer;color:#fca5a5;padding:0;line-height:1;margin-top:-.125rem;">
@@ -228,13 +229,13 @@
         </main>
 
         <footer style="border-top:1px solid #e2e8f0;padding:.875rem 1.5rem;background:#fff;">
-            <p style="text-align:center;font-size:.7rem;color:#94a3b8;margin:0;">&copy; {{ date('Y') }} {{ config('app.name', 'School Management') }}. All rights reserved.</p>
+            <p style="text-align:center;font-size:.7rem;color:#94a3b8;margin:0;">&copy; {{ date('Y') }} {{ config('app.name', 'نظام إدارة مركز الدعم') }}. جميع الحقوق محفوظة.</p>
         </footer>
     </div>
 </div>
 
 <script>
-const SB_SECTIONS = ['s-people', 's-academics', 's-subjects', 's-attendance', 's-finance', 's-timetable', 's-communication', 's-hostel', 's-exams', 's-datatransfer', 's-rbac', 's-system'];
+const SB_SECTIONS = ['s-people', 's-academics', 's-subjects', 's-attendance', 's-finance', 's-timetable', 's-communication', 's-hostel', 's-exams', 's-datatransfer', 's-rbac', 's-system', 's-courses', 's-library', 's-alumni', 's-support'];
 
 function toggleSection(id) {
     const content = document.getElementById(id);
@@ -296,7 +297,7 @@ document.addEventListener('DOMContentLoaded', function () {
         setTimeout(function () {
             msg.style.transition = 'opacity .4s, transform .4s';
             msg.style.opacity = '0';
-            msg.style.transform = 'translateX(.75rem)';
+            msg.style.transform = 'translateX(-.75rem)';
             setTimeout(function () { msg.remove(); }, 400);
         }, 5000);
     });

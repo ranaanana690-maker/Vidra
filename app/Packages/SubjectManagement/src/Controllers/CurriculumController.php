@@ -50,7 +50,7 @@ class CurriculumController extends Controller
         Curriculum::create($validated);
 
         return redirect()->route('curriculums.index')
-            ->with('success', 'Curriculum created successfully.');
+            ->with('success', 'تم إنشاء المنهاج بنجاح.');
     }
 
     public function show(Curriculum $curriculum): View
@@ -80,7 +80,7 @@ class CurriculumController extends Controller
         $curriculum->update($validated);
 
         return redirect()->route('curriculums.index')
-            ->with('success', 'Curriculum updated successfully.');
+            ->with('success', 'تم تحديث المنهاج بنجاح.');
     }
 
     public function destroy(Curriculum $curriculum): RedirectResponse
@@ -88,6 +88,6 @@ class CurriculumController extends Controller
         $curriculum->delete();
 
         return redirect()->route('curriculums.index')
-            ->with('success', 'Curriculum deleted.');
+            ->with('success', 'تم حذف المنهاج.');
     }
 }

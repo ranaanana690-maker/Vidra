@@ -3,9 +3,9 @@
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
     <a href="{{ route('class-subjects.index') }}" style="color:#94a3b8;text-decoration:none;"
-       onmouseover="this.style.color='#374151'" onmouseout="this.style.color='#94a3b8'">Class-Subject Assignments</a>
+       onmouseover="this.style.color='#374151'" onmouseout="this.style.color='#94a3b8'">مواد الأقسام</a>
     <span style="margin:0 .375rem;color:#cbd5e1;">/</span>
-    <span style="color:#374151;font-weight:500;">Edit Assignment</span>
+    <span style="color:#374151;font-weight:500;">تعديل الإسناد</span>
 </nav>
 @endsection
 
@@ -14,7 +14,7 @@
     'classSubject' => $classSubject,
     'action'       => route('class-subjects.update', $classSubject),
     'method'       => 'PUT',
-    'title'        => 'Edit Class-Subject Assignment',
+    'title'        => 'تعديل إسناد المادة',
     'classes'      => $classes,
     'subjects'     => $subjects,
 ])

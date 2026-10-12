@@ -31,7 +31,7 @@ class PeriodController extends Controller
 
         Period::create($validated);
 
-        return redirect()->route('period.index')->with('success', 'Period created successfully.');
+        return redirect()->route('period.index')->with('success', 'تم إنشاء الحصة بنجاح.');
     }
 
     public function show(Period $period): View
@@ -53,13 +53,13 @@ class PeriodController extends Controller
 
         $period->update($validated);
 
-        return redirect()->route('period.index')->with('success', 'Period updated successfully.');
+        return redirect()->route('period.index')->with('success', 'تم تحديث الحصة بنجاح.');
     }
 
     public function destroy(Period $period): RedirectResponse
     {
         $period->delete();
 
-        return redirect()->route('period.index')->with('success', 'Period deleted.');
+        return redirect()->route('period.index')->with('success', 'تم حذف الحصة.');
     }
 }

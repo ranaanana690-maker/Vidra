@@ -54,7 +54,7 @@ class TextbookController extends Controller
         Textbook::create($validated);
 
         return redirect()->route('textbooks.index')
-            ->with('success', 'Textbook added successfully.');
+            ->with('success', 'تمت إضافة الكتاب المدرسي بنجاح.');
     }
 
     public function show(Textbook $textbook): View
@@ -86,7 +86,7 @@ class TextbookController extends Controller
         $textbook->update($validated);
 
         return redirect()->route('textbooks.index')
-            ->with('success', 'Textbook updated successfully.');
+            ->with('success', 'تم تحديث الكتاب المدرسي بنجاح.');
     }
 
     public function destroy(Textbook $textbook): RedirectResponse
@@ -94,6 +94,6 @@ class TextbookController extends Controller
         $textbook->delete();
 
         return redirect()->route('textbooks.index')
-            ->with('success', 'Textbook deleted.');
+            ->with('success', 'تم حذف الكتاب المدرسي.');
     }
 }

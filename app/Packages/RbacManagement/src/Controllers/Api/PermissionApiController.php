@@ -69,6 +69,6 @@ class PermissionApiController extends Controller
     {
         $permission->delete();
 
-        return response()->json(['message' => 'Permission deleted.']);
+        return response()->json(['message' => 'تم حذف الصلاحية.']);
     }
 }

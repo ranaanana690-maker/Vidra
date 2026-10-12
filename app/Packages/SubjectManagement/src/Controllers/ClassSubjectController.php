@@ -54,7 +54,7 @@ class ClassSubjectController extends Controller
         ClassSubject::create($validated);
 
         return redirect()->route('class-subjects.index')
-            ->with('success', 'Subject assigned to class successfully.');
+            ->with('success', 'تم إسناد المادة إلى القسم بنجاح.');
     }
 
     public function show(ClassSubject $classSubject): View
@@ -86,7 +86,7 @@ class ClassSubjectController extends Controller
         $classSubject->update($validated);
 
         return redirect()->route('class-subjects.index')
-            ->with('success', 'Class-subject updated successfully.');
+            ->with('success', 'تم تحديث مواد القسم بنجاح.');
     }
 
     public function destroy(ClassSubject $classSubject): RedirectResponse
@@ -94,6 +94,6 @@ class ClassSubjectController extends Controller
         $classSubject->delete();
 
         return redirect()->route('class-subjects.index')
-            ->with('success', 'Assignment removed.');
+            ->with('success', 'تمت إزالة الإسناد.');
     }
 }

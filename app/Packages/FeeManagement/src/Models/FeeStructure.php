@@ -28,8 +28,8 @@ class FeeStructure extends Model
     ];
 
     public const FREQUENCIES = [
-        'once' => 'One-time',
-        'monthly' => 'Monthly subscription',
+        'once' => 'مرة واحدة',
+        'monthly' => 'اشتراك شهري',
     ];
 
     protected $casts = [
@@ -56,10 +56,10 @@ class FeeStructure extends Model
     public function targetLabel(): string
     {
         if ($this->course) {
-            return 'Course: '.$this->course->name;
+            return 'دورة: '.$this->course->name;
         }
         if ($this->schoolClass) {
-            return 'Class: '.$this->schoolClass->class_name;
+            return 'قسم: '.$this->schoolClass->class_name;
         }
 
         return '—';

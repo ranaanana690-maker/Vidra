@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <span style="color:#374151;font-weight:500;">Library / Members</span>
+    <span style="color:#374151;font-weight:500;">المكتبة / الأعضاء</span>
 </nav>
 @endsection
 
@@ -10,13 +10,13 @@
 
 <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;">
     <div>
-        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">Library Members</h1>
-        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">Manage registered library members</p>
+        <h1 style="font-size:1.375rem;font-weight:700;color:#1e293b;margin:0;">أعضاء المكتبة</h1>
+        <p style="font-size:.8125rem;color:#64748b;margin:.25rem 0 0;">إدارة أعضاء المكتبة المسجلين</p>
     </div>
     @can('create_library-management_item')
     <x-core-package::btn :href="route('library.members.create')" color="primary">
         <svg style="width:.875rem;height:.875rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-        Register Member
+        تسجيل عضو
     </x-core-package::btn>
     @endcan
 </div>
@@ -30,12 +30,12 @@
         <table style="width:100%;border-collapse:collapse;font-size:.8125rem;">
             <thead>
                 <tr style="background:#f8fafc;">
-                    <th style="padding:.625rem 1.25rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Member</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Membership No.</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Type</th>
-                    <th style="padding:.625rem 1rem;text-align:center;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Max Books</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Status</th>
-                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">Actions</th>
+                    <th style="padding:.625rem 1.25rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">العضو</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">رقم العضوية</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">النوع</th>
+                    <th style="padding:.625rem 1rem;text-align:center;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">الحد الأقصى للكتب</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">الحالة</th>
+                    <th style="padding:.625rem 1rem;text-align:left;font-size:.65rem;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #e2e8f0;">إجراءات</th>
                 </tr>
             </thead>
             <tbody>
@@ -56,16 +56,16 @@
                 </td>
                 <td style="padding:.75rem 1rem;">
                     <div style="display:flex;gap:.5rem;">
-                        <x-core-package::btn :href="route('library.members.show', $member)" color="primary" size="sm">View</x-core-package::btn>
+                        <x-core-package::btn :href="route('library.members.show', $member)" color="primary" size="sm">عرض</x-core-package::btn>
                         @can('edit_library-management_item')
-                        <x-core-package::btn :href="route('library.members.edit', $member)" color="secondary" size="sm">Edit</x-core-package::btn>
+                        <x-core-package::btn :href="route('library.members.edit', $member)" color="secondary" size="sm">تعديل</x-core-package::btn>
                         @endcan
                     </div>
                 </td>
             </tr>
             @empty
             <tr>
-                <td colspan="6" style="padding:2.5rem;text-align:center;color:#94a3b8;font-size:.875rem;">No members registered yet.</td>
+                <td colspan="6" style="padding:2.5rem;text-align:center;color:#94a3b8;font-size:.875rem;">لا يوجد أعضاء مسجلين بعد.</td>
             </tr>
             @endforelse
             </tbody>

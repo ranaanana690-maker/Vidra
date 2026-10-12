@@ -14,15 +14,15 @@
         @csrf
         @if($method !== 'POST') @method($method) @endif
 
-        <x-core-package::card title="Assignment Details">
+        <x-core-package::card title="تفاصيل الإسناد">
             <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;">
                 <x-core-package::form.input
-                    name="student_id" label="Student ID" type="number" required
-                    placeholder="Enter student ID"
+                    name="student_id" label="معرف التلميذ" type="number" required
+                    placeholder="أدخل معرف التلميذ"
                     value="{{ old('student_id', $studentHostel->student_id ?? '') }}" />
 
-                <x-core-package::form.select name="hostel_id" label="Hostel" required>
-                    <option value="">— Select Hostel —</option>
+                <x-core-package::form.select name="hostel_id" label="مرقد" required>
+                    <option value="">— اختر المرقد —</option>
                     @foreach($hostels as $h)
                     <option value="{{ $h->hostel_id }}"
                         @selected((string) old('hostel_id', $studentHostel->hostel_id ?? '') === (string) $h->hostel_id)>
@@ -31,8 +31,8 @@
                     @endforeach
                 </x-core-package::form.select>
 
-                <x-core-package::form.select name="room_id" label="Room" required>
-                    <option value="">— Select Room —</option>
+                <x-core-package::form.select name="room_id" label="قاعة" required>
+                    <option value="">— اختر القاعة —</option>
                     @foreach($rooms as $r)
                     <option value="{{ $r->room_id }}"
                         @selected((string) old('room_id', $studentHostel->room_id ?? '') === (string) $r->room_id)>
@@ -44,11 +44,11 @@
                 <div></div>
 
                 <x-core-package::form.input
-                    name="assigned_date" label="Assigned Date" type="date" required
+                    name="assigned_date" label="تاريخ الإسناد" type="date" required
                     value="{{ old('assigned_date', isset($studentHostel) ? $studentHostel->assigned_date?->format('Y-m-d') : '') }}" />
 
                 <x-core-package::form.input
-                    name="checkout_date" label="Checkout Date" type="date"
+                    name="checkout_date" label="تاريخ المغادرة" type="date"
                     hint="Leave empty if still active"
                     value="{{ old('checkout_date', isset($studentHostel) ? $studentHostel->checkout_date?->format('Y-m-d') : '') }}" />
             </div>
@@ -56,9 +56,9 @@
 
         <div style="display:flex;gap:.75rem;">
             <x-core-package::btn type="submit" color="primary">
-                {{ isset($studentHostel) ? 'Update Assignment' : 'Create Assignment' }}
+                {{ isset($studentHostel) ? 'تحديث الإسناد' : 'إنشاء الإسناد' }}
             </x-core-package::btn>
-            <x-core-package::btn :href="route('student-hostels.index')" color="secondary">Cancel</x-core-package::btn>
+            <x-core-package::btn :href="route('student-hostels.index')" color="secondary">إلغاء</x-core-package::btn>
         </div>
     </form>
 </div>

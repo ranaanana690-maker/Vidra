@@ -65,7 +65,7 @@ class FeeStructureController extends Controller
             'academic_year_id' => 'required|integer',
         ]);
         FeeStructure::create($validated);
-        return redirect()->route('feeStructure.index')->with('success', 'Fee structure created successfully.');
+        return redirect()->route('feeStructure.index')->with('success', 'تم إنشاء هيكل الرسوم بنجاح.');
     }
 
     public function show(FeeStructure $feeStructure): View
@@ -99,12 +99,12 @@ class FeeStructureController extends Controller
             'academic_year_id' => 'required|integer',
         ]);
         $feeStructure->update($validated);
-        return redirect()->route('feeStructure.index')->with('success', 'Fee structure updated successfully.');
+        return redirect()->route('feeStructure.index')->with('success', 'تم تحديث هيكل الرسوم بنجاح.');
     }
 
     public function destroy(FeeStructure $feeStructure): RedirectResponse
     {
         $feeStructure->delete();
-        return redirect()->route('feeStructure.index')->with('success', 'Fee structure deleted.');
+        return redirect()->route('feeStructure.index')->with('success', 'تم حذف هيكل الرسوم.');
     }
 }

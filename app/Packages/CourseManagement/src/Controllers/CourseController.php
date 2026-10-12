@@ -58,7 +58,7 @@ class CourseController extends Controller
         $course = Course::create($validated);
 
         return redirect()->route('courses.show', $course)
-            ->with('success', 'Course created successfully.');
+            ->with('success', 'تم إنشاء الدورة بنجاح.');
     }
 
     public function show(Course $course): View
@@ -96,7 +96,7 @@ class CourseController extends Controller
         $course->update($validated);
 
         return redirect()->route('courses.show', $course)
-            ->with('success', 'Course updated successfully.');
+            ->with('success', 'تم تحديث الدورة بنجاح.');
     }
 
     public function destroy(Course $course): RedirectResponse
@@ -104,6 +104,6 @@ class CourseController extends Controller
         $course->delete();
 
         return redirect()->route('courses.index')
-            ->with('success', 'Course deleted.');
+            ->with('success', 'تم حذف الدورة.');
     }
 }

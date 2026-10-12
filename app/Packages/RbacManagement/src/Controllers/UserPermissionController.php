@@ -30,6 +30,6 @@ class UserPermissionController extends Controller
         $permissions   = Permission::whereIn('id', $permissionIds)->get();
         $user->syncPermissions($permissions);
 
-        return redirect()->route('user-roles.index')->with('success', 'Direct permissions updated for '.$user->name.'.');
+        return redirect()->route('user-roles.index')->with('success', 'تم تحديث الصلاحيات المباشرة لـ '.$user->name.'.');
     }
 }

@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
-    <span style="color:#374151;font-weight:500;">Bundle Store</span>
+    <span style="color:#374151;font-weight:500;">متجر الحزم</span>
 </nav>
 @endsection
 
@@ -72,18 +72,18 @@
                 <div style="width:2.25rem;height:2.25rem;background:rgba(255,255,255,.15);border-radius:.625rem;display:flex;align-items:center;justify-content:center;">
                     <svg style="width:1.25rem;height:1.25rem;color:#fff;" fill="currentColor" viewBox="0 0 20 20"><path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3z"/></svg>
                 </div>
-                <h1 style="font-size:1.375rem;font-weight:800;margin:0;color:#fff;">Vidra Bundle Store</h1>
+                <h1 style="font-size:1.375rem;font-weight:800;margin:0;color:#fff;">متجر حزم فيدرا</h1>
             </div>
-            <p style="margin:0;color:rgba(255,255,255,.7);font-size:.8125rem;">Install and manage feature bundles for your school platform</p>
+            <p style="margin:0;color:rgba(255,255,255,.7);font-size:.8125rem;">ثبت وأدر حزم الميزات لمنصة مدرستك</p>
         </div>
         <div style="display:flex;gap:.625rem;">
             <div class="bs-stat" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);">
                 <div class="bs-stat-num" style="color:#fff;">{{ count($installed) }}</div>
-                <div class="bs-stat-label" style="color:rgba(255,255,255,.7);">Installed</div>
+                <div class="bs-stat-label" style="color:rgba(255,255,255,.7);">مثبت</div>
             </div>
             <div class="bs-stat" style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);">
                 <div class="bs-stat-num" style="color:#fff;">{{ count($extracted) }}</div>
-                <div class="bs-stat-label" style="color:rgba(255,255,255,.7);">Available</div>
+                <div class="bs-stat-label" style="color:rgba(255,255,255,.7);">متاح</div>
             </div>
         </div>
     </div>
@@ -114,18 +114,18 @@
         @if(count($extracted) > 0)<span style="background:#64748b;color:#fff;border-radius:999px;padding:.1rem .5rem;font-size:.65rem;margin-left:.375rem;">{{ count($extracted) }}</span>@endif
     </button>
     <button class="bs-tab" onclick="switchTab('upload')">
-        Upload Bundle
+        رفع حزمة
     </button>
 </div>
 
 {{-- ── Tab: Installed ── --}}
 <div id="tab-installed">
-    <div class="bs-section-label">Installed Bundles</div>
+    <div class="bs-section-label">الحزم المثبتة</div>
 
     @if(count($installed) === 0)
     <div class="bs-empty">
         <svg style="width:2.5rem;height:2.5rem;color:#cbd5e1;margin:0 auto .75rem;display:block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-        No bundles installed yet. Go to <strong>Available</strong> or <strong>Upload Bundle</strong> to add one.
+        لا يوجد حزم مثبتة بعد. اذهب إلى <strong>متاح</strong> or <strong>رفع حزمة</strong> to add one.
     </div>
     @else
     <div class="bs-grid">
@@ -141,7 +141,7 @@
                     <div class="bs-card-author">{{ $bundle['author'] ?: 'Vidra' }}</div>
                     <div style="display:flex;align-items:center;gap:.375rem;margin-top:.25rem;">
                         <div class="bs-installed-dot"></div>
-                        <span style="font-size:.6875rem;color:#059669;font-weight:600;">Installed</span>
+                        <span style="font-size:.6875rem;color:#059669;font-weight:600;">مثبت</span>
                     </div>
                 </div>
             </div>
@@ -162,13 +162,13 @@
                 <span class="bs-version-badge">v{{ $bundle['version'] }}</span>
                 <div style="display:flex;gap:.5rem;">
                     @if($bundle['main_route'])
-                    <a href="{{ $bundle['main_route'] }}" class="bs-btn-open">Open</a>
+                    <a href="{{ $bundle['main_route'] }}" class="bs-btn-open">فتح</a>
                     @endif
                     <form method="POST"
                           action="{{ route('bundle-installer.destroy', ['bundle' => $bundle['package']]) }}"
                           onsubmit="return confirmUninstall('{{ $bundle['name'] }}')">
                         @csrf @method('DELETE')
-                        <button type="submit" class="bs-btn-uninstall">Uninstall</button>
+                        <button type="submit" class="bs-btn-uninstall">إلغاء التثبيت</button>
                     </form>
                 </div>
             </div>
@@ -180,12 +180,12 @@
 
 {{-- ── Tab: Available ── --}}
 <div id="tab-available" style="display:none;">
-    <div class="bs-section-label">Available (Uploaded, Not Installed)</div>
+    <div class="bs-section-label">متاحة (مرفوعة، غير مثبتة)</div>
 
     @if(count($extracted) === 0)
     <div class="bs-empty">
         <svg style="width:2.5rem;height:2.5rem;color:#cbd5e1;margin:0 auto .75rem;display:block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"/></svg>
-        No uploaded bundles waiting to be installed. Go to <strong>Upload Bundle</strong> to add one.
+        لا يوجد حزم مرفوعة بانتظار التثبيت. اذهب إلى <strong>رفع حزمة</strong> to add one.
     </div>
     @else
     <div class="bs-grid">
@@ -201,7 +201,7 @@
                     <div class="bs-card-author">{{ $bundle['author'] ?: 'Vidra' }}</div>
                     <div style="display:flex;align-items:center;gap:.375rem;margin-top:.25rem;">
                         <div style="width:.5rem;height:.5rem;border-radius:50%;background:#f59e0b;flex-shrink:0;"></div>
-                        <span style="font-size:.6875rem;color:#b45309;font-weight:600;">Not Installed</span>
+                        <span style="font-size:.6875rem;color:#b45309;font-weight:600;">غير مثبت</span>
                     </div>
                 </div>
             </div>
@@ -223,15 +223,15 @@
                         @csrf
                         <button type="submit" class="bs-btn-install">
                             <svg style="width:.75rem;height:.75rem;display:inline;vertical-align:middle;margin-right:.25rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                            Install
+                            تثبيت
                         </button>
                     </form>
                     @php $removeName = addslashes($bundle['name']); @endphp
                     <form method="POST"
                           action="{{ route('bundle-installer.remove-files', ['bundle' => $bundle['package']]) }}"
-                          onsubmit="return confirm('Delete all source files for {{ $removeName }}? This cannot be undone.')">
+                          onsubmit="return confirm('حذف كل ملفات المصدر لـ {{ $removeName }}؟ لا يمكن التراجع عن هذا.')">
                         @csrf @method('DELETE')
-                        <button type="submit" class="bs-btn-uninstall">Remove</button>
+                        <button type="submit" class="bs-btn-uninstall">إزالة</button>
                     </form>
                 </div>
             </div>
@@ -245,7 +245,7 @@
         <div class="bs-coming-divider-line" style="background:linear-gradient(270deg,#e0e7ff,transparent);"></div>
         <div class="bs-coming-label">
             <svg style="width:.75rem;height:.75rem;" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>
-            Coming Soon — Upcoming Bundles
+            قريباً — الحزم القادمة
             <span id="cs-total-badge" style="background:#6366f1;color:#fff;border-radius:999px;padding:.1rem .5rem;font-size:.6rem;font-weight:700;"></span>
         </div>
         <div class="bs-coming-divider-line"></div>
@@ -254,7 +254,7 @@
     <div class="cs-search-wrap">
         <div class="cs-search-inner">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-            <input id="cs-search" class="cs-search-input" type="text" placeholder="Search upcoming bundles by name or feature…">
+            <input id="cs-search" class="cs-search-input" type="text" placeholder="ابحث عن الحزم القادمة بالاسم أو الميزة…">
         </div>
         <div id="cs-count" style="font-size:.75rem;color:#64748b;white-space:nowrap;font-weight:500;"></div>
     </div>
@@ -263,7 +263,7 @@
 
     <div id="cs-empty" class="bs-empty" style="display:none;">
         <svg style="width:2rem;height:2rem;color:#cbd5e1;margin:0 auto .625rem;display:block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-        No upcoming bundles match your search.
+        لا يوجد حزم قادمة تطابق بحثك.
     </div>
 
     <div id="cs-pagination" style="display:flex;align-items:center;justify-content:center;gap:.375rem;padding:.75rem 0 1.75rem;flex-wrap:wrap;"></div>
@@ -271,7 +271,7 @@
 
 {{-- ── Tab: Upload ── --}}
 <div id="tab-upload" style="display:none;">
-    <div class="bs-section-label">Upload a New Bundle</div>
+    <div class="bs-section-label">رفع حزمة جديدة</div>
 
     <div style="max-width:640px;">
         <form action="{{ route('bundle-installer.upload') }}" method="POST" enctype="multipart/form-data" id="upload-form">
@@ -281,7 +281,7 @@
                        onchange="handleFileSelect(this)">
                 <svg style="width:2.5rem;height:2.5rem;color:#a5b4fc;margin:0 auto .875rem;display:block;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
                 <div id="drop-text" style="font-size:.9375rem;font-weight:600;color:#4f46e5;margin-bottom:.375rem;">
-                    Drop your bundle ZIP here
+                    أفلت ملف ZIP للحزمة هنا
                 </div>
                 <div style="font-size:.8125rem;color:#94a3b8;">or click to browse · Max 100 MB</div>
             </div>
@@ -295,7 +295,7 @@
                     <div id="file-size" style="font-size:.75rem;color:#64748b;"></div>
                 </div>
                 <button type="submit" class="bs-btn-install" style="padding:.5rem 1.5rem;font-size:.875rem;">
-                    Upload & Extract
+                    رفع واستخراج
                 </button>
             </div>
         </form>
@@ -303,7 +303,7 @@
         <div style="background:#fff;border:1px solid #e2e8f0;border-radius:.875rem;padding:1.25rem;margin-top:1.25rem;">
             <div style="font-weight:700;color:#1e293b;font-size:.875rem;margin-bottom:.875rem;display:flex;align-items:center;gap:.5rem;">
                 <svg style="width:1rem;height:1rem;color:#4f46e5;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                Bundle ZIP Structure
+                هيكل ZIP للحزمة
             </div>
             <pre style="background:#0f172a;color:#e2e8f0;padding:1rem;border-radius:.5rem;font-size:.725rem;line-height:1.7;margin:0;overflow-x:auto;">MyBundle/               ← root folder (or flat)
 ├── manifest.json       ← required
@@ -366,7 +366,7 @@ function showFilePreview(file) {
 
 // ── Uninstall confirm ─────────────────────────────────────
 function confirmUninstall(name) {
-    return confirm('Uninstall "'+name+'"?\n\nThis will:\n  • Drop all database tables\n  • Remove all permissions and roles\n  • Remove the service provider registration\n\nSource files are kept on disk.');
+    return confirm('إلغاء التثبيت "'+name+'"?\n\nThis will:\n  • Drop all database tables\n  • Remove all permissions and roles\n  • Remove the service provider registration\n\nSource files are kept on disk.');
 }
 
 // ── Coming Soon: search + pagination ─────────────────────

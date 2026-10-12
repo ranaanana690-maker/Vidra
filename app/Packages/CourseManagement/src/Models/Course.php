@@ -30,10 +30,10 @@ class Course extends Model
     ];
 
     public const CATEGORIES = [
-        'quran' => 'Quran',
-        'language' => 'Language',
-        'soroban' => 'Soroban',
-        'other' => 'Other',
+        'quran' => 'القرآن الكريم',
+        'language' => 'اللغات',
+        'soroban' => 'السوروبان',
+        'other' => 'أخرى',
     ];
 
     public function levels()

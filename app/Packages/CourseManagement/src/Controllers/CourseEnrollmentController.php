@@ -45,12 +45,12 @@ class CourseEnrollmentController extends Controller
         }
 
         if ($course->enrollments()->where('student_id', $validated['student_id'])->exists()) {
-            return back()->with('error', 'Student is already enrolled in this course.');
+            return back()->with('error', 'التلميذ مسجل بالفعل في هذه الدورة.');
         }
 
         $course->enrollments()->create($validated);
 
-        return back()->with('success', 'Student enrolled successfully.');
+        return back()->with('success', 'تم تسجيل التلميذ بنجاح.');
     }
 
     public function update(Request $request, CourseEnrollment $enrollment): RedirectResponse
@@ -68,14 +68,14 @@ class CourseEnrollmentController extends Controller
 
         $enrollment->update($validated);
 
-        return back()->with('success', 'Enrollment updated successfully.');
+        return back()->with('success', 'تم تحديث التسجيل بنجاح.');
     }
 
     public function destroy(CourseEnrollment $enrollment): RedirectResponse
     {
         $enrollment->delete();
 
-        return back()->with('success', 'Enrollment removed.');
+        return back()->with('success', 'تمت إزالة التسجيل.');
     }
 
     public function studentOptions(): array

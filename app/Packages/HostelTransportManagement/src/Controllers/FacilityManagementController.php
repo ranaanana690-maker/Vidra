@@ -44,7 +44,7 @@ class FacilityManagementController extends Controller
         FacilityManagement::create($validated);
 
         return redirect()->route('facilities.index')
-            ->with('success', 'Facility created successfully.');
+            ->with('success', 'تم إنشاء المرفق بنجاح.');
     }
 
     public function show(FacilityManagement $facility): View
@@ -72,7 +72,7 @@ class FacilityManagementController extends Controller
         $facility->update($validated);
 
         return redirect()->route('facilities.index')
-            ->with('success', 'Facility updated successfully.');
+            ->with('success', 'تم تحديث المرفق بنجاح.');
     }
 
     public function destroy(FacilityManagement $facility): RedirectResponse
@@ -80,6 +80,6 @@ class FacilityManagementController extends Controller
         $facility->delete();
 
         return redirect()->route('facilities.index')
-            ->with('success', 'Facility deleted.');
+            ->with('success', 'تم حذف المرفق.');
     }
 }

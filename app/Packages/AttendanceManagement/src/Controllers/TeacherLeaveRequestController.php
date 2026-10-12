@@ -46,7 +46,7 @@ class TeacherLeaveRequestController extends Controller
         TeacherLeaveRequest::create($validated);
 
         return redirect()->route('teacherLeaveRequest.index')
-            ->with('success', 'Leave request submitted successfully.');
+            ->with('success', 'تم إرسال طلب الرخصة بنجاح.');
     }
 
     public function show(TeacherLeaveRequest $teacherLeaveRequest): View
@@ -76,7 +76,7 @@ class TeacherLeaveRequestController extends Controller
         $teacherLeaveRequest->update($validated);
 
         return redirect()->route('teacherLeaveRequest.index')
-            ->with('success', 'Leave request updated successfully.');
+            ->with('success', 'تم تحديث طلب الرخصة بنجاح.');
     }
 
     public function destroy(TeacherLeaveRequest $teacherLeaveRequest): RedirectResponse
@@ -84,6 +84,6 @@ class TeacherLeaveRequestController extends Controller
         $teacherLeaveRequest->delete();
 
         return redirect()->route('teacherLeaveRequest.index')
-            ->with('success', 'Leave request deleted.');
+            ->with('success', 'تم حذف طلب الرخصة.');
     }
 }

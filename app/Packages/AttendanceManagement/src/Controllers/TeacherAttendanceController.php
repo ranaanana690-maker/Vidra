@@ -43,7 +43,7 @@ class TeacherAttendanceController extends Controller
         TeacherAttendance::create($validated);
 
         return redirect()->route('teacherAttendance.index')
-            ->with('success', 'Teacher attendance recorded successfully.');
+            ->with('success', 'تم تسجيل حضور الأساتذة بنجاح.');
     }
 
     public function show(TeacherAttendance $teacherAttendance): View
@@ -70,7 +70,7 @@ class TeacherAttendanceController extends Controller
         $teacherAttendance->update($validated);
 
         return redirect()->route('teacherAttendance.index')
-            ->with('success', 'Teacher attendance updated successfully.');
+            ->with('success', 'تم تحديث حضور الأساتذة بنجاح.');
     }
 
     public function destroy(TeacherAttendance $teacherAttendance): RedirectResponse
@@ -78,6 +78,6 @@ class TeacherAttendanceController extends Controller
         $teacherAttendance->delete();
 
         return redirect()->route('teacherAttendance.index')
-            ->with('success', 'Teacher attendance record deleted.');
+            ->with('success', 'تم حذف سجل حضور الأساتذة.');
     }
 }

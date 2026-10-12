@@ -46,7 +46,7 @@ class ExpenseController extends Controller
             'description'      => 'nullable|string',
         ]);
         Expense::create($validated);
-        return redirect()->route('expense.index')->with('success', 'Expense recorded successfully.');
+        return redirect()->route('expense.index')->with('success', 'تم تسجيل المصروف بنجاح.');
     }
 
     public function show(Expense $expense): View
@@ -68,12 +68,12 @@ class ExpenseController extends Controller
             'description'      => 'nullable|string',
         ]);
         $expense->update($validated);
-        return redirect()->route('expense.index')->with('success', 'Expense updated successfully.');
+        return redirect()->route('expense.index')->with('success', 'تم تحديث المصروف بنجاح.');
     }
 
     public function destroy(Expense $expense): RedirectResponse
     {
         $expense->delete();
-        return redirect()->route('expense.index')->with('success', 'Expense deleted.');
+        return redirect()->route('expense.index')->with('success', 'تم حذف المصروف.');
     }
 }

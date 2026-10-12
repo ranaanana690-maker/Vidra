@@ -33,7 +33,7 @@ class GradingSchemeController extends Controller
         GradingScheme::create($validated);
 
         return redirect()->route('gradingScheme.index')
-            ->with('success', 'Grade created successfully.');
+            ->with('success', 'تم إنشاء التقدير بنجاح.');
     }
 
     public function show(GradingScheme $gradingScheme): View
@@ -58,13 +58,13 @@ class GradingSchemeController extends Controller
         $gradingScheme->update($validated);
 
         return redirect()->route('gradingScheme.index')
-            ->with('success', 'Grade updated successfully.');
+            ->with('success', 'تم تحديث التقدير بنجاح.');
     }
 
     public function destroy(GradingScheme $gradingScheme): RedirectResponse
     {
         $gradingScheme->delete();
         return redirect()->route('gradingScheme.index')
-            ->with('success', 'Grade deleted successfully.');
+            ->with('success', 'تم حذف التقدير بنجاح.');
     }
 }

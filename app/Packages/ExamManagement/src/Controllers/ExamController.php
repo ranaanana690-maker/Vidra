@@ -50,7 +50,7 @@ class ExamController extends Controller
         Exam::create($validated);
 
         return redirect()->route('exam.index')
-            ->with('success', 'Exam created successfully.');
+            ->with('success', 'تم إنشاء الامتحان بنجاح.');
     }
 
     public function show(Exam $exam): View
@@ -81,13 +81,13 @@ class ExamController extends Controller
         $exam->update($validated);
 
         return redirect()->route('exam.index')
-            ->with('success', 'Exam updated successfully.');
+            ->with('success', 'تم تحديث الامتحان بنجاح.');
     }
 
     public function destroy(Exam $exam): RedirectResponse
     {
         $exam->delete();
         return redirect()->route('exam.index')
-            ->with('success', 'Exam deleted successfully.');
+            ->with('success', 'تم حذف الامتحان بنجاح.');
     }
 }

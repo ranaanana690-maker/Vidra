@@ -3,9 +3,9 @@
 @section('breadcrumb')
 <nav style="font-size:.8125rem;color:#64748b;">
     <a href="{{ route('lesson-plans.index') }}" style="color:#94a3b8;text-decoration:none;"
-       onmouseover="this.style.color='#374151'" onmouseout="this.style.color='#94a3b8'">Lesson Plans</a>
+       onmouseover="this.style.color='#374151'" onmouseout="this.style.color='#94a3b8'">خطط الدروس</a>
     <span style="margin:0 .375rem;color:#cbd5e1;">/</span>
-    <span style="color:#374151;font-weight:500;">New Lesson Plan</span>
+    <span style="color:#374151;font-weight:500;">خطة درس جديدة</span>
 </nav>
 @endsection
 
@@ -14,7 +14,7 @@
     'lessonPlan'  => null,
     'action'      => route('lesson-plans.store'),
     'method'      => 'POST',
-    'title'       => 'Create Lesson Plan',
+    'title'       => 'إنشاء خطة درس',
     'curriculums' => $curriculums,
 ])
 @endsection

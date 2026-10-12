@@ -88,10 +88,10 @@ class BundleInstallerController extends BaseController
                 'bundle' => 'required|file|mimes:zip|max:102400',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
-            $errorMsg = $e->errors()['bundle'][0] ?? 'File validation failed';
+            $errorMsg = $e->errors()['bundle'][0] ?? 'فشل التحقق من الملف';
             return back()->with('error', $errorMsg);
         } catch (\Exception $e) {
-            return back()->with('error', 'Upload failed: ' . $e->getMessage());
+            return back()->with('error', 'فشل الرفع: ' . $e->getMessage());
         }
 
         $file = $request->file('bundle');
@@ -130,7 +130,7 @@ class BundleInstallerController extends BaseController
             return back()->with('error', $extraction['error']);
         }
 
-        return back()->with('success', "{$manifest['name']} v{$manifest['version']} uploaded. Click Install to activate it.");
+        return back()->with('success', "{$manifest['name']} v{$manifest['version']} تم رفعه. انقر تثبيت لتفعيله.");
     }
 
     public function install(string $bundle)
@@ -167,10 +167,10 @@ class BundleInstallerController extends BaseController
 
         if (!empty($manifest['setup_route'])) {
             return redirect($manifest['setup_route'])
-                ->with('success', "{$manifest['name']} v{$manifest['version']} installed! Complete the setup below.");
+                ->with('success', "{$manifest['name']} v{$manifest['version']} تم تثبيته! أكمل الإعداد أدناه.");
         }
 
-        return back()->with('success', "{$manifest['name']} v{$manifest['version']} installed successfully!");
+        return back()->with('success', "{$manifest['name']} v{$manifest['version']} تم تثبيته بنجاح!");
     }
 
     public function removeFiles(string $bundle): RedirectResponse
@@ -205,7 +205,7 @@ class BundleInstallerController extends BaseController
         // Delete source files
         $this->removeDir($packagePath);
 
-        return back()->with('success', "'{$bundleName}' removed — files, tables, permissions, and roles deleted.");
+        return back()->with('success', "'{$bundleName}' تمت إزالتها — تم حذف الملفات والجداول والصلاحيات والأدوار.");
     }
 
     public function destroy(string $bundle): RedirectResponse
@@ -250,7 +250,7 @@ class BundleInstallerController extends BaseController
         } catch (\Exception) {
         }
 
-        return back()->with('success', "'{$bundleName}' uninstalled — tables, permissions, and roles removed. Source files are kept on disk.");
+        return back()->with('success', "'{$bundleName}' تم إلغاء تثبيتها — تمت إزالة الجداول والصلاحيات والأدوار. ملفات المصدر محفوظة على القرص.");
     }
 
     // ─── Helpers ────────────────────────────────────────────────────────────────

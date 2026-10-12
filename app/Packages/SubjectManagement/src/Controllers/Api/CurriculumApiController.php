@@ -50,6 +50,6 @@ class CurriculumApiController extends Controller
     {
         $curriculum->delete();
 
-        return response()->json(['message' => 'Curriculum deleted']);
+        return response()->json(['message' => 'تم حذف المنهاج.']);
     }
 }
